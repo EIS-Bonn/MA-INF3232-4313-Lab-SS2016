@@ -8,10 +8,7 @@ Mentor:
 Harsh Thakkar
 
 Memebers:
-Ali Denno
-Mohamad Denno
-Amal Amouri
-Ola Al-Nameh	
+Ali Denno - Mohamad Denno - Amal Amouri - Ola Al-Nameh	
 
 
 @initialized: Thursday, May 5, 2016
