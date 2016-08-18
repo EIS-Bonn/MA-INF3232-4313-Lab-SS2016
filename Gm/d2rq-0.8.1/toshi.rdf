@@ -1,0 +1,545 @@
+@prefix :        <vocab/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+
+:outputs_hsh
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_hsh" ;
+      rdfs:range xsd:string .
+
+:addresses_compressed
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_compressed" ;
+      rdfs:range xsd:string .
+
+:transactions
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions" .
+
+:blocks_bits
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_bits" ;
+      rdfs:range xsd:integer .
+
+:blocks_transactions_position
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks_transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_transactions_position" ;
+      rdfs:range xsd:integer .
+
+:addresses_total_received
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_total_received" ;
+      rdfs:range xsd:integer .
+
+:outputs
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs" .
+
+:address_ledger_entries_address_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_address_id" ;
+      rdfs:range :addresses .
+
+:unspent_outputs_address_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :unspent_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "unspent_outputs_address_id" ;
+      rdfs:range :addresses .
+
+:blocks_time
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_time" ;
+      rdfs:range xsd:integer .
+
+:transactions_lock_time
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_lock_time" ;
+      rdfs:range xsd:integer .
+
+:address_ledger_entries_output_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_output_id" ;
+      rdfs:range :outputs .
+
+:blocks_mrkl_root
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_mrkl_root" ;
+      rdfs:range xsd:string .
+
+:blocks_size
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_size" ;
+      rdfs:range xsd:integer .
+
+:addresses_hash160
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_hash160" ;
+      rdfs:range xsd:string .
+
+:transactions_created_at
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_created_at" ;
+      rdfs:range xsd:dateTime .
+
+:unspent_outputs_output_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :unspent_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "unspent_outputs_output_id" ;
+      rdfs:range :outputs .
+
+:unspent_outputs
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "unspent_outputs" .
+
+:blocks_prev_block
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_prev_block" ;
+      rdfs:range xsd:string .
+
+:transactions_fee
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_fee" ;
+      rdfs:range xsd:integer .
+
+:blocks_work
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_work" ;
+      rdfs:range xsd:hexBinary .
+
+:inputs_position
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_position" ;
+      rdfs:range xsd:integer .
+
+:address_ledger_entries
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries" .
+
+:blocks_total_out_value
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_total_out_value" ;
+      rdfs:range xsd:integer .
+
+:transactions_total_out_value
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_total_out_value" ;
+      rdfs:range xsd:integer .
+
+:transactions_ver
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_ver" ;
+      rdfs:range xsd:integer .
+
+:addresses_outputs
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_outputs" .
+
+:inputs_script
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_script" ;
+      rdfs:range xsd:hexBinary .
+
+:address_ledger_entries_input_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_input_id" ;
+      rdfs:range :inputs .
+
+:inputs
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs" .
+
+:inputs_prev_out
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_prev_out" ;
+      rdfs:range xsd:string .
+
+:blocks_branch
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_branch" ;
+      rdfs:range xsd:integer .
+
+:inputs_hsh
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_hsh" ;
+      rdfs:range xsd:string .
+
+:transactions_hsh
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_hsh" ;
+      rdfs:range xsd:string .
+
+:blocks_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_id" ;
+      rdfs:range xsd:integer .
+
+:blocks_fees
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_fees" ;
+      rdfs:range xsd:integer .
+
+:blocks_hsh
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_hsh" ;
+      rdfs:range xsd:string .
+
+:addresses_address
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_address" ;
+      rdfs:range xsd:string .
+
+:addresses_label
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_label" ;
+      rdfs:range xsd:string .
+
+:addresses_outputs_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_outputs_id" ;
+      rdfs:range xsd:integer .
+
+:transactions_height
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_height" ;
+      rdfs:range xsd:integer .
+
+:outputs_amount
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_amount" ;
+      rdfs:range xsd:integer .
+
+:outputs_branch
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_branch" ;
+      rdfs:range xsd:integer .
+
+:transactions_total_in_value
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_total_in_value" ;
+      rdfs:range xsd:integer .
+
+:address_ledger_entries_transaction_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_transaction_id" ;
+      rdfs:range :transactions .
+
+:transactions_inputs_count
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_inputs_count" ;
+      rdfs:range xsd:integer .
+
+:inputs_index
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_index" ;
+      rdfs:range xsd:integer .
+
+:blocks_created_at
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_created_at" ;
+      rdfs:range xsd:dateTime .
+
+:address_ledger_entries_amount
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_amount" ;
+      rdfs:range xsd:integer .
+
+:blocks_total_in_value
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_total_in_value" ;
+      rdfs:range xsd:integer .
+
+:blocks_transactions_block_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :blocks_transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_transactions_block_id" ;
+      rdfs:range :blocks .
+
+:outputs_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_id" ;
+      rdfs:range xsd:integer .
+
+:blocks_ver
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_ver" ;
+      rdfs:range xsd:integer .
+
+:outputs_type
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_type" ;
+      rdfs:range xsd:string .
+
+:addresses_address_type
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_address_type" ;
+      rdfs:range xsd:integer .
+
+:addresses_created_at
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_created_at" ;
+      rdfs:range xsd:dateTime .
+
+:unspent_outputs_amount
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :unspent_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "unspent_outputs_amount" ;
+      rdfs:range xsd:integer .
+
+:outputs_position
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_position" ;
+      rdfs:range xsd:integer .
+
+:addresses_total_sent
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_total_sent" ;
+      rdfs:range xsd:integer .
+
+:transactions_pool
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_pool" ;
+      rdfs:range xsd:integer .
+
+:blocks
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks" .
+
+:blocks_transactions_transaction_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :blocks_transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_transactions_transaction_id" ;
+      rdfs:range :transactions .
+
+:outputs_script
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_script" ;
+      rdfs:range xsd:hexBinary .
+
+:blocks_transactions
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_transactions" .
+
+:inputs_sequence
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_sequence" ;
+      rdfs:range xsd:hexBinary .
+
+:inputs_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :inputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "inputs_id" ;
+      rdfs:range xsd:integer .
+
+:transactions_outputs_count
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_outputs_count" ;
+      rdfs:range xsd:integer .
+
+:address_ledger_entries_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :address_ledger_entries ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "address_ledger_entries_id" ;
+      rdfs:range xsd:integer .
+
+:blocks_nonce
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_nonce" ;
+      rdfs:range xsd:integer .
+
+:blocks_transactions_count
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_transactions_count" ;
+      rdfs:range xsd:integer .
+
+:addresses
+      a       owl:Class , rdfs:Class ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses" .
+
+:transactions_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_id" ;
+      rdfs:range xsd:integer .
+
+:     a       owl:Ontology ;
+      dc:creator "D2RQ Mapping Generator" ;
+      owl:imports dc: .
+
+:outputs_spent
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "outputs_spent" ;
+      rdfs:range xsd:string .
+
+:addresses_outputs_output_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :addresses_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_outputs_output_id" ;
+      rdfs:range :outputs .
+
+:addresses_outputs_address_id
+      a       rdf:Property , owl:ObjectProperty ;
+      rdfs:domain :addresses_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_outputs_address_id" ;
+      rdfs:range :addresses .
+
+:unspent_outputs_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :unspent_outputs ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "unspent_outputs_id" ;
+      rdfs:range xsd:integer .
+
+:blocks_height
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :blocks ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "blocks_height" ;
+      rdfs:range xsd:integer .
+
+:addresses_id
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :addresses ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "addresses_id" ;
+      rdfs:range xsd:integer .
+
+:transactions_size
+      a       owl:DatatypeProperty , rdf:Property ;
+      rdfs:domain :transactions ;
+      rdfs:isDefinedBy : ;
+      rdfs:label "transactions_size" ;
+      rdfs:range xsd:integer .

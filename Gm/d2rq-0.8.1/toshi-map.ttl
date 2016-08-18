@@ -1,0 +1,601 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/postgres";
+	d2rq:username "postgres";
+	.
+
+# Table address_ledger_entries
+map:address_ledger_entries a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "address_ledger_entries/@@address_ledger_entries.id@@";
+	d2rq:class vocab:address_ledger_entries;
+	d2rq:classDefinitionLabel "address_ledger_entries";
+	.
+map:address_ledger_entries__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property rdfs:label;
+	d2rq:pattern "address_ledger_entries #@@address_ledger_entries.id@@";
+	.
+map:address_ledger_entries_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_id;
+	d2rq:propertyDefinitionLabel "address_ledger_entries id";
+	d2rq:column "address_ledger_entries.id";
+	d2rq:datatype xsd:integer;
+	.
+map:address_ledger_entries_amount a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_amount;
+	d2rq:propertyDefinitionLabel "address_ledger_entries amount";
+	d2rq:column "address_ledger_entries.amount";
+	d2rq:datatype xsd:integer;
+	.
+map:address_ledger_entries_output_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_output_id;
+	d2rq:refersToClassMap map:outputs;
+	d2rq:join "address_ledger_entries.output_id => outputs.id";
+	.
+map:address_ledger_entries_transaction_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_transaction_id;
+	d2rq:refersToClassMap map:transactions;
+	d2rq:join "address_ledger_entries.transaction_id => transactions.id";
+	.
+map:address_ledger_entries_input_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_input_id;
+	d2rq:refersToClassMap map:inputs;
+	d2rq:join "address_ledger_entries.input_id => inputs.id";
+	.
+map:address_ledger_entries_address_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:address_ledger_entries;
+	d2rq:property vocab:address_ledger_entries_address_id;
+	d2rq:refersToClassMap map:addresses;
+	d2rq:join "address_ledger_entries.address_id => addresses.id";
+	.
+
+# Table addresses
+map:addresses a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "addresses/@@addresses.id@@";
+	d2rq:class vocab:addresses;
+	d2rq:classDefinitionLabel "addresses";
+	.
+map:addresses__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property rdfs:label;
+	d2rq:pattern "addresses #@@addresses.id@@";
+	.
+map:addresses_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_id;
+	d2rq:propertyDefinitionLabel "addresses id";
+	d2rq:column "addresses.id";
+	d2rq:datatype xsd:integer;
+	.
+map:addresses_address a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_address;
+	d2rq:propertyDefinitionLabel "addresses address";
+	d2rq:column "addresses.address";
+	.
+map:addresses_hash160 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_hash160;
+	d2rq:propertyDefinitionLabel "addresses hash160";
+	d2rq:column "addresses.hash160";
+	.
+map:addresses_compressed a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_compressed;
+	d2rq:propertyDefinitionLabel "addresses compressed";
+	d2rq:column "addresses.compressed";
+	d2rq:valueRegex "^[01]*$";
+	.
+map:addresses_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_label;
+	d2rq:propertyDefinitionLabel "addresses label";
+	d2rq:column "addresses.label";
+	.
+map:addresses_address_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_address_type;
+	d2rq:propertyDefinitionLabel "addresses address_type";
+	d2rq:column "addresses.address_type";
+	d2rq:datatype xsd:integer;
+	.
+map:addresses_created_at a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_created_at;
+	d2rq:propertyDefinitionLabel "addresses created_at";
+	d2rq:column "addresses.created_at";
+	d2rq:datatype xsd:dateTime;
+	.
+map:addresses_total_received a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_total_received;
+	d2rq:propertyDefinitionLabel "addresses total_received";
+	d2rq:column "addresses.total_received";
+	d2rq:datatype xsd:integer;
+	.
+map:addresses_total_sent a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses;
+	d2rq:property vocab:addresses_total_sent;
+	d2rq:propertyDefinitionLabel "addresses total_sent";
+	d2rq:column "addresses.total_sent";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table addresses_outputs
+map:addresses_outputs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "addresses_outputs/@@addresses_outputs.id@@";
+	d2rq:class vocab:addresses_outputs;
+	d2rq:classDefinitionLabel "addresses_outputs";
+	.
+map:addresses_outputs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses_outputs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "addresses_outputs #@@addresses_outputs.id@@";
+	.
+map:addresses_outputs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses_outputs;
+	d2rq:property vocab:addresses_outputs_id;
+	d2rq:propertyDefinitionLabel "addresses_outputs id";
+	d2rq:column "addresses_outputs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:addresses_outputs_address_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses_outputs;
+	d2rq:property vocab:addresses_outputs_address_id;
+	d2rq:refersToClassMap map:addresses;
+	d2rq:join "addresses_outputs.address_id => addresses.id";
+	.
+map:addresses_outputs_output_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:addresses_outputs;
+	d2rq:property vocab:addresses_outputs_output_id;
+	d2rq:refersToClassMap map:outputs;
+	d2rq:join "addresses_outputs.output_id => outputs.id";
+	.
+
+# Table blocks
+map:blocks a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "blocks/@@blocks.id@@";
+	d2rq:class vocab:blocks;
+	d2rq:classDefinitionLabel "blocks";
+	.
+map:blocks__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property rdfs:label;
+	d2rq:pattern "blocks #@@blocks.id@@";
+	.
+map:blocks_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_id;
+	d2rq:propertyDefinitionLabel "blocks id";
+	d2rq:column "blocks.id";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_hsh a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_hsh;
+	d2rq:propertyDefinitionLabel "blocks hsh";
+	d2rq:column "blocks.hsh";
+	.
+map:blocks_height a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_height;
+	d2rq:propertyDefinitionLabel "blocks height";
+	d2rq:column "blocks.height";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_prev_block a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_prev_block;
+	d2rq:propertyDefinitionLabel "blocks prev_block";
+	d2rq:column "blocks.prev_block";
+	.
+map:blocks_mrkl_root a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_mrkl_root;
+	d2rq:propertyDefinitionLabel "blocks mrkl_root";
+	d2rq:column "blocks.mrkl_root";
+	.
+map:blocks_time a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_time;
+	d2rq:propertyDefinitionLabel "blocks time";
+	d2rq:column "blocks.time";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_bits a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_bits;
+	d2rq:propertyDefinitionLabel "blocks bits";
+	d2rq:column "blocks.bits";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_nonce a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_nonce;
+	d2rq:propertyDefinitionLabel "blocks nonce";
+	d2rq:column "blocks.nonce";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_ver a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_ver;
+	d2rq:propertyDefinitionLabel "blocks ver";
+	d2rq:column "blocks.ver";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_branch a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_branch;
+	d2rq:propertyDefinitionLabel "blocks branch";
+	d2rq:column "blocks.branch";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_size a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_size;
+	d2rq:propertyDefinitionLabel "blocks size";
+	d2rq:column "blocks.size";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_work a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_work;
+	d2rq:propertyDefinitionLabel "blocks work";
+	d2rq:column "blocks.work";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:blocks_fees a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_fees;
+	d2rq:propertyDefinitionLabel "blocks fees";
+	d2rq:column "blocks.fees";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_total_in_value a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_total_in_value;
+	d2rq:propertyDefinitionLabel "blocks total_in_value";
+	d2rq:column "blocks.total_in_value";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_total_out_value a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_total_out_value;
+	d2rq:propertyDefinitionLabel "blocks total_out_value";
+	d2rq:column "blocks.total_out_value";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_transactions_count a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_transactions_count;
+	d2rq:propertyDefinitionLabel "blocks transactions_count";
+	d2rq:column "blocks.transactions_count";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_created_at a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks;
+	d2rq:property vocab:blocks_created_at;
+	d2rq:propertyDefinitionLabel "blocks created_at";
+	d2rq:column "blocks.created_at";
+	d2rq:datatype xsd:dateTime;
+	.
+
+# Table blocks_transactions
+map:blocks_transactions a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "blocks_transactions/@@blocks_transactions.block_id@@/@@blocks_transactions.transaction_id@@";
+	d2rq:class vocab:blocks_transactions;
+	d2rq:classDefinitionLabel "blocks_transactions";
+	.
+map:blocks_transactions__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks_transactions;
+	d2rq:property rdfs:label;
+	d2rq:pattern "blocks_transactions #@@blocks_transactions.block_id@@/@@blocks_transactions.transaction_id@@";
+	.
+map:blocks_transactions_position a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks_transactions;
+	d2rq:property vocab:blocks_transactions_position;
+	d2rq:propertyDefinitionLabel "blocks_transactions position";
+	d2rq:column "blocks_transactions.position";
+	d2rq:datatype xsd:integer;
+	.
+map:blocks_transactions_transaction_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks_transactions;
+	d2rq:property vocab:blocks_transactions_transaction_id;
+	d2rq:refersToClassMap map:transactions;
+	d2rq:join "blocks_transactions.transaction_id => transactions.id";
+	.
+map:blocks_transactions_block_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:blocks_transactions;
+	d2rq:property vocab:blocks_transactions_block_id;
+	d2rq:refersToClassMap map:blocks;
+	d2rq:join "blocks_transactions.block_id => blocks.id";
+	.
+
+# Table inputs
+map:inputs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "inputs/@@inputs.id@@";
+	d2rq:class vocab:inputs;
+	d2rq:classDefinitionLabel "inputs";
+	.
+map:inputs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "inputs #@@inputs.id@@";
+	.
+map:inputs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_id;
+	d2rq:propertyDefinitionLabel "inputs id";
+	d2rq:column "inputs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:inputs_hsh a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_hsh;
+	d2rq:propertyDefinitionLabel "inputs hsh";
+	d2rq:column "inputs.hsh";
+	.
+map:inputs_prev_out a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_prev_out;
+	d2rq:propertyDefinitionLabel "inputs prev_out";
+	d2rq:column "inputs.prev_out";
+	.
+map:inputs_index a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_index;
+	d2rq:propertyDefinitionLabel "inputs index";
+	d2rq:column "inputs.index";
+	d2rq:datatype xsd:integer;
+	.
+map:inputs_script a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_script;
+	d2rq:propertyDefinitionLabel "inputs script";
+	d2rq:column "inputs.script";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:inputs_sequence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_sequence;
+	d2rq:propertyDefinitionLabel "inputs sequence";
+	d2rq:column "inputs.sequence";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:inputs_position a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:inputs;
+	d2rq:property vocab:inputs_position;
+	d2rq:propertyDefinitionLabel "inputs position";
+	d2rq:column "inputs.position";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table outputs
+map:outputs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "outputs/@@outputs.id@@";
+	d2rq:class vocab:outputs;
+	d2rq:classDefinitionLabel "outputs";
+	.
+map:outputs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "outputs #@@outputs.id@@";
+	.
+map:outputs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_id;
+	d2rq:propertyDefinitionLabel "outputs id";
+	d2rq:column "outputs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:outputs_hsh a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_hsh;
+	d2rq:propertyDefinitionLabel "outputs hsh";
+	d2rq:column "outputs.hsh";
+	.
+map:outputs_amount a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_amount;
+	d2rq:propertyDefinitionLabel "outputs amount";
+	d2rq:column "outputs.amount";
+	d2rq:datatype xsd:integer;
+	.
+map:outputs_script a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_script;
+	d2rq:propertyDefinitionLabel "outputs script";
+	d2rq:column "outputs.script";
+	d2rq:datatype xsd:hexBinary;
+	.
+map:outputs_position a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_position;
+	d2rq:propertyDefinitionLabel "outputs position";
+	d2rq:column "outputs.position";
+	d2rq:datatype xsd:integer;
+	.
+map:outputs_spent a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_spent;
+	d2rq:propertyDefinitionLabel "outputs spent";
+	d2rq:column "outputs.spent";
+	d2rq:valueRegex "^[01]*$";
+	.
+map:outputs_branch a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_branch;
+	d2rq:propertyDefinitionLabel "outputs branch";
+	d2rq:column "outputs.branch";
+	d2rq:datatype xsd:integer;
+	.
+map:outputs_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:outputs;
+	d2rq:property vocab:outputs_type;
+	d2rq:propertyDefinitionLabel "outputs type";
+	d2rq:column "outputs.type";
+	.
+
+# Table transactions
+map:transactions a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "transactions/@@transactions.id@@";
+	d2rq:class vocab:transactions;
+	d2rq:classDefinitionLabel "transactions";
+	.
+map:transactions__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property rdfs:label;
+	d2rq:pattern "transactions #@@transactions.id@@";
+	.
+map:transactions_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_id;
+	d2rq:propertyDefinitionLabel "transactions id";
+	d2rq:column "transactions.id";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_hsh a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_hsh;
+	d2rq:propertyDefinitionLabel "transactions hsh";
+	d2rq:column "transactions.hsh";
+	.
+map:transactions_ver a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_ver;
+	d2rq:propertyDefinitionLabel "transactions ver";
+	d2rq:column "transactions.ver";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_lock_time a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_lock_time;
+	d2rq:propertyDefinitionLabel "transactions lock_time";
+	d2rq:column "transactions.lock_time";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_size a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_size;
+	d2rq:propertyDefinitionLabel "transactions size";
+	d2rq:column "transactions.size";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_pool a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_pool;
+	d2rq:propertyDefinitionLabel "transactions pool";
+	d2rq:column "transactions.pool";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_fee a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_fee;
+	d2rq:propertyDefinitionLabel "transactions fee";
+	d2rq:column "transactions.fee";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_total_in_value a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_total_in_value;
+	d2rq:propertyDefinitionLabel "transactions total_in_value";
+	d2rq:column "transactions.total_in_value";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_total_out_value a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_total_out_value;
+	d2rq:propertyDefinitionLabel "transactions total_out_value";
+	d2rq:column "transactions.total_out_value";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_inputs_count a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_inputs_count;
+	d2rq:propertyDefinitionLabel "transactions inputs_count";
+	d2rq:column "transactions.inputs_count";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_outputs_count a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_outputs_count;
+	d2rq:propertyDefinitionLabel "transactions outputs_count";
+	d2rq:column "transactions.outputs_count";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_height a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_height;
+	d2rq:propertyDefinitionLabel "transactions height";
+	d2rq:column "transactions.height";
+	d2rq:datatype xsd:integer;
+	.
+map:transactions_created_at a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:transactions;
+	d2rq:property vocab:transactions_created_at;
+	d2rq:propertyDefinitionLabel "transactions created_at";
+	d2rq:column "transactions.created_at";
+	d2rq:datatype xsd:dateTime;
+	.
+
+# Table unspent_outputs
+map:unspent_outputs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "unspent_outputs/@@unspent_outputs.id@@";
+	d2rq:class vocab:unspent_outputs;
+	d2rq:classDefinitionLabel "unspent_outputs";
+	.
+map:unspent_outputs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:unspent_outputs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "unspent_outputs #@@unspent_outputs.id@@";
+	.
+map:unspent_outputs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:unspent_outputs;
+	d2rq:property vocab:unspent_outputs_id;
+	d2rq:propertyDefinitionLabel "unspent_outputs id";
+	d2rq:column "unspent_outputs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:unspent_outputs_amount a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:unspent_outputs;
+	d2rq:property vocab:unspent_outputs_amount;
+	d2rq:propertyDefinitionLabel "unspent_outputs amount";
+	d2rq:column "unspent_outputs.amount";
+	d2rq:datatype xsd:integer;
+	.
+map:unspent_outputs_address_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:unspent_outputs;
+	d2rq:property vocab:unspent_outputs_address_id;
+	d2rq:refersToClassMap map:addresses;
+	d2rq:join "unspent_outputs.address_id => addresses.id";
+	.
+map:unspent_outputs_output_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:unspent_outputs;
+	d2rq:property vocab:unspent_outputs_output_id;
+	d2rq:refersToClassMap map:outputs;
+	d2rq:join "unspent_outputs.output_id => outputs.id";
+	.
+
