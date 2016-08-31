@@ -1,0 +1,14 @@
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex:     <http://example.org/>      
+PREFIX lgdo:  <http://linkedgeodata.org/ontology/>
+       
+SELECT *              
+WHERE {               
+	<http://example.org/someFactory>	a	lgdo:Factory;               
+				rdfs:label	?factoryName.      
+	OPTIONAL{
+	<http://example.org/someFactory>    ex:wasBuilt    ?buildDate.               
+	}         
+	<http://example.org/someFactory>    ex:hasPolygon    ?factoryPolygon.               
+	            
+}
