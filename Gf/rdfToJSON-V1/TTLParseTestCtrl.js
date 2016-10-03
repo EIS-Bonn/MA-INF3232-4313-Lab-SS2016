@@ -1,12 +1,12 @@
 var app = angular.module('Enterprise2MapApp');
 app.controller('TTLParseTestCtrl',function($scope,TTLParseService){
   $scope.parsedTTL = "";
-  var promise = TTLParseService.parseTTL('Factory');
+  var promise = TTLParseService.parseTTL('FactoryNew');
   promise.then(function(resolution){
     $scope.parsedTTL = resolution;
-	
+
 	$scope.plotDataOnMap();
-	
+
   },function(rejection){
     console.error(rejection);
   });
@@ -84,11 +84,11 @@ app.controller('TTLParseTestCtrl',function($scope,TTLParseService){
 		  var companyMarker = L.marker(centerOfPolygon, {icon: vw_icon}).bindPopup(company.companyName.value);
 		  companyMarker.addTo(mymap);
 	  }
-		
+
 	function onEachFeature(feature, layer) {
 		var popupContent = "";
 
-		if (feature.properties) 
+		if (feature.properties)
 		{
 			if(feature.properties.OBJECTID)
 			{
@@ -109,11 +109,11 @@ app.controller('TTLParseTestCtrl',function($scope,TTLParseService){
 		{
 			layer.bindPopup(popUpMap[objectIdHolder]);
 		}
-		
+
 		else
 		{
-			popUpMap[objectIdHolder] = popupContent; 
-			layer.bindPopup(popupContent);			
+			popUpMap[objectIdHolder] = popupContent;
+			layer.bindPopup(popupContent);
 		}
 	}
 
@@ -124,7 +124,7 @@ app.controller('TTLParseTestCtrl',function($scope,TTLParseService){
 		},
 
 		onEachFeature: onEachFeature,
-		
+
 		pointToLayer: function (feature, latlng) {
 			return L.marker(latlng, {
 				radius: 8,
@@ -136,7 +136,8 @@ app.controller('TTLParseTestCtrl',function($scope,TTLParseService){
 				icon: vw_icon
 			});
 		}
-	}).addTo(mymap);
+	});
+	//}).addTo(mymap);
   }
-  
+
 });

@@ -26,8 +26,8 @@ dbpedia:Tesla_Motors  a  vivo:Company ;
 
 eis:somePlant  a        eis:Plant ;
         rdfs:label     "Plant Nevada" ;
-        eis:plantManager  dbpedia:Jens_Peter_Clausen;
-        eis:numWorkers  120;
+        eis:manager  dbpedia:Jens_Peter_Clausen;
+        eis:workers  120;
         eis:hasFactory  eis:someFactory .
 
 eis:someFactory  a      lgdo:Factory ;
@@ -65,7 +65,7 @@ eis:someBuildingPolygon a ngeo:Polygon;
 
 eis:somePolygon  a     ngeo:Polygon ;
         				ngeo:posList  (
-																[ geo:lat   "39.54086" ;
+										[ geo:lat   "39.54086" ;
 				                          geo:long  "-119.44387"
 				                        ]
 				                        [ geo:lat   "39.5403223" ;
