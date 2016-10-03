@@ -14,11 +14,9 @@ service('TTLParseService',function($q,sparqlQueryService){
 
       //sparql query to get the company info
       var companyQuery = sparqlQueryService.getCompanyQuery();
-      console.log(companyQuery);
       jQuery.get(endPointURL,{query:companyQuery},function(results){
         var companies = [];
         var plantQueryPromise;
-        console.log(results);
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentCompany = results.results.bindings[i];
           companies.push(currentCompany);
@@ -32,6 +30,41 @@ service('TTLParseService',function($q,sparqlQueryService){
           mainResolve(parsedData);
         });
       });
+
+
+        //
+        //
+        //             factoryQueryPromise.then(function(resPlant){
+        //               console.log(resPlant);
+        //               for(var j=0;j<resPlant.factories.length;j++){
+        //                 var currentFactory = resPlant.factories[j];
+        //                 console.log(currentFactory);
+        //                 var polygonQueryPromise = getPolygonData(currentFactory,store);
+        //                 polygonQueryPromise.then(function(resFactory){
+        //                   console.log(resFactory);
+        //                   mainResolve(parsedData);
+        //                 },function(rejection){
+        //                   console.error(rejection);
+        //                 });//polygonQueryPromise.then
+        //               }//for
+        //             },function(rejection){
+        //               console.error(rejection);
+        //             });//factoryQueryPromise.then
+        //
+        //           }//for all plants in company
+        //         },function(rejection){
+        //           console.error(rejection);
+        //         });//plantQueryPromise.then
+        //       }//if plant given
+        //     }//for all companies
+        //
+        //   },function(rejection){
+        //     console.error(rejection);
+        //   });//companyQueryPromise.then
+        // }//if
+        // else {
+        //   console.error("error while reading the turtle data, "+err);
+        // }//else
     });//$q
     return mainPromise;
   }//parseTTL
@@ -92,7 +125,6 @@ service('TTLParseService',function($q,sparqlQueryService){
       var plantObject = currentCompany.companyPlant;
       //sparql query to get company plant data
       var pQuery = sparqlQueryService.getPlantQuery(plantObject.value);
-
       jQuery.get(endPointURL,{query:pQuery},function(results){
         var companyPlants = [];
         var factoryQueryPromise;
