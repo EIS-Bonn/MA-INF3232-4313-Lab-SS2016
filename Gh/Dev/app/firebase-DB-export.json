@@ -1,0 +1,1203 @@
+{
+  "featuresSets" : [ {
+    "colour" : "default",
+    "filters" : [ {
+      "id" : 101,
+      "isChecked" : false,
+      "term" : "openSource",
+      "title" : "Open Source",
+      "type" : "checkbox"
+    }, {
+      "id" : 102,
+      "isChecked" : false,
+      "term" : "documentation",
+      "title" : "Documentation",
+      "type" : "checkbox"
+    }, {
+      "id" : 107,
+      "isChecked" : false,
+      "term" : "w3ccerf",
+      "title" : "W3C Cerfitied",
+      "type" : "checkbox"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "MIT",
+        "value" : "MIT"
+      }, {
+        "id" : 2,
+        "name" : "Unlicense",
+        "value" : "Unlicense"
+      }, {
+        "id" : 3,
+        "name" : "BSD",
+        "value" : "BSD"
+      }, {
+        "id" : 4,
+        "name" : "W3C",
+        "value" : "W3C"
+      }, {
+        "id" : 5,
+        "name" : "Apache",
+        "value" : "Apache"
+      }, {
+        "id" : 8,
+        "name" : "ISC",
+        "value" : "ISC"
+      } ],
+      "id" : 106,
+      "term" : "license",
+      "title" : "License",
+      "type" : "dropdown"
+    } ],
+    "id" : 0,
+    "ref" : "general",
+    "title" : "General"
+  }, {
+    "colour" : "red",
+    "filters" : [ {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "SPARQL",
+        "value" : "SPARQL"
+      }, {
+        "id" : 2,
+        "name" : "JSON-LD",
+        "value" : "JSON-LD"
+      }, {
+        "id" : 3,
+        "name" : "N3",
+        "value" : "N3"
+      }, {
+        "id" : 4,
+        "name" : "Turtle",
+        "value" : "Turtle"
+      }, {
+        "id" : 5,
+        "name" : "RDFa",
+        "value" : "RDFa"
+      }, {
+        "id" : 6,
+        "name" : "TriG",
+        "value" : "TriG"
+      }, {
+        "id" : 7,
+        "name" : "N-Quads",
+        "value" : "N-Quads"
+      }, {
+        "id" : 8,
+        "name" : "MicroData",
+        "value" : "MicroData"
+      }, {
+        "id" : 9,
+        "name" : "MicroFormat",
+        "value" : "MicroFormat"
+      }, {
+        "id" : 10,
+        "name" : "RDF-XML",
+        "value" : "RDF-XML"
+      }, {
+        "id" : 11,
+        "name" : "LDP",
+        "value" : "LDP"
+      }, {
+        "id" : 12,
+        "name" : "XML",
+        "value" : "XML"
+      }, {
+        "id" : 13,
+        "name" : "XHTML1",
+        "value" : "XHTML1"
+      }, {
+        "id" : 14,
+        "name" : "XHTML5",
+        "value" : "XHTML5"
+      }, {
+        "id" : 15,
+        "name" : "HTML4",
+        "value" : "HTML4"
+      }, {
+        "id" : 16,
+        "name" : "HTML5",
+        "value" : "HTML5"
+      } ],
+      "id" : 11,
+      "term" : "mediaType",
+      "title" : "Media type",
+      "type" : "dropdown"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "browser",
+        "value" : "browser"
+      }, {
+        "id" : 2,
+        "name" : "Node.js",
+        "value" : "Node.js"
+      } ],
+      "id" : 12,
+      "term" : "environment",
+      "title" : "Environment",
+      "type" : "dropdown"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "RDF Interface",
+        "value" : "RDF Interface"
+      }, {
+        "id" : 2,
+        "name" : "Custom",
+        "value" : "Custom"
+      }, {
+        "id" : 3,
+        "name" : "Node.js streams",
+        "value" : "Node.js streams"
+      }, {
+        "id" : 4,
+        "name" : "JSON-LD",
+        "value" : "JSON-LD"
+      }, {
+        "id" : 5,
+        "name" : "RDFa API",
+        "value" : "RDFa API"
+      } ],
+      "id" : 13,
+      "term" : "interface",
+      "title" : "Interface",
+      "type" : "dropdown"
+    } ],
+    "id" : 1,
+    "ref" : "parsing",
+    "title" : "Parsing"
+  }, {
+    "colour" : "yellow",
+    "filters" : [ null, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "SPARQL 1.0",
+        "value" : "SPARQL 1.0"
+      }, {
+        "id" : 2,
+        "name" : "SPARQL 1.1",
+        "value" : "SPARQL 1.1"
+      } ],
+      "id" : 22,
+      "term" : "language",
+      "title" : "Language",
+      "type" : "dropdown"
+    } ],
+    "id" : 2,
+    "ref" : "sparqlq",
+    "title" : "SPARQL/Query"
+  }, {
+    "colour" : "green",
+    "filters" : [ {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "Memory",
+        "value" : "Memory"
+      }, {
+        "id" : 2,
+        "name" : "Web",
+        "value" : "Web"
+      }, {
+        "id" : 3,
+        "name" : "MongoDB",
+        "value" : "MongoDB"
+      }, {
+        "id" : 4,
+        "name" : "Level Database",
+        "value" : "Level Database"
+      } ],
+      "id" : 31,
+      "term" : "storageMethod",
+      "title" : "Storage Method",
+      "type" : "dropdown"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "Tree Indexes",
+        "value" : "Tree Indexes"
+      }, {
+        "id" : 2,
+        "name" : "Hexastore",
+        "value" : "Hexastore"
+      }, {
+        "id" : 3,
+        "name" : "Indexed Database",
+        "value" : "Indexed Database"
+      }, {
+        "id" : 4,
+        "name" : "Graph",
+        "value" : "Graph"
+      } ],
+      "id" : 32,
+      "term" : "indexing",
+      "title" : "Indexing",
+      "type" : "dropdown"
+    } ],
+    "id" : 3,
+    "ref" : "datastorage",
+    "title" : "Data storage"
+  }, {
+    "colour" : "blue",
+    "filters" : [ {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "Backbone",
+        "value" : "Backbone"
+      }, {
+        "id" : 2,
+        "name" : "rdfstore-js",
+        "value" : "rdfstore-js"
+      }, {
+        "id" : 3,
+        "name" : "KnockoutJS",
+        "value" : "KnockoutJS"
+      } ],
+      "id" : 41,
+      "term" : "integration",
+      "title" : "Integration",
+      "type" : "dropdown"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "Backbone",
+        "value" : "Backbone"
+      }, {
+        "id" : 2,
+        "name" : "Knockout",
+        "value" : "Knockout"
+      } ],
+      "id" : 42,
+      "term" : "bindings",
+      "title" : "Bindings",
+      "type" : "dropdown"
+    } ],
+    "id" : 4,
+    "ref" : "ui",
+    "title" : "UI data binding"
+  }, {
+    "colour" : "purple",
+    "filters" : [ {
+      "dropdownList" : [ {
+        "id" : 0,
+        "name" : "Linear",
+        "value" : "Linear"
+      }, {
+        "id" : 1,
+        "name" : "Complex",
+        "value" : "Complex"
+      }, {
+        "id" : 2,
+        "name" : "Snowflake",
+        "value" : "Snowflake"
+      } ],
+      "id" : 51,
+      "term" : "queryType",
+      "title" : "Query Type",
+      "type" : "dropdown"
+    }, {
+      "dropdownList" : [ {
+        "id" : 1,
+        "name" : "Small (100 k)",
+        "value" : "100 k"
+      }, {
+        "id" : 2,
+        "name" : "Medium (1 m)",
+        "value" : "1 m"
+      } ],
+      "id" : 52,
+      "term" : "setSize",
+      "title" : "Dataset Size",
+      "type" : "dropdown"
+    } ],
+    "id" : 5,
+    "ref" : "expresults",
+    "title" : "Experiment results"
+  } ],
+  "tabletabs" : [ {
+    "colour" : "grey",
+    "id" : 0,
+    "name" : "All",
+    "title" : "general"
+  }, {
+    "colour" : "red",
+    "id" : 1,
+    "name" : "Parsing",
+    "title" : "parsing"
+  }, {
+    "colour" : "yellow",
+    "id" : 2,
+    "name" : "SPARQL/Query",
+    "title" : "sparqlq"
+  }, {
+    "colour" : "green",
+    "id" : 3,
+    "name" : "Data Storage",
+    "title" : "datastorage"
+  }, {
+    "colour" : "blue",
+    "id" : 4,
+    "name" : "UI data binding",
+    "title" : "ui"
+  }, {
+    "colour" : "purple",
+    "id" : 5,
+    "name" : "Experiment results",
+    "title" : "expresults"
+  } ],
+  "tcontent" : {
+    "datastorage" : [ {
+      "id" : 4,
+      "indexing" : "Hexastore",
+      "latestUpdate" : "18-06-2016",
+      "link" : "https://github.com/mcollina/levelgraph",
+      "name" : "LevelGraph",
+      "sourceSize" : 714000,
+      "storageMethod" : "Level Database"
+    }, {
+      "id" : 3,
+      "indexing" : "n/a",
+      "latestUpdate" : "18-09-2015",
+      "link" : "https://github.com/RubenVerborgh/N3.js",
+      "name" : "N3.js",
+      "sourceSize" : 64000,
+      "storageMethod" : "Memory"
+    }, {
+      "id" : 5,
+      "indexing" : "n/a",
+      "latestUpdate" : "17-03-2015",
+      "link" : "https://github.com/bergos/rdf-ext",
+      "name" : "RDF-Ext",
+      "sourceSize" : 620000,
+      "storageMethod" : "Memory, Web"
+    }, {
+      "id" : 1,
+      "indexing" : "Tree Indexes",
+      "latestUpdate" : "17-09-2014",
+      "link" : "https://github.com/awwright/node-rdf",
+      "name" : "node-rdf",
+      "sourceSize" : 28000,
+      "storageMethod" : "Memory"
+    }, {
+      "id" : 6,
+      "indexing" : "Synchronous Graph, Asynchronous Graph",
+      "latestUpdate" : "11-05-2016",
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "sourceSize" : 331000,
+      "storageMethod" : "Web, Memory"
+    }, {
+      "id" : 2,
+      "indexing" : "Indexed Database",
+      "latestUpdate" : "27-05-2016",
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "sourceSize" : 1200000,
+      "storageMethod" : "Memory, MongoDB"
+    } ],
+    "expresults" : [ {
+      "id" : 1,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Complex",
+      "result" : "13.96 s",
+      "setSize" : "100 k",
+      "sourceSize" : 331000
+    }, {
+      "id" : 2,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Complex",
+      "result" : "2.21 min",
+      "setSize" : "1 m",
+      "sourceSize" : 331000
+    }, null, {
+      "id" : 4,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Linear",
+      "result" : "13.99 s",
+      "setSize" : "100 k",
+      "sourceSize" : 331000
+    }, {
+      "id" : 5,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Linear",
+      "result" : "2.30 min",
+      "setSize" : "1 m",
+      "sourceSize" : 331000
+    }, null, {
+      "id" : 7,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Snowflake",
+      "result" : "13.93 s",
+      "setSize" : "100 k",
+      "sourceSize" : 331000
+    }, {
+      "id" : 8,
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "queryType" : "Snowflake",
+      "result" : "2.20 min",
+      "setSize" : "1 m",
+      "sourceSize" : 331000
+    }, null, {
+      "id" : 10,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Complex",
+      "result" : "1.75 min",
+      "setSize" : "100 k",
+      "sourceSize" : 1500000
+    }, {
+      "id" : 11,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Complex",
+      "result" : "21.46 min",
+      "setSize" : "1 m",
+      "sourceSize" : 1500000
+    }, null, {
+      "id" : 13,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Linear",
+      "result" : "1.36 m",
+      "setSize" : "100 k",
+      "sourceSize" : 1500000
+    }, {
+      "id" : 14,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Linear",
+      "result" : "20.07 min",
+      "setSize" : "1 m",
+      "sourceSize" : 1500000
+    }, null, {
+      "id" : 16,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Snowflake",
+      "result" : "1.74 min",
+      "setSize" : "100 k",
+      "sourceSize" : 1500000
+    }, {
+      "id" : 17,
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "queryType" : "Snowflake",
+      "result" : "20.69 min",
+      "setSize" : "1 m",
+      "sourceSize" : 1500000
+    } ],
+    "general" : [ {
+      "documentation" : "",
+      "id" : 1,
+      "latestUpdate" : "17-09-2014",
+      "license" : "Unlicense",
+      "link" : "https://github.com/awwright/node-rdf",
+      "name" : "node-rdf",
+      "openSource" : "✓",
+      "sourceSize" : 28000,
+      "star" : 54,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 2,
+      "latestUpdate" : "14-11-2012",
+      "license" : "Unlicense",
+      "link" : "https://github.com/awwright/sparql-spin-js3",
+      "name" : "sparql-spin-js3",
+      "openSource" : "✓",
+      "sourceSize" : 12000,
+      "star" : 11,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "✓",
+      "id" : 3,
+      "latestUpdate" : "27-05-2016",
+      "license" : "MIT",
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "name" : "rdfstore-js",
+      "openSource" : "✓",
+      "sourceSize" : 1500000,
+      "star" : 429,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "✓",
+      "id" : 4,
+      "latestUpdate" : "14-07-2009",
+      "license" : "MIT",
+      "link" : "https://code.google.com/archive/p/rdfquery/",
+      "name" : "rdfquery",
+      "openSource" : "✓",
+      "sourceSize" : 270000,
+      "star" : 124,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 5,
+      "latestUpdate" : "18-09-2015",
+      "license" : "MIT",
+      "link" : "https://github.com/RubenVerborgh/N3.js",
+      "name" : "N3.js",
+      "openSource" : "✓",
+      "sourceSize" : 64000,
+      "star" : 227,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 6,
+      "latestUpdate" : "26-01-2016",
+      "license" : "MIT",
+      "link" : "https://github.com/RubenVerborgh/SPARQL.js",
+      "name" : "SPARQL.js",
+      "openSource" : "✓",
+      "sourceSize" : 148000,
+      "star" : 99,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 7,
+      "latestUpdate" : "25-04-2016",
+      "license" : "BSD",
+      "link" : "https://github.com/digitalbazaar/jsonld.js",
+      "name" : "jsonld.js",
+      "openSource" : "✓",
+      "sourceSize" : 213000,
+      "star" : 554,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 8,
+      "latestUpdate" : "01-11-2014",
+      "license" : "BSD",
+      "link" : "https://github.com/alexmilowski/green-turtle",
+      "name" : "green-turtle",
+      "openSource" : "✓",
+      "sourceSize" : 15500,
+      "star" : 32,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 9,
+      "latestUpdate" : "17-03-2015",
+      "license" : "MIT",
+      "link" : "https://github.com/bergos/rdf-ext",
+      "name" : "RDF-Ext",
+      "openSource" : "✓",
+      "sourceSize" : 620000,
+      "star" : 0,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "✓",
+      "id" : 10,
+      "latestUpdate" : "11-05-2016",
+      "license" : "MIT",
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "openSource" : "✓",
+      "sourceSize" : 331000,
+      "star" : 169,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 11,
+      "latestUpdate" : "18-06-2016",
+      "license" : "MIT",
+      "link" : "https://github.com/mcollina/levelgraph",
+      "name" : "LevelGraph",
+      "openSource" : "✓",
+      "sourceSize" : 714000,
+      "star" : 704,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "✓",
+      "id" : 12,
+      "latestUpdate" : "11-10-2013",
+      "license" : "MIT",
+      "link" : "https://github.com/antoniogarrote/backbone/tree/linked_data",
+      "name" : "Backbone Linked",
+      "openSource" : "✓",
+      "sourceSize" : 330000,
+      "star" : 7,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "",
+      "id" : 13,
+      "latestUpdate" : "06-02-2012",
+      "license" : "MIT",
+      "link" : "https://github.com/antoniogarrote/semantic-ko",
+      "name" : "SemanticKO",
+      "openSource" : "✓",
+      "sourceSize" : 576000,
+      "star" : 29,
+      "w3ccerf" : "✓"
+    }, {
+      "documentation" : "✓",
+      "id" : 14,
+      "latestUpdate" : "11-08-2015",
+      "license" : "W3C",
+      "link" : "https://github.com/bergos/hydra-core",
+      "name" : "hydra-core",
+      "openSource" : "✓",
+      "sourceSize" : 49000,
+      "star" : 28,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "✓",
+      "id" : 15,
+      "latestUpdate" : "22-09-2015",
+      "license" : "Apache",
+      "link" : "https://github.com/GeoKnow/FAGI-gis",
+      "name" : "GeoKnow/FAGI-gis",
+      "openSource" : "✓",
+      "sourceSize" : 245000,
+      "star" : 1,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "✓",
+      "id" : 16,
+      "latestUpdate" : "09-06-2015",
+      "license" : "Unlicense",
+      "link" : "https://github.com/GeoKnow/Jassa-Core",
+      "name" : "Jassa-Core",
+      "openSource" : "✓",
+      "sourceSize" : 736000,
+      "star" : 21,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "",
+      "id" : 18,
+      "latestUpdate" : "30-05-2011",
+      "license" : "BSD",
+      "link" : "http://notes.3kbo.com/spark",
+      "name" : "Spark",
+      "openSource" : "✓",
+      "sourceSize" : 1178000,
+      "star" : 17,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "",
+      "id" : 19,
+      "latestUpdate" : "25-05-2006",
+      "license" : "BSD",
+      "link" : "http://www.jibbering.com/rdf-parser/",
+      "name" : "RDF parser",
+      "openSource" : "✓",
+      "sourceSize" : 27000,
+      "star" : "n/a",
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "",
+      "id" : 20,
+      "latestUpdate" : "10-03-2006",
+      "license" : "Unlicense",
+      "link" : "http://www.kanzaki.com/works/2006/misc/0308turtle.html",
+      "name" : "RDF/Turtle Parser",
+      "openSource" : "",
+      "sourceSize" : 9000,
+      "star" : "n/a",
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "",
+      "id" : 21,
+      "latestUpdate" : "16-10-2013",
+      "license" : "Apache",
+      "link" : "https://github.com/GeoKnow/Facete",
+      "name" : "Facete",
+      "openSource" : "✓",
+      "sourceSize" : 1950000,
+      "star" : 15,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "",
+      "id" : 22,
+      "latestUpdate" : "06-02-2015",
+      "license" : "BSD",
+      "link" : "https://github.com/ktym/d3sparql",
+      "name" : "d3sparql.js",
+      "openSource" : "✓",
+      "sourceSize" : 20000,
+      "star" : 69,
+      "w3ccerf" : ""
+    }, {
+      "documentation" : "✓",
+      "id" : 23,
+      "latestUpdate" : "01-07-2016",
+      "license" : "ISC",
+      "link" : "https://github.com/blake-regalia/graphy.js",
+      "name" : "graphy.js",
+      "openSource" : "✓",
+      "sourceSize" : 719000,
+      "star" : 14,
+      "w3ccerf" : ""
+    } ],
+    "parsing" : [ {
+      "environment" : "Node.js, browser",
+      "id" : 7,
+      "interface" : "JSON-LD",
+      "latestUpdate" : "25-04-2016",
+      "link" : "https://github.com/digitalbazaar/jsonld.js",
+      "mediaType" : "JSON-LD, MicroData, MicroFormat, RDFa",
+      "name" : "Jsonld.js",
+      "sourceSize" : 213000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 5,
+      "interface" : "Custom, Node.js streams",
+      "latestUpdate" : "18-09-2015",
+      "link" : "https://github.com/RubenVerborgh/N3.js",
+      "mediaType" : "Turtle, N3, TriG, N-Quads",
+      "name" : "N3.js",
+      "sourceSize" : 64000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 9,
+      "interface" : "RDF Interface",
+      "latestUpdate" : "17-05-2015",
+      "link" : "https://github.com/bergos/rdf-ext",
+      "mediaType" : "RDF-XML, LDP, Turtle, SPARQL, JSON-LD",
+      "name" : "RDF-Ext",
+      "sourceSize" : 620000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 6,
+      "interface" : "Custom",
+      "latestUpdate" : "26-01-2016",
+      "link" : "https://github.com/RubenVerborgh/SPARQL.js",
+      "mediaType" : "SPARQL",
+      "name" : "SPARQL.js",
+      "sourceSize" : 148000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 8,
+      "interface" : "RDFa API",
+      "latestUpdate" : "25-04-2016",
+      "link" : "https://github.com/alexmilowski/green-turtle",
+      "mediaType" : "XML, Microdata, Turtle, RDFa, XHTML1, XHTML5, HTML4, HTML5",
+      "name" : "green-turtle",
+      "sourceSize" : 155000
+    }, {
+      "environment" : "Node.js",
+      "id" : 1,
+      "interface" : "RDF Interface",
+      "latestUpdate" : "17-09-2014",
+      "link" : "https://github.com/awwright/node-rdf",
+      "mediaType" : "Turtle",
+      "name" : "node-rdf",
+      "sourceSize" : 28000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 10,
+      "interface" : "RDF Interface",
+      "latestUpdate" : "11-05-2015",
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "mediaType" : "RDF-XML, RDFa, Turtle, N3",
+      "name" : "rdflib.js",
+      "sourceSize" : 331000
+    }, {
+      "environment" : "browser",
+      "id" : 4,
+      "interface" : "Custom",
+      "latestUpdate" : "14-07-2009",
+      "link" : "https://code.google.com/archive/p/rdfquery/",
+      "mediaType" : "RDFa",
+      "name" : "rdfquery",
+      "sourceSize" : 270000
+    }, {
+      "environment" : "Node.js, browser",
+      "id" : 3,
+      "interface" : "RDF Interface",
+      "latestUpdate" : "27-05-2016",
+      "link" : "https://github.com/antoniogarrote/rdfstore-js",
+      "mediaType" : "Turtle, N3, JSON-LD, SPARQL",
+      "name" : "rdfstore-js",
+      "sourceSize" : 1500000
+    }, {
+      "environment" : "Node.js",
+      "id" : 2,
+      "interface" : "Custom",
+      "latestUpadte" : "14-11-2012",
+      "link" : "https://github.com/awwright/sparql-spin-js3",
+      "mediaType" : "SPARQL",
+      "name" : "sparql-spin-js3",
+      "sourceSize" : 12000
+    } ],
+    "sparqlq" : [ {
+      "evaluation" : {
+        "comlexquery" : {
+          "bignumber" : {
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 2,
+          "mediumnumber" : {
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "132653 ms "
+          },
+          "name" : "complex query",
+          "smallnumber" : {
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "13959 ms"
+          }
+        },
+        "linearquery" : {
+          "bignumber" : {
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 1,
+          "mediumnumber" : {
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "138333 ms"
+          },
+          "name" : "linear query",
+          "smallnumber" : {
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "13991 ms"
+          }
+        },
+        "snowflake query" : {
+          "bignumber" : {
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 3,
+          "mediumnumber" : {
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "132171 ms"
+          },
+          "name" : "snowflake query",
+          "smallnumber" : {
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "13928 ms"
+          }
+        }
+      },
+      "filtering" : "Custom Filter functions",
+      "id" : 2,
+      "interface" : "Custom",
+      "language" : "SPARQL 1.0",
+      "latestUpdate" : "11-05-2016",
+      "link" : "https://github.com/linkeddata/rdflib.js",
+      "name" : "rdflib.js",
+      "sourceSize" : 331000
+    }, {
+      "evaluation" : {
+        "comlexquery" : {
+          "bignumber" : {
+            "id" : 33,
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 3,
+          "mediumnumber" : {
+            "id" : 32,
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "1288146 ms"
+          },
+          "name" : "complex query",
+          "smallnumber" : {
+            "id" : 31,
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "106163 ms"
+          }
+        },
+        "linearquery" : {
+          "bignumber" : {
+            "id" : 13,
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 1,
+          "mediumnumber" : {
+            "id" : 12,
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "1204331 ms"
+          },
+          "name" : "linear query",
+          "smallnumber" : {
+            "id" : 11,
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "96322 ms"
+          }
+        },
+        "snowflake query" : {
+          "bignumber" : {
+            "id" : 23,
+            "name" : "big number",
+            "number" : 10000000,
+            "timing" : "n/a"
+          },
+          "id" : 2,
+          "mediumnumber" : {
+            "id" : 22,
+            "name" : "medium number",
+            "number" : 1000000,
+            "timing" : "1241887 ms"
+          },
+          "name" : "snowflake query",
+          "smallnumber" : {
+            "id" : 21,
+            "name" : "small number",
+            "number" : 100000,
+            "timing" : "104758 ms"
+          }
+        }
+      },
+      "filtering" : "Custom Filter functions",
+      "id" : 1,
+      "interface" : "Custom",
+      "language" : "SPARQL 1.0, SPARQL 1.1",
+      "latestUpdate" : "27-05-2016",
+      "link" : "https://github.com/antoniogarrote/semantic-ko",
+      "name" : "rdfstore-js",
+      "sourceSize" : 1500000
+    } ],
+    "ui" : [ {
+      "bindings" : "Backbone",
+      "id" : 1,
+      "integration" : "Backbone, rdfstore-js",
+      "latestUpdate" : "11-10-2013",
+      "link" : "https://github.com/antoniogarrote/backbone/tree/linked_data",
+      "name" : "Backbone Linked",
+      "sourceSize" : 330000
+    }, {
+      "bindings" : "Knockout",
+      "id" : 2,
+      "integration" : "KnockoutJS, rdfstore-js",
+      "latestUpdate" : "06-02-2012",
+      "link" : "https://github.com/antoniogarrote/semantic-ko",
+      "name" : "SemanticKO",
+      "sourceSize" : 576000
+    } ]
+  },
+  "theaderList" : {
+    "datastorage" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 200
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "Storage Method"
+      },
+      "property" : "storageMethod"
+    }, {
+      "header" : {
+        "label" : "Indexing"
+      },
+      "property" : "indexing"
+    }, {
+      "header" : {
+        "label" : "Latest Update",
+        "props" : {
+          "style" : {
+            "width" : 125
+          }
+        }
+      },
+      "property" : "latestUpdate"
+    } ],
+    "expresults" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 200
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "Query Type"
+      },
+      "property" : "queryType"
+    }, {
+      "header" : {
+        "label" : "Dataset Size"
+      },
+      "property" : "setSize"
+    }, {
+      "header" : {
+        "label" : "Result"
+      },
+      "property" : "result"
+    } ],
+    "general" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 150
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "License"
+      },
+      "property" : "license"
+    }, {
+      "header" : {
+        "label" : "Docs"
+      },
+      "property" : "documentation"
+    }, {
+      "header" : {
+        "label" : "OSS"
+      },
+      "property" : "openSource"
+    }, {
+      "header" : {
+        "label" : "Github stars",
+        "props" : {
+          "style" : {
+            "width" : 100
+          }
+        }
+      },
+      "property" : "star"
+    }, {
+      "header" : {
+        "label" : "W3C Cerf"
+      },
+      "property" : "w3ccerf"
+    }, {
+      "header" : {
+        "label" : "Latest Update",
+        "props" : {
+          "style" : {
+            "width" : 125
+          }
+        }
+      },
+      "property" : "latestUpdate"
+    } ],
+    "parsing" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 150
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "Media Type"
+      },
+      "property" : "mediaType"
+    }, {
+      "header" : {
+        "label" : "Environment"
+      },
+      "property" : "environment"
+    }, {
+      "header" : {
+        "label" : "Interface"
+      },
+      "property" : "interface"
+    }, {
+      "header" : {
+        "label" : "Latest Update",
+        "props" : {
+          "style" : {
+            "width" : 125
+          }
+        }
+      },
+      "property" : "latestUpdate"
+    } ],
+    "sparqlq" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 150
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "Filtering"
+      },
+      "property" : "filtering"
+    }, {
+      "header" : {
+        "label" : "Language"
+      },
+      "property" : "language"
+    }, {
+      "header" : {
+        "label" : "Latest Update",
+        "props" : {
+          "style" : {
+            "width" : 125
+          }
+        }
+      },
+      "property" : "latestUpdate"
+    } ],
+    "ui" : [ {
+      "header" : {
+        "label" : "Name",
+        "props" : {
+          "style" : {
+            "width" : 200
+          }
+        }
+      },
+      "property" : "name"
+    }, {
+      "header" : {
+        "label" : "Integration"
+      },
+      "property" : "integration"
+    }, {
+      "header" : {
+        "label" : "Bingings"
+      },
+      "property" : "bindings"
+    }, {
+      "header" : {
+        "label" : "Latest Update",
+        "props" : {
+          "style" : {
+            "width" : 125
+          }
+        }
+      },
+      "property" : "latestUpdate"
+    } ]
+  }
+}

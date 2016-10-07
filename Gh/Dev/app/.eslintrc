@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      modules: true
+    }
+  },
+
+  "plugins": ["react"],
+
+  "rules": {
+    "quote-props": [1, "as-needed"],
+    "quotes": [1, "single"],
+    "semi": [1, "always"], // require or disallow use of semicolons instead of ASI
+    "no-var": 2, // require let or const instead of var (off by default) ES6,
+
+    //eslint plugin react
+    "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
+    "react/jsx-uses-vars": 2,  // Prevent variables used in JSX to be incorrectly marked as unused
+    "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "presets": ["airbnb", "es2015", "stage-0"],
+  "plugins": [
+    "react-html-attrs"
+  ]
+}
