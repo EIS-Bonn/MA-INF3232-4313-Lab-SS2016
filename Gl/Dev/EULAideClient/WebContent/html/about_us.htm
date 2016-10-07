@@ -1,0 +1,13 @@
+<div class="container" data-ng-controller="TabsCtrl">
+	<div class="card col-md-4" data-ng-repeat="c in contacts track by $index">
+		<img data-ng-src="pictures/img_avatar_{{c.gender}}.png" alt="Avatar"
+			style="width: 100%">
+		<div class="container">
+			<h4>
+				<b>{{c.name}}</b>
+			</h4>
+			<p>{{c.email}}</p>
+		</div>
+	</div>
+</div>
+
