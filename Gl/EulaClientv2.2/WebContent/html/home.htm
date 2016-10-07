@@ -1,0 +1,70 @@
+<div class="center">
+	<div class="inputArea">				
+		<form class="fileInput">			
+			<label	class="inputText">File input </label>
+			<div class="inputBox"> 
+				<input 	class="form-control"	
+						accept=".txt, .pdf"														
+						type="file"						
+						onchange="angular.element(this).scope().setFile(this)">
+			</div>			
+		</form>	
+		<form class="urlInput">
+			<label class="inputText">URL input </label>
+			<div class="inputBox">
+				<input type="text"				
+				data-ng-model="inputUrl" 
+				data-ng-change="validateUrl()"
+				size="43">				
+			</div>
+		</form>	
+		<div class="buttonGenerate">
+			<button class="btn btn-info buttonProp1"
+					type="button"
+					data-ng-click="generate()"
+					data-ng-disabled="!btnActive">
+					Generate
+			</button>
+		</div>	
+		<div class="buttonOpenAll">			
+			<button class="btn btn-info buttonProp2"	
+					type="button"
+					data-ng-model="openAll"						
+					data-ng-click="openAll()"
+					data-ng-disabled="!responsed">
+				Open All	
+			</button>	
+		</div>
+		<div class="buttonCollapseAll">			
+			<button class="btn btn-info buttonProp2"	
+					type="button"
+					data-ng-model="collapseAll"						
+					data-ng-click="collapseAll()"
+					data-ng-disabled="!responsed">
+				Collapse All				
+			</button>	
+		</div>	
+		<div class="fileDetails">
+			<div data-uib-alert data-ng-class="'alert-warning'" 	data-ng-if="panelStyle==0"><strong>{{errorMsg}}</strong></div>
+			<div data-uib-alert data-ng-class="'alert-success'" 	data-ng-if="panelStyle==1"><strong>Input: </strong><i>{{errorMsg}}</i></div>
+			<div data-uib-alert data-ng-class="'alert-danger'" 		data-ng-if="panelStyle==2">{{errorMsg}}</div>
+		</div>		
+	</div>
+	
+	<div class="dataArea">
+		<div id="loader" class="center"></div>	
+		<div id="dataTable" data-ng-show="responsed">			
+			<uib-tabset active="activeJustified" justified="true"> 
+				<uib-tab index="0" heading="General User" active>
+					<div data-ng-include="'html/general_user.htm'"></div>
+				</uib-tab> 
+				<uib-tab index="1" heading="Advanced User">
+					<div data-ng-include="'html/advanced_user.htm'"></div>
+				</uib-tab>	 
+			</uib-tabset>
+		</div>	
+	</div>
+	<footer data-ng-show="responsed">
+		Summary of <strong>{{eulaTitle}}</strong>
+	</footer>
+</div>
