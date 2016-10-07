@@ -67,6 +67,7 @@ service('TTLParseService',function($q,sparqlQueryService){
     var factoryQueryPromise = $q(function(resolve,reject){
       //sparql query to get company factory data
       var fQuery = sparqlQueryService.getFactoryQuery(factoryObject.value);
+      //console.log(fQuery);
       jQuery.get(endPointURL,{query:fQuery},function(results){
         var plantFactories = [];
         var polygonQueryPromise;
@@ -101,7 +102,7 @@ service('TTLParseService',function($q,sparqlQueryService){
       var bQuery = sparqlQueryService.getBuildingQuery(buildingObject.value);
       jQuery.get(endPointURL,{query:bQuery},function(results){
         var buildings = [];
-        var machineQueryPromise;
+        var queryPromise;
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentBuilding = results.results.bindings[i];
 
@@ -109,19 +110,19 @@ service('TTLParseService',function($q,sparqlQueryService){
           var polygonObject = currentBuilding.polygon;
 
           if(machineObject){
-            machineQueryPromise = getMachineData(currentBuilding,machineObject);
+             getMachineData(currentBuilding,machineObject);
             delete currentBuilding.machine;
           }
 
           if(polygonObject){
-            getPolygonData(currentBuilding,polygonObject);
+            queryPromise = getPolygonData(currentBuilding,polygonObject);
             delete currentBuilding.polygon;
           }
 
           buildings.push(currentBuilding);
         }
 
-        machineQueryPromise.then(function(resolution){
+        queryPromise.then(function(resolution){
           parentObject.buildings = buildings;
           resolve(parentObject);
         });
@@ -166,7 +167,7 @@ service('TTLParseService',function($q,sparqlQueryService){
     var plantQueryPromise = $q(function(resolve,reject){
       //sparql query to get company plant data
       var pQuery = sparqlQueryService.getPlantQuery(plantObject.value);
-
+      console.log(pQuery);
       jQuery.get(endPointURL,{query:pQuery},function(results){
         var companyPlants = [];
         var factoryQueryPromise;
@@ -176,12 +177,32 @@ service('TTLParseService',function($q,sparqlQueryService){
           var factoryObject = currentPlant.plantFactory;
           if(factoryObject){
             factoryQueryPromise = getFactoryData(currentPlant,factoryObject);
+            delete currentPlant.plantFactory;
           }
 
-          delete currentPlant.plantFactory;
           companyPlants.push(currentPlant);
         }
+
         factoryQueryPromise.then(function(resolution){
+          var plantsToRemove = [];
+          for(var i=0; i<companyPlants.length;i++){
+            var currentPlant = companyPlants[i];
+            for(var j=i+1;j<companyPlants.length;j++){
+              var otherPlant = companyPlants[j];
+              if(!plantsToRemove.includes(otherPlant)){
+
+                if(currentPlant.plantName.value==otherPlant.plantName.value){
+                  for(var k=0;k<otherPlant.factories.length;k++){
+                    currentPlant.factories.push(otherPlant.factories[k]);
+                  }
+                  plantsToRemove.push(j);
+                }
+              }
+            }
+          }
+          for(var i =0;i<plantsToRemove.length;i++){
+            companyPlants.splice(plantsToRemove[i],1);
+          }
           currentCompany.plants = companyPlants;
           resolve(currentCompany);
         });

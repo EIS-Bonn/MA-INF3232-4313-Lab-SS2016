@@ -94,3 +94,64 @@ eis:someMachinePolygon a ngeo:Polygon;
                                geo:long "-119.4410074"
                               ]
                 ).
+
+dbpedia:Amazon  a  vivo:Company ;
+        rdfs:label      "Amazon.com, Inc.";
+        eis:hasCEO      dbpedia:Jeff_Bezos  ;
+        eis:hasPlant    eis:amazonDEPlant ;
+        eis:wasBuilt    1994;
+        eis:headquarters "Seattle, Washington, U.S.".
+
+eis:amazonDEPlant  a        eis:Plant ;
+        rdfs:label     "Deutschland Amazon Plant" ;
+        eis:manager  dbpedia:ralf_kleber;
+        eis:workers  10000;
+        eis:hasFactory  eis:amazonWarehouse;
+        eis:hasFactory eis:amazonLeipzig;
+
+eis:amazonWarehouse  a      lgdo:Factory ;
+        rdfs:label     "Logistics center Leipzig";
+        eis:hasPolygon  eis:koblenzPolygon ;
+        eis:hasBuilding eis:koblenzBuilding ;
+        eis:wasBuilt    2006 .
+eis:amazonWarehouse  a      lgdo:Factory ;
+        rdfs:label     "Logistikzentrum Koblenz";
+        eis:hasPolygon  eis:koblenzPolygon ;
+        eis:hasBuilding eis:koblenzBuilding ;
+        eis:wasBuilt    2012 .
+
+eis:koblenzBuilding a   eis:Building;
+eis:hasPolygon eis:koblenzBuildingPolygon.
+
+
+eis:koblenzPolygon a ngeo:Polygon;
+                ngeo:posList (
+                              [geo:lat "50.345647";
+                               geo:long "7.484006"
+                              ]
+                              [geo:lat "50.347072";
+                               geo:long "7.498093"
+                              ]
+                              [geo:lat "50.356522";
+                               geo:long "7.486863"
+                              ]
+                              [geo:lat "50.351245";
+                               geo:long "7.481421"
+                              ]
+                ).
+
+eis:koblenzBuildingPolygon a ngeo:Polygon;
+                ngeo:posList (
+                              [geo:lat "50.346331";
+                               geo:long "7.484624"
+                              ]
+                              [geo:lat "50.346542";
+                               geo:long "7.491002"
+                              ]
+                              [geo:lat "50.348690";
+                               geo:long "7.490516"
+                              ]
+                              [geo:lat "50.348304";
+                               geo:long "7.484298"
+                              ]
+                ).

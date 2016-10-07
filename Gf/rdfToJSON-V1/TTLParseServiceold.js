@@ -5,7 +5,7 @@ service('TTLParseService',function($q,sparqlQueryService){
     var mainPromise = $q(function(mainResolve,mainReject){
 
       console.log("i m here");
-      
+
       jQuery.get(filePath, function(data) {
         //console.log(data);
         rdfstore.create(function(err, store) {
@@ -190,6 +190,7 @@ service('TTLParseService',function($q,sparqlQueryService){
             var currentPlant = pResult[k];
             companyPlants.push(currentPlant);
           }//for
+          
           currentCompany.plants = companyPlants;
           resolve(currentCompany);
         }//else
