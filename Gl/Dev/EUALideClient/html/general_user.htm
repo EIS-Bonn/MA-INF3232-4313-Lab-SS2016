@@ -1,0 +1,58 @@
+<div class="container row">		
+	<div class="columns" data-ng-show="responsed">
+		<ul class="annot">
+			<li class="header" style="background-color: rgb(0, 239, 0)">Permission</li>
+		</ul>			
+		<uib-accordion close-others="false">						
+			<div uib-accordion-group
+				 class="panel-success"						 		 
+				 data-ng-repeat="a in permissionList track by $index"
+				 data-ng-if="getActionName(a)=='generalAction'"	
+				 ng-click="changePeStatus($index)"			 
+				 is-open="getPeStatus($index)">
+				<uib-accordion-heading>													
+					<img data-ng-src="images/{{getAction(a)}}.png" alt="{{getAction(a)}}" class="img-responsive">						
+				</uib-accordion-heading>					
+				{{getAnnot(a)}}					
+			</div>						
+		</uib-accordion>			
+	</div>
+	
+	<div class="columns" data-ng-show="responsed">
+		<ul class="annot">
+			<li class="header" style="background-color: rgb(72, 120, 255)">Duty</li>
+		</ul>
+		<data-uib-accordion close-others="false">
+			<div data-uib-accordion-group 
+				class="panel-info"				
+				data-ng-repeat="a in dutyList track by $index"
+				data-ng-if="getActionName(a)=='generalAction'"
+				ng-click="changeDuStatus($index)"			 
+				is-open="getDuStatus($index)">
+				<uib-accordion-heading>											
+					<img data-ng-src="images/{{getAction(a)}}.png" alt="{{getAction(a)}}" class="img-responsive">					
+				</uib-accordion-heading>
+				{{getAnnot(a)}}
+			</div>
+		</data-uib-accordion>
+	</div>
+	
+	<div class="columns" data-ng-show="responsed">
+		<ul class="annot">
+			<li class="header" style="background-color: rgb(255, 85, 70)">Prohibition</li>
+		</ul>
+		<data-uib-accordion close-others="false">
+			<div data-uib-accordion-group 
+				class="panel-danger"				
+				data-ng-repeat="a in prohibitionList track by $index"
+				data-ng-if="getActionName(a)=='generalAction'"
+				ng-click="changePrStatus($index)"			 
+			 	is-open="getPrStatus($index)">
+				<uib-accordion-heading>												
+						<img data-ng-src="images/{{getAction(a)}}.png" alt="{{getAction(a)}}" class="img-responsive">					
+				</uib-accordion-heading>
+				{{getAnnot(a)}}
+			</div>
+		</data-uib-accordion>
+	</div>
+</div>
