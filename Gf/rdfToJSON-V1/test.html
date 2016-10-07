@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js" ng-app="Enterprise2MapApp">
-  <head>
+<head>
 
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-   <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css" />
-   <link rel="stylesheet" href="styles/styles.css" />
-   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css"/>
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css"/>
+    <link rel="stylesheet" href="styles/styles.css"/>
+    <link rel="stylesheet" href="styles/sidenav.css"/>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
-  <script src="sparqlQueryService.js"></script>
-  <script src="TTLParseService.js"></script>
-  <script src="TTLParseTestCtrl.js"></script>
-  <script src="rdfstore.js"></script>
-  
-  </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"
+            integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script src="js/sidenav.js"></script>
+    <script src="js/filtering.js"></script>
+    <script src="sparqlQueryService.js"></script>
+    <script src="TTLParseService.js"></script>
+    <script src="TTLParseTestCtrl.js"></script>
+    <script src="rdfstore.js"></script>
+    <script src="js/geocoder.js"></script>
 
-  <body ng-controller="TTLParseTestCtrl" >
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-			         <li> <a class="navbar-brand" href="test.html">Demo</a> </li>
-               <li> <a class="navbar-brand" href="about.html">Description</a> </li>
-               <li> <a class="navbar-brand" href="about.html">Upload data</a> </li>
+    <!--<script async defer-->
+            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmsQe9kzGmubcKX3X3SNKIWgLuCujONB4">-->
+    <!--</script>-->
+</head>
 
-          </ul>
+<body ng-controller="TTLParseTestCtrl" class="disable-select">
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <div style="padding-left: 30px">
+        <input type="checkbox"  id="enable" name="vehicle" value="Company" onclick="enableFilter()"> Filter by Features<br>
+        <div style="padding-left: 30px">
+            <input type="radio" name="filterType"  id="Company" value="Company" onclick="processEverything(0, 0)" disabled="true" style="padding-left: 15px"> Company<br>
+            <input type="radio" name="filterType"  id="Factory" value="Factory" onclick="processEverything(0, 1)" disabled="true" style="padding-left: 15px"> Factory<br>
+            <input type="radio" name="filterType"  id="Building" value="Building" onclick="processEverything(0, 2)" disabled="true" style="padding-left: 15px"> Building<br>
+            <input type="radio" name="filterType"  id="Machine" value="Building" onclick="processEverything(0, 3)" disabled="true" style="padding-left: 15px"> Machine<br>
+            <input type="radio" name="filterType"  id="Others" value="Others" onclick="processEverything(0, 4)" disabled="true" style="padding-left: 15px"> Others<br>
         </div>
-      </div>
     </div>
 
-    <div id="container">
-      <div id="map"></div>
+    <div style="padding-left: 30px; padding-top: 15px">
+        <input type="checkbox"  id="enableCountry" name="country" value="Company" onclick="enableCountryFilter()"> Filter by Country<br>
+        <div style="padding-left: 30px">
+            <input type="radio" name="filterType"  id="de" value="de" onclick="processEverything(1, 0)" disabled="true" style="padding-left: 15px"> Germany<br>
+            <input type="radio" name="filterType"  id="us" value="us" onclick="processEverything(1, 1)" disabled="true" style="padding-left: 15px"> United States<br>
+        </div>
     </div>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
-    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
-	<script src="data/volkswagen_demo.geojson" type="text/javascript"></script>
-  </body>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><div id="main">
+                    <span onclick="openNav()">&#9776;</span>
+                </div></li>
+                <li><a class="navbar-brand" href="test.html">Project</a></li>
+                <li><a class="navbar-brand" href="about.html">Description</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="container">
+    <div id="map"></div>
+</div>
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
+<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+</body>
 </html>

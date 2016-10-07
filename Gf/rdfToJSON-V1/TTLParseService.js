@@ -8,32 +8,65 @@ service('TTLParseService',function($q,sparqlQueryService){
     var mainPromise = $q(function(mainResolve,mainReject){
 
       var parsedData = {};
-      //console.log("parsed data: ");
-      //console.log(parsedData);
+      console.log("parsed data: ");
+      console.log(parsedData);
       endPointURL = baseURL+endPointName;
 
+      var promises = [];
       //sparql query to get the company info
       var companyQuery = sparqlQueryService.getCompanyQuery();
-    //  console.log(companyQuery);
+      //console.log(companyQuery);
       jQuery.get(endPointURL,{query:companyQuery},function(results){
         var companies = [];
-        var plantQueryPromise;
-    //    console.log(results);
+        //    console.log(results);
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentCompany = results.results.bindings[i];
+          //console.log(results);
           var plantObject = currentCompany.companyPlant;
           if(plantObject){
-            plantQueryPromise  = getPlantData(currentCompany,plantObject);
+            var plantQueryPromise  = getPlantData(currentCompany,plantObject);
+            promises.push(plantQueryPromise);
             delete currentCompany.companyPlant;
           }
           delete currentCompany.subject;
           companies.push(currentCompany);
         }
 
-        plantQueryPromise.then(function(resCompany){
-          parsedData.companies = companies;
-          mainResolve(parsedData);
-        });
+        var promiseFulfillCount = 0;
+    //    console.log(promises);
+        for(var i =0 ;i<promises.length;i++){
+          var currentPromise = promises[i];
+          currentPromise.then(function(res){
+            promiseFulfillCount++;
+            //console.log(promiseFulfillCount);
+            //console.log(promiseFulfillCount+"...."+promises.length);
+            if(promiseFulfillCount==promises.length){
+              var companiesToRemove = [];
+              for(var i=0; i<companies.length;i++){
+                var currentCompany = companies[i];
+                for(var j=i+1;j<companies.length;j++){
+                  var otherCompany = companies[j];
+                  if(!companiesToRemove.includes(otherCompany)){
+                    //console.log(currentPlant);
+                    if(currentCompany.companyName.value==otherCompany.companyName.value){
+                      for(var k=0;k<otherCompany.plants.length;k++){
+                        currentCompany.plants.push(otherCompany.plants[k]);
+                      }//for
+                      companiesToRemove.push(j);
+                    }//if
+                  }//if
+                }//for
+              }//for
+              for(var i =0;i<companiesToRemove.length;i++){
+                companies.splice(companiesToRemove[i],1);
+              }
+              parsedData.companies = companies;
+              //console.log(parsedData);
+              mainResolve(parsedData);
+            }
+          });
+        }//for
+
       });
     });//$q
     return mainPromise;
@@ -68,9 +101,9 @@ service('TTLParseService',function($q,sparqlQueryService){
       //sparql query to get company factory data
       var fQuery = sparqlQueryService.getFactoryQuery(factoryObject.value);
       //console.log(fQuery);
+      var promises = [];
       jQuery.get(endPointURL,{query:fQuery},function(results){
         var plantFactories = [];
-        var polygonQueryPromise;
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentFactory = results.results.bindings[i];
           //console.log(currentFactory);
@@ -79,19 +112,32 @@ service('TTLParseService',function($q,sparqlQueryService){
           var polygonObject = currentFactory.polygon;
 
           if(buildingObject){
-            getBuildingData(currentFactory,buildingObject);
+            var promise = getBuildingData(currentFactory,buildingObject);
+            promises.push(promise);
             delete currentFactory.building;
           }
           if(polygonObject){
-            polygonQueryPromise = getPolygonData(currentFactory,polygonObject);
+            var polygonQueryPromise = getPolygonData(currentFactory,polygonObject);
+            promises.push(polygonQueryPromise);
             delete currentFactory.polygon;
           }
           plantFactories.push(currentFactory);
         }
-        polygonQueryPromise.then(function(resolution){
-          currentPlant.factories = plantFactories;
-          resolve(currentPlant);
-        });
+
+        var promiseFulfillCount = 0;
+        for(var i =0 ;i<promises.length;i++){
+          var currentPromise = promises[i];
+          currentPromise.then(function(res){
+            promiseFulfillCount++;
+
+            if(promiseFulfillCount==promises.length){
+              currentPlant.factories = plantFactories;
+              resolve(currentPlant);
+            }
+
+          });
+
+        }//for
       });//jQuery.get
     });//factoryQueryPromise $q
     return factoryQueryPromise;
@@ -102,30 +148,44 @@ service('TTLParseService',function($q,sparqlQueryService){
       var bQuery = sparqlQueryService.getBuildingQuery(buildingObject.value);
       jQuery.get(endPointURL,{query:bQuery},function(results){
         var buildings = [];
-        var queryPromise;
+        var promises = [];
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentBuilding = results.results.bindings[i];
 
           var machineObject = currentBuilding.machine;
           var polygonObject = currentBuilding.polygon;
-
+          //console.log(currentBuilding);
           if(machineObject){
-             getMachineData(currentBuilding,machineObject);
+            var promise = getMachineData(currentBuilding,machineObject);
+            promises.push(promise);
             delete currentBuilding.machine;
           }
 
           if(polygonObject){
-            queryPromise = getPolygonData(currentBuilding,polygonObject);
+            var queryPromise = getPolygonData(currentBuilding,polygonObject);
+            promises.push(queryPromise);
             delete currentBuilding.polygon;
           }
 
           buildings.push(currentBuilding);
         }
 
-        queryPromise.then(function(resolution){
-          parentObject.buildings = buildings;
-          resolve(parentObject);
-        });
+        var promiseFulfillCount = 0;
+    //    console.log(promises);
+        for(var i =0 ;i<promises.length;i++){
+          var currentPromise = promises[i];
+          currentPromise.then(function(res){
+            promiseFulfillCount++;
+            //console.log(promiseFulfillCount);
+
+            if(promiseFulfillCount==promises.length){
+              //console.log(promises);
+              parentObject.buildings = buildings;
+              resolve(parentObject);
+
+            }
+          });
+        }//for
 
       });//jQuery.get
     });//$q
@@ -138,25 +198,35 @@ service('TTLParseService',function($q,sparqlQueryService){
       var mQuery = sparqlQueryService.getMachineQuery(machineObject.value);
       jQuery.get(endPointURL,{query:mQuery},function(results){
         var machines = [];
-        var machinePolygonPromise;
+        var promises = [];
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentMachine = results.results.bindings[i];
 
           var polygonObject = currentMachine.polygon;
 
           if(polygonObject){
-            machinePolygonPromise = getPolygonData(currentMachine,polygonObject);
+            var machinePolygonPromise = getPolygonData(currentMachine,polygonObject);
+            promises.push(machinePolygonPromise);
             delete currentMachine.polygon;
           }
 
           machines.push(currentMachine);
 
         }
-        machinePolygonPromise.then(function(resolution){
-          parentObject.machines = machines;
-          resolve(parentObject);
-        });
 
+        var promiseFulfillCount = 0;
+    //    console.log(promises);
+        for(var i =0 ;i<promises.length;i++){
+          var currentPromise = promises[i];
+          currentPromise.then(function(res){
+            promiseFulfillCount++;
+            if(promiseFulfillCount==promises.length){
+              parentObject.machines = machines;
+              resolve(parentObject);
+
+            }
+          });
+        }//for
       });//jQuery.get
     });//$q
     return machineQueryPromise;
@@ -167,48 +237,57 @@ service('TTLParseService',function($q,sparqlQueryService){
     var plantQueryPromise = $q(function(resolve,reject){
       //sparql query to get company plant data
       var pQuery = sparqlQueryService.getPlantQuery(plantObject.value);
-      console.log(pQuery);
+      //console.log(pQuery);
+      var promises = [];
       jQuery.get(endPointURL,{query:pQuery},function(results){
         var companyPlants = [];
-        var factoryQueryPromise;
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentPlant = results.results.bindings[i];
-
+        // console.log(results);
           var factoryObject = currentPlant.plantFactory;
           if(factoryObject){
-            factoryQueryPromise = getFactoryData(currentPlant,factoryObject);
+            var factoryQueryPromise = getFactoryData(currentPlant,factoryObject);
+            promises.push(factoryQueryPromise);
             delete currentPlant.plantFactory;
           }
 
           companyPlants.push(currentPlant);
         }
-
-        factoryQueryPromise.then(function(resolution){
-          var plantsToRemove = [];
-          for(var i=0; i<companyPlants.length;i++){
-            var currentPlant = companyPlants[i];
-            for(var j=i+1;j<companyPlants.length;j++){
-              var otherPlant = companyPlants[j];
-              if(!plantsToRemove.includes(otherPlant)){
-
-                if(currentPlant.plantName.value==otherPlant.plantName.value){
-                  for(var k=0;k<otherPlant.factories.length;k++){
-                    currentPlant.factories.push(otherPlant.factories[k]);
-                  }
-                  plantsToRemove.push(j);
-                }
+        //console.log("next");
+        var promiseFulfillCount = 0;
+        for(var i =0 ;i<promises.length;i++){
+          var currentPromise = promises[i];
+          currentPromise.then(function(res){
+            promiseFulfillCount++;
+            if(promiseFulfillCount==promises.length){
+              var plantsToRemove = [];
+              for(var i=0; i<companyPlants.length;i++){
+                var currentPlant = companyPlants[i];
+                for(var j=i+1;j<companyPlants.length;j++){
+                  var otherPlant = companyPlants[j];
+                  if(!plantsToRemove.includes(otherPlant)){
+                    //console.log(currentPlant);
+                    if(currentPlant.plantName.value==otherPlant.plantName.value){
+                      for(var k=0;k<otherPlant.factories.length;k++){
+                        currentPlant.factories.push(otherPlant.factories[k]);
+                      }//for
+                      plantsToRemove.push(j);
+                    }//if
+                  }//if
+                }//for
+              }//for
+              for(var i =0;i<plantsToRemove.length;i++){
+                companyPlants.splice(plantsToRemove[i],1);
               }
-            }
-          }
-          for(var i =0;i<plantsToRemove.length;i++){
-            companyPlants.splice(plantsToRemove[i],1);
-          }
-          currentCompany.plants = companyPlants;
-          resolve(currentCompany);
-        });
-      });//jQuery.get
-    });//$q
-    return plantQueryPromise;
-  }//getPlantData
+              currentCompany.plants = companyPlants;
+              resolve(currentCompany);
+            }//if
+          });//then
+        }//for
+
+    });//jQuery.get
+  });//$q
+  return plantQueryPromise;
+}//getPlantData
 
 });//service
