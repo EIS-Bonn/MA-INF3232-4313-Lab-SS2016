@@ -1,0 +1,8 @@
+industries_capital.lst:industry:::Industry
+industries.lst:industry:::Industry
+countries.lst:country:::Country
+languages.lst:language:::Language
+file_formats.lst:fileFormat:::FileFormat
+licenses_name.lst:licensesName:::LicensesName
+country_code.lst:countryCode:::CountryCode
+asset.lst:asset:::Asset

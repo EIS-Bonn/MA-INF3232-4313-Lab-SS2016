@@ -1,0 +1,317 @@
+Phase:	ontologyEnhacement
+
+Input:  Token SpaceToken
+Options: control = appelt
+
+
+Rule: ConstraintInstances
+(
+{Token.root == "age" }
+): Label
+
+-->
+
+{
+
+		//find the class of the age
+		OURI constraintURI = ontology.createOURI("http://www.w3.org/ns/odrl/2/Constraint");
+		OClass constraintClass = ontology.getOClass(constraintURI);
+		OURI ageURI = ontology.createOURIForName("Age");
+		if(ageURI != null && !ontology.containsOInstance(ageURI)) {
+			ontology.addOInstance(ageURI, constraintClass);
+		}    
+
+		gate.AnnotationSet constraintAnn = (gate.AnnotationSet)bindings.get("Label"); 
+		gate.Annotation ageAnn = (gate.Annotation)constraintAnn.iterator().next();
+		gate.FeatureMap features = Factory.newFeatureMap();
+		features.put("classURI","http://www.w3.org/ns/odrl/2/Constraint");
+		features.put("type", "instance"); 
+		features.put("rule","ConstraintInstances");	
+		features.put("URI",ageURI);	
+		features.put("propertyValue","Age");			
+		outputAS.add(constraintAnn.firstNode(), constraintAnn.lastNode(), "Age" ,features); 
+	
+}
+
+Rule: actionInstances
+(
+{Token.root == "add"}|
+{Token.root == "attach"}|
+{Token.root == "obtain"}|
+{Token.root == "acquire"}|
+{Token.root == "monitor"}|
+{Token.root == "appear"}|
+{Token.root == "alter"}|
+{Token.root == "assign"}|
+{Token.root == "access"}|
+{Token.root == "broadcast"}|
+{Token.root == "download"}|
+{Token.root == "encode" }|
+{Token.root == "import"}|
+{Token.root == "impose"}|
+{Token.root == "load"}|
+{Token.root == "make"}|
+{Token.root == "offer" }|
+{Token.root == "post" }|
+{Token.root == "prepare"}|
+{Token.root == "perform"}|
+{Token.root == "redistribute" }|
+{Token.root == "retain"}|
+{Token.root == "represent"}|
+{Token.root == "remove"}|
+{Token.root == "resell"}|
+({Token.root == "rent"}|{Token.string == "rent"} )|
+{Token.root == "republish" }|
+{Token.root == "publish" }|
+{Token.root == "rename"}|
+{Token.root == "sublicense"}|
+{Token.root == "transmit" }|
+{Token.root == "upload" }|
+{Token.root == "convey" }|
+{Token.root == "gain" }|
+{Token.root == "capture" }|
+{Token.root == "exploit" }|
+{Token.root == "advertise" }|
+{Token.root == "carry"}|
+{Token.root == "duplicate"}|
+{Token.root == "notify"}|
+{Token.root == "cancel"}|
+{Token.root == "send"}|
+{Token.root == "submit"}|
+{Token.root == "provide"}|
+{Token.root == "contact"}|
+{Token.root == "remain"}|
+{Token.root == "comply"}|
+{Token.root == "analyze"}|
+{Token.root == "test"}|
+{Token.root == "create"}|
+{Token.root == "contain"}|
+{Token.root == "update"}|
+{Token.root == "terminate"}|
+{Token.root == "destroy"}|
+{Token.root == "maintain"}|
+{Token.root == "decompile"}|
+{Token.root == "charge"}|
+{Token.root == "disable"}|
+{Token.root == "develop"}|
+{Token.root == "engage"}|
+{Token.root == "collect"}
+
+
+
+
+): Label
+
+-->
+
+{
+
+		gate.AnnotationSet actions = (gate.AnnotationSet)bindings.get("Label"); 
+		gate.Annotation action = (gate.Annotation)actions.iterator().next();
+		OURI actionURI = ontology.createOURI("http://www.w3.org/ns/odrl/2/Action");
+		OClass actionClass = ontology.getOClass(actionURI);
+		OURI instanceURI = null;
+		String propertyValue = "";
+		
+		if (action.getFeatures().get("root").equals("republish")){
+			instanceURI = ontology.createOURIForName("republish");
+			propertyValue = "Republish";
+		}else if (action.getFeatures().get("root").equals("publish")){
+			instanceURI = ontology.createOURIForName("publish");
+			propertyValue = "Publish";
+		}else if(action.getFeatures().get("root").equals("upload")){
+			instanceURI = ontology.createOURIForName("upload");
+			propertyValue = "Upload";
+		}else if(action.getFeatures().get("root").equals("post")){
+			instanceURI = ontology.createOURIForName("post");
+			propertyValue = "Post";
+		}else if(action.getFeatures().get("root").equals("encode")){
+			instanceURI = ontology.createOURIForName("encode");
+			propertyValue = "Encode";
+		}else if(action.getFeatures().get("root").equals("transmit")){
+			instanceURI = ontology.createOURIForName("transmit");
+			propertyValue = "Transmit";
+		}else if(action.getFeatures().get("root").equals("offer")){
+			instanceURI = ontology.createOURIForName("offer");
+			propertyValue = "Offer";			
+		}else if(action.getFeatures().get("root").equals("redistribute")){
+			instanceURI = ontology.createOURIForName("redistribute");
+			propertyValue = "Redistribute";			
+		}else if(action.getFeatures().get("root").equals("prepare")){
+			instanceURI = ontology.createOURIForName("prepare");
+			propertyValue = "Prepare";			
+		}else if(action.getFeatures().get("root").equals("perform")){
+			instanceURI = ontology.createOURIForName("perform");
+			propertyValue = "Perform";			
+		}else if(action.getFeatures().get("root").equals("assign")){
+			instanceURI = ontology.createOURIForName("assign");
+			propertyValue = "Assign";			
+		}else if(action.getFeatures().get("root").equals("download")){
+			instanceURI = ontology.createOURIForName("download");
+			propertyValue = "Download";			
+		}else if(action.getFeatures().get("root").equals("retain")){
+			instanceURI = ontology.createOURIForName("retain");
+			propertyValue = "Retain";			
+		}else if(action.getFeatures().get("root").equals("make")){
+			instanceURI = ontology.createOURIForName("make");
+			propertyValue = "Make";			
+		}else if(action.getFeatures().get("root").equals("offer")){
+			instanceURI = ontology.createOURIForName("offer");
+			propertyValue = "Offer";			
+		}else if(action.getFeatures().get("root").equals("import")){
+			instanceURI = ontology.createOURIForName("import");
+			propertyValue = "Import";			
+		}else if(action.getFeatures().get("root").equals("sublicense")){
+			instanceURI = ontology.createOURIForName("sublicense");
+			propertyValue = "Sublicense";			
+		}else if(action.getFeatures().get("root").equals("add")){
+			instanceURI = ontology.createOURIForName("add");
+			propertyValue = "Add";			
+		}else if(action.getFeatures().get("root").equals("load")){
+			instanceURI = ontology.createOURIForName("load");
+			propertyValue = "Load";			
+		}else if(action.getFeatures().get("root").equals("access")){
+			instanceURI = ontology.createOURIForName("access");
+			propertyValue = "Access";			
+		}else if(action.getFeatures().get("root").equals("represent")){
+			instanceURI = ontology.createOURIForName("represent");
+			propertyValue = "Represent";			
+		}else if(action.getFeatures().get("root").equals("remove")){
+			instanceURI = ontology.createOURIForName("remove");
+			propertyValue = "Remove";			
+		}else if(action.getFeatures().get("root").equals("alter")){
+			instanceURI = ontology.createOURIForName("alter");
+			propertyValue = "Alter";			
+		}else if(action.getFeatures().get("root").equals("resell")){
+			instanceURI = ontology.createOURIForName("resell");
+			propertyValue = "Resell";			
+		}else if(action.getFeatures().get("root").equals("rent")||action.getFeatures().get("string").equals("rent")){
+			instanceURI = ontology.createOURIForName("rent");
+			propertyValue = "Rent";			
+		}else if(action.getFeatures().get("root").equals("impose")){
+			instanceURI = ontology.createOURIForName("impose");
+			propertyValue = "Impose";			
+		}else if(action.getFeatures().get("root").equals("appear")){
+			instanceURI = ontology.createOURIForName("appear");
+			propertyValue = "Appear";			
+		}else if(action.getFeatures().get("root").equals("broadcast")){
+			instanceURI = ontology.createOURIForName("broadcast");
+			propertyValue = "Broadcast";			
+		}else if(action.getFeatures().get("root").equals("rename")){
+			instanceURI = ontology.createOURIForName("rename");
+			propertyValue = "Rename";			
+		}else if(action.getFeatures().get("root").equals("convey")){
+			instanceURI = ontology.createOURIForName("convey");
+			propertyValue = "Convey";			
+		}else if(action.getFeatures().get("root").equals("obtain")){
+			instanceURI = ontology.createOURIForName("obtain");
+			propertyValue = "Obtain";			
+		}else if(action.getFeatures().get("root").equals("acquire")){
+			instanceURI = ontology.createOURIForName("acquire");
+			propertyValue = "Acquire";			
+		}else if(action.getFeatures().get("root").equals("monitor")){
+			instanceURI = ontology.createOURIForName("monitor");
+			propertyValue = "Monitor";			
+		}else if(action.getFeatures().get("root").equals("gain")){
+			instanceURI = ontology.createOURIForName("gain");
+			propertyValue = "Gain";			
+		}else if(action.getFeatures().get("root").equals("capture")){
+			instanceURI = ontology.createOURIForName("capture");
+			propertyValue = "Capture";			
+		}else if(action.getFeatures().get("root").equals("exploit")){
+			instanceURI = ontology.createOURIForName("exploit");
+			propertyValue = "Exploit";			
+		}else if(action.getFeatures().get("root").equals("advertise")){
+			instanceURI = ontology.createOURIForName("advertise");
+			propertyValue = "Advertise";			
+		}else if(action.getFeatures().get("root").equals("attach")){
+			instanceURI = ontology.createOURIForName("attach");
+			propertyValue = "Attach";			
+		}else if(action.getFeatures().get("root").equals("carry")){
+			instanceURI = ontology.createOURIForName("carry");
+			propertyValue = "Carry";			
+		}else if(action.getFeatures().get("root").equals("duplicate")){
+			instanceURI = ontology.createOURIForName("duplicate");
+			propertyValue = "Duplicate";			
+		}else if(action.getFeatures().get("root").equals("notify")){
+			instanceURI = ontology.createOURIForName("notify");
+			propertyValue = "Notify";			
+		}else if(action.getFeatures().get("root").equals("cancel")){
+			instanceURI = ontology.createOURIForName("cancel");
+			propertyValue = "Cancel";			
+		}else if(action.getFeatures().get("root").equals("send")){
+			instanceURI = ontology.createOURIForName("send");
+			propertyValue = "Send";			
+		}else if(action.getFeatures().get("root").equals("submit")){
+			instanceURI = ontology.createOURIForName("submit");
+			propertyValue = "Submit";			
+		}else if(action.getFeatures().get("root").equals("provide")){
+			instanceURI = ontology.createOURIForName("provide");
+			propertyValue = "Provide";			
+		}else if(action.getFeatures().get("root").equals("contact")){
+			instanceURI = ontology.createOURIForName("contact");
+			propertyValue = "Contact";			
+		}else if(action.getFeatures().get("root").equals("remain")){
+			instanceURI = ontology.createOURIForName("remain");
+			propertyValue = "Remain";			
+		}else if(action.getFeatures().get("root").equals("comply")){
+			instanceURI = ontology.createOURIForName("comply");
+			propertyValue = "Comply";			
+		}else if(action.getFeatures().get("root").equals("analyze")){
+			instanceURI = ontology.createOURIForName("analyze");
+			propertyValue = "Analyze";			
+		}else if(action.getFeatures().get("root").equals("test")){
+			instanceURI = ontology.createOURIForName("test");
+			propertyValue = "Test";			
+		}else if(action.getFeatures().get("root").equals("create")){
+			instanceURI = ontology.createOURIForName("create");
+			propertyValue = "Create";			
+		}else if(action.getFeatures().get("root").equals("contain")){
+			instanceURI = ontology.createOURIForName("contain");
+			propertyValue = "Contain";			
+		}else if(action.getFeatures().get("root").equals("update")){
+			instanceURI = ontology.createOURIForName("update");
+			propertyValue = "Update";			
+		}else if(action.getFeatures().get("root").equals("terminate")){
+			instanceURI = ontology.createOURIForName("terminate");
+			propertyValue = "Terminate";			
+		}else if(action.getFeatures().get("root").equals("destroy")){
+			instanceURI = ontology.createOURIForName("destroy");
+			propertyValue = "Destroy";			
+		}else if(action.getFeatures().get("root").equals("maintain")){
+			instanceURI = ontology.createOURIForName("maintain");
+			propertyValue = "Maintain";			
+		}else if(action.getFeatures().get("root").equals("decompile")){
+			instanceURI = ontology.createOURIForName("decompile");
+			propertyValue = "Decompile";			
+		}else if(action.getFeatures().get("root").equals("charge")){
+			instanceURI = ontology.createOURIForName("charge");
+			propertyValue = "Charge";			
+		}else if(action.getFeatures().get("root").equals("disable")){
+			instanceURI = ontology.createOURIForName("disable");
+			propertyValue = "Disable";			
+		}else if(action.getFeatures().get("root").equals("develop")){
+			instanceURI = ontology.createOURIForName("develop");
+			propertyValue = "Develop";			
+		}else if(action.getFeatures().get("root").equals("engage")){
+			instanceURI = ontology.createOURIForName("engage");
+			propertyValue = "Engage";			
+		}else if(action.getFeatures().get("root").equals("collect")){
+			instanceURI = ontology.createOURIForName("collect");
+			propertyValue = "Collect";			
+		}
+		
+        if(instanceURI != null && !ontology.containsOInstance(instanceURI)) {
+            ontology.addOInstance(instanceURI, actionClass);
+        }    
+		
+		gate.FeatureMap features = Factory.newFeatureMap();
+		features.put("type", "instance"); 
+		features.put("rule","actionInstances");
+		features.put("URI",instanceURI);
+		features.put("propertyValue", propertyValue);
+		outputAS.add(actions.firstNode(), actions.lastNode(), "Action",features); //concats the new ann set to prvious "Action"
+		
+}
+
+

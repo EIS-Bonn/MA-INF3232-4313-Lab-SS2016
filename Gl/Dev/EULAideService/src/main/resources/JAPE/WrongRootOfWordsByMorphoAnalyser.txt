@@ -1,0 +1,118 @@
+Rule: ActionNotRecognizedByOnt
+(
+{Token.root == "advertisement"}|
+{Token.root == "aggregation"}|
+{Token.root == "annotation"}|
+{Token.root == "attribution"}|
+{Token.root == "compensation"}|
+{Token.root == "deletion"}|
+{Token.root == "derivation"}|
+{Token.root == "digitization"}|
+{Token.root == "digitizing"}|
+{Token.root == "distribution"}|
+{Token.root == "execution"}|
+{Token.root == "exportation"}|
+{Token.root == "extraction"}|
+{Token.root == "importation"}|
+{Token.root == "inclusion"}|
+{Token.root == "installation"}|
+{Token.root == "modification"}|
+{Token.root == "payment"}|
+{Token.root == "preparation"}|
+{Token.root == "presentation"}|
+{Token.root == "redistribution"}|
+{Token.root == "removal"}|
+{Token.root == "representation"}|
+{Token.root == "reproduction"}| 
+{Token.root == "translation"}|
+{Token.root == "transmission"}|  
+{Token.string == "republished"}|
+{Token.string == "uploaded"}|
+
+{Token.string == "anonymization"}|
+{Token.string == "appearance"}|
+{Token.string == "assignment"}|
+{Token.string == "attachement"}|
+{Token.string == "cancellation"}|
+{Token.string == "commercialization"}|
+commercialisation
+compliance
+creation
+maintainance
+termination
+
+): label
+
+-->
+
+{
+	gate.AnnotationSet action = (gate.AnnotationSet)bindings.get("label"); 
+	gate.Annotation actionAnn = (gate.Annotation)action.iterator().next();
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("type", "instance"); 
+	features.put("rule","Action");
+    String URI = "";
+	
+
+		if (actionAnn.getFeatures().get("root").equals("aggregation")){
+			URI = "http://www.w3.org/ns/odrl/2/aggregate";
+		}else if (actionAnn.getFeatures().get("root").equals("advertisement")){
+			URI = "http://www.w3.org/ns/odrl/2/advertise";
+		}else if (actionAnn.getFeatures().get("root").equals("annotation")){
+			URI = "http://www.w3.org/ns/odrl/2/annotate";
+		}else if (actionAnn.getFeatures().get("root").equals("attribution")){
+			URI = "http://www.w3.org/ns/odrl/2/attribute";
+		}else if (actionAnn.getFeatures().get("root").equals("compensation")){
+			URI = "http://www.w3.org/ns/odrl/2/compensate";
+		}else if (actionAnn.getFeatures().get("root").equals("deletion")){
+			URI = "http://www.w3.org/ns/odrl/2/delete";
+		}else if (actionAnn.getFeatures().get("root").equals("derivation")){
+			URI = "http://www.w3.org/ns/odrl/2/derive";
+		}else if (actionAnn.getFeatures().get("root").equals("digitization") || actionAnn.getFeatures().get("root").equals("digitizing")){
+			URI = "http://www.w3.org/ns/odrl/2/digitize";
+		}else if (actionAnn.getFeatures().get("root").equals("distribution")){
+			URI = "http://www.w3.org/ns/odrl/2/distribute";
+		}else if (actionAnn.getFeatures().get("root").equals("execution")){
+			URI = "http://www.w3.org/ns/odrl/2/execute";
+		}else if (actionAnn.getFeatures().get("root").equals("exportation")){
+			URI = "http://www.w3.org/ns/odrl/2/export";
+		}else if (actionAnn.getFeatures().get("root").equals("extraction")){
+			URI = "http://www.w3.org/ns/odrl/2/extract";
+		}else if (actionAnn.getFeatures().get("root").equals("importation")){
+			URI = "http://www.w3.org/ns/odrl/2/import";
+		}else if (actionAnn.getFeatures().get("root").equals("inclusion")){
+			URI = "http://www.w3.org/ns/odrl/2/include";
+		}else if (actionAnn.getFeatures().get("root").equals("installation")){
+			URI = "http://www.w3.org/ns/odrl/2/install";
+		}else if (actionAnn.getFeatures().get("root").equals("modification")){
+			URI = "http://www.w3.org/ns/odrl/2/modify";
+		}else if (actionAnn.getFeatures().get("root").equals("payment")){
+			URI = "http://www.w3.org/ns/odrl/2/pay";
+		}else if (actionAnn.getFeatures().get("root").equals("preparation")){
+			URI = "http://www.w3.org/ns/odrl/2/prepare";
+		}else if (actionAnn.getFeatures().get("root").equals("presentation")){
+			URI = "http://www.w3.org/ns/odrl/2/present";
+		}else if (actionAnn.getFeatures().get("root").equals("redistribution")){
+			URI = "http://www.w3.org/ns/odrl/2/redistribute";
+		}else if (actionAnn.getFeatures().get("root").equals("removal")){
+			URI = "http://www.w3.org/ns/odrl/2/remove";
+		}else if (actionAnn.getFeatures().get("root").equals("reproduction")){
+			URI = "http://www.w3.org/ns/odrl/2/reproduce";
+		}else if (actionAnn.getFeatures().get("root").equals("representation")){
+			URI = "http://www.w3.org/ns/odrl/2/represent";
+		}else if (actionAnn.getFeatures().get("root").equals("translation")){
+			URI = "http://www.w3.org/ns/odrl/2/translate";
+		}else if (actionAnn.getFeatures().get("root").equals("transmission")){
+			URI = "http://www.w3.org/ns/odrl/2/transmit";
+		}else if (actionAnn.getFeatures().get("string").equals("republished")){
+			URI = "http://www.w3.org/ns/odrl/2/republish";
+		}else if (actionAnn.getFeatures().get("string").equals("uploaded")){
+			URI = "http://www.w3.org/ns/odrl/2/upload";
+		}	
+	features.put("URI",URI);
+	if (actionAnn.getFeatures().get("propertyValue")!=null){
+		features.put("propertyValue", actionAnn.getFeatures().get("propertyValue"));
+	}
+
+	outputAS.add(action.firstNode(), action.lastNode(), "Action",features);
+}

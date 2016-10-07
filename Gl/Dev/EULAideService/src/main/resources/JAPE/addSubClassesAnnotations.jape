@@ -1,0 +1,92 @@
+Phase: addSubClassesAnnotations
+Input: Rule Policy Party
+Options: control = brill
+
+
+
+Rule: SubClassesOfRules
+(
+{Rule}
+
+):label
+-->
+{
+		gate.FeatureMap features = Factory.newFeatureMap();
+        gate.AnnotationSet ruleAnnotationSet = doc.getAnnotations("Rules");   //creates an empty branch Rules
+        gate.AnnotationSet rules = (gate.AnnotationSet)bindings.get("label"); //get each row of LHS
+        gate.Annotation rulesAnn = (gate.Annotation)rules.iterator().next();
+        if (rulesAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Permission")){
+            features.put("Type", rulesAnn.getFeatures().get("type"));
+            features.put("URI",rulesAnn.getFeatures().get("URI"));
+            ruleAnnotationSet.add(rules.firstNode(), rules.lastNode(), "Permission" , features);			
+        }
+        if (rulesAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Rule")){
+            features.put("Type", rulesAnn.getFeatures().get("type"));
+            features.put("URI",rulesAnn.getFeatures().get("URI"));
+            ruleAnnotationSet.add(rules.firstNode(), rules.lastNode(), "Rule" , features);			
+        }
+		
+		
+/*		
+        gate.AnnotationSet ruleAnnotationSet = outputAS.get("Rule");
+        List<Annotation> rulesList = gate.Utils.inDocumentOrder( gate.Utils.getContainedAnnotations(inputAS, ruleAnnotationSet, "Rule"));
+        for(Annotation rule : rulesList) {
+            if(!rule.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Rule")) {
+                rule.getFeatures().put("directSuperClass", "Rule");
+            }
+
+        }
+		
+		gate.AnnotationSet ruleAnnotationSet = doc.getAnnotations("Rule");
+        gate.AnnotationSet ruleAnnotationSet = annotationSetImpl.get("Rule");
+		gate.AnnotationSet ruleAnnotationSet = outputAS.get("Rule");
+        gate.annotation.AnnotationSetImpl ann = (gate.annotation.AnnotationSetImpl)doc.getAnnotations();
+        gate.AnnotationSet ruleAnnotationSet  = ann.get("Rule");
+		System.out.println(ruleAnnotationSet.size());
+        ArrayList<gate.Annotation> subsetAnnotations = new ArrayList<gate.Annotation>();
+		gate.AnnotationSet annSet = (gate.AnnotationSet)bindings.get("label");  
+		gate.Annotation annotation = (gate.Annotation)annSet.iterator().next();
+		gate.FeatureMap features = Factory.newFeatureMap();
+		features.put("Rule","Najmeh");
+		subsetAnnotations.add(annotation);		
+        ruleAnnotationSet.addAll(subsetAnnotations);
+*/		
+}
+
+Rule: SubClassesOfParty
+(
+{Party.URI != "http://www.w3.org/ns/odrl/2/Party" , Party.type == class}
+
+):label
+-->
+{		
+        gate.AnnotationSet partyAnnotationSet = outputAS.get("Party");
+        List<Annotation> partyList = gate.Utils.inDocumentOrder( gate.Utils.getContainedAnnotations(inputAS, partyAnnotationSet, "Party"));
+        for(Annotation party : partyList) {
+            if(!party.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Party")) {
+                party.getFeatures().put("directSuperClass", "Party");
+            }
+
+        }		
+		
+}
+
+
+
+Rule: SubClassesOfPolicy
+(
+{Policy.URI != "http://www.w3.org/ns/odrl/2/Policy" , Policy.type == class}
+
+):label
+-->
+{		
+        gate.AnnotationSet policyAnnotationSet = outputAS.get("Policy");
+        List<Annotation> policyList = gate.Utils.inDocumentOrder( gate.Utils.getContainedAnnotations(inputAS, policyAnnotationSet, "Policy"));
+        for(Annotation policy : policyList) {
+            if(!policy.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Policy")) {
+                policy.getFeatures().put("directSuperClass", "Policy");
+            }
+
+        }		
+		
+}

@@ -1,0 +1,42 @@
+Phase:	extractConstraints
+Input: Lookup Token SpaceToken Date Industry Language FileFormat Percent Money Age LicensesName Permission Action
+Options: control = appelt
+
+Macro: OPERATOR
+({Lookup.classURI == "http://www.w3.org/ns/odrl/2/Operator" , Lookup.type == instance})
+
+Macro: COUNT
+({Token.category == CD , Token.kind == number})
+
+Macro: NAMES_FOR_CONSTRAINT  
+(
+{Age.propertyValue == "Age" , Action.type == instance}|
+{Date.kind == date, Date.rule == DateNumDashRev , Date.ruleFinal == DateOnlyFinal}|
+{FileFormat}|
+{Industry}|
+{Language}|
+{Percent}|
+{Money}|
+{LicensesName}
+
+)
+
+Rule: ConstraintRule
+(
+  {Permission}
+): temp
+(  
+  ({Token.kind == word}({Token.kind == punctuation , Token.string == ","})?({SpaceToken.kind == space})?)*
+  (NAMES_FOR_CONSTRAINT ({Token.kind == punctuation , Token.string == ","})?{SpaceToken.kind == space}
+  )*
+): constraintBinding
+
+-->
+
+{
+	gate.AnnotationSet constraints = (gate.AnnotationSet)bindings.get("constraintBinding"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","ConstraintRule");
+	outputAS.add(constraints.firstNode(), constraints.lastNode(), "Constraint" ,features); 
+}
+

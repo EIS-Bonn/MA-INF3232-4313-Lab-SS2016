@@ -1,0 +1,551 @@
+Phase:	extractDuties
+Input: Lookup Token SpaceToken Action GeneralUserDutyAction AdvancedUserDutyAction specialDots Address Permission Asset
+Options: control = appelt
+
+Macro: NOUN_PHRASE
+(
+{Token.kind == word , Token.category == NN}|
+{Token.kind == word , Token.category == NNS}|
+{Token.kind == word , Token.category == NNP}|
+{Token.kind == word ,Token.category == NNPS}
+)
+
+Macro: ADJ
+(
+{Token.kind == word , Token.category == JJ}|
+{Token.kind == word , Token.category == JJR}|
+{Token.kind == word , Token.category == JJS}
+)
+
+Macro: ADVERB
+(
+{Token.kind == word , Token.root != "not" , Token.category == RB}|
+{Token.kind == word , Token.category == RBR}|
+{Token.kind == word , Token.category == RBS}
+)
+
+Macro: VERB
+(
+{Token.kind == word , Token.category == VB}|
+{Token.kind == word , Token.category == VBD}|
+{Token.kind == word , Token.category == VBG}|
+{Token.kind == word , Token.category == VBN}|
+{Token.kind == word , Token.category == VBP}|
+{Token.kind == word , Token.category == VBZ}
+)
+
+
+
+
+
+Rule: Duties8
+
+(
+  (
+  (
+  {Token.root == "if"}{SpaceToken}
+  ((ADVERB) {SpaceToken})?
+  ((({Token.root == "the"}{SpaceToken})?({Token.root == "user"}|{Token.root == "users"}))|{Token.root == "it"}|{Token.root == "your"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "contributors"}|{Token.root == "recipient"}|{Token.root == "licensee"})
+  {SpaceToken}
+  )|
+  ({Token.root == "upon"}{SpaceToken})
+  )
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space}))|({Token.string != "."}({SpaceToken})?))*   
+  (({Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"}){SpaceToken}({Token.root == "must"}|{Token.root == "should"}|{Token.root == "will"}))
+  ({SpaceToken})?
+  (  
+    (
+		( 
+		  (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |
+		  ({Token.string != ".", !GeneralUserDutyAction, Token.root != "not"}({SpaceToken})?)
+		)*
+        ({GeneralUserDutyAction}): GeneralUserDutyAction
+	    ({SpaceToken})?	  
+	)
+	|
+    (
+	  {AdvancedUserDutyAction}({SpaceToken})?
+	  (
+	  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != ".", Token.root != "not"}({SpaceToken})?))
+	  ({AdvancedUserDutyAction}({SpaceToken})?)
+	  )*  
+	): AdvancedUserDutyAction 	
+  )
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty8");
+	features.put("kind","Duty");		
+
+	if(generalAction != null){
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();
+		features.put("generalAction",action);	
+	}else{
+		try{	
+			String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+			features.put("advancedAction",action);			
+		}catch(InvalidOffsetException ioe){
+			  throw new GateRuntimeException(ioe);
+		}	
+	}
+
+	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+
+Rule: Duties1
+
+(
+  (({Token.root == "notice"}|{Token.root == "work"}|{Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"})
+  {SpaceToken}({Token.root == "must"}|{Token.root == "should"}|{Token.root == "will"}))
+  ({SpaceToken})?
+  (
+    (
+		((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space}))|({Token.string != ".", Token.root != "not"}({SpaceToken})?))*   
+		({GeneralUserDutyAction}): GeneralUserDutyAction
+	)
+	|
+    (  
+		((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space}))|({Token.string != ".", Token.root != "not"}({SpaceToken})?))*   
+		{AdvancedUserDutyAction}
+	): AdvancedUserDutyAction		
+  )({SpaceToken})? 
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space}))|({Token.string != "."}({SpaceToken})?))*   
+
+): label
+
+-->
+
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty1");
+	features.put("kind","Duty");		
+	if(generalAction != null){
+
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();
+		features.put("generalAction", action);	
+	}else{
+		try{
+			String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+			//String action = ((gate.Annotation)advancedAction.iterator().next()).getFeatures().get("propertyValue").toString();
+			features.put("advancedAction", action);	
+		}catch(InvalidOffsetException ioe){
+			  throw new GateRuntimeException(ioe);
+		}		
+	}
+
+
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+Rule: Duties2
+Priority: 10
+
+
+(
+  {Asset}
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+  ({Token.root == "must"}|{Token.root == "should"}){SpaceToken}
+  ({Token.kind == word , Token.category == IN} {SpaceToken})?
+  ((ADJ) {SpaceToken})?
+  (
+  ({GeneralUserDutyAction}): GeneralUserDutyAction
+  |
+  ({AdvancedUserDutyAction}): AdvancedUserDutyAction
+  )
+  ({SpaceToken})? 
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty2");
+	features.put("kind","Duty");		
+	if(generalAction != null){
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();
+		features.put("generalAction",action);	
+	}else{
+		//String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+		String action = ((gate.Annotation)advancedAction.iterator().next()).getFeatures().get("propertyValue").toString();		
+		features.put("advancedAction",action);	
+	}	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+
+Rule: Duties3
+Priority: 50
+
+
+(
+  ({Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"}){SpaceToken}
+  ((VERB) {SpaceToken})?
+  ((ADVERB) {SpaceToken})?
+  {Token.root == "responsible"}({SpaceToken})?
+  (
+	(
+  	  (
+		  (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |
+		  ({Token.string != "." , !GeneralUserDutyAction}({SpaceToken})?)
+	  )*   
+	  ({GeneralUserDutyAction}): GeneralUserDutyAction
+	  ({SpaceToken})?
+	)
+	|
+	(
+  	  ((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+	  {AdvancedUserDutyAction}({SpaceToken})?
+	): AdvancedUserDutyAction	
+  )
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty3");
+	features.put("kind","Duty");		
+	if(generalAction != null){
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();
+		features.put("generalAction",action);	
+	}else{
+		try{
+			String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+			features.put("advancedAction",action);		
+		}catch(InvalidOffsetException ioe){
+			  throw new GateRuntimeException(ioe);
+		}
+	
+	}
+	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+Rule: Duties4
+Priority: 70
+
+(
+{Permission.generalUser == "false"}
+): permission
+(    
+  {Token.string == "provided"}({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.kind == punctuation})?({Token.kind == "word"})?({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"}|{Token.root == "your"})({SpaceToken})?  
+  
+	(
+	  ((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+	  ({AdvancedUserDutyAction}|{GeneralUserDutyAction})({SpaceToken})? 
+	): AdvancedUserDutyAction 	
+  
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+ 
+): label
+
+-->
+
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet permissions = (gate.AnnotationSet)bindings.get("permission"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.Annotation dutyAnn = (gate.Annotation)duties.iterator().next();
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duties4");
+	features.put("kind","Duties");	
+	try{
+		String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+		features.put("advancedAction",action);			
+	}catch(InvalidOffsetException ioe){
+		  throw new GateRuntimeException(ioe);
+	}			
+    features.put("relatedPermission",(gate.Annotation)permissions.iterator().next());	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+
+
+Rule: Duties9
+Priority: 70
+
+(
+{Permission.generalUser == "true"}
+): permission
+(    
+  {Token.string == "provided"}({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.kind == punctuation})?({Token.kind == "word"})?({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"}|{Token.root == "your"})({SpaceToken})?  
+	(
+	  (
+		(({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |
+		({Token.string != ".", !GeneralUserDutyAction, !AdvancedUserDutyAction}({SpaceToken})?)
+	  )*   
+	  ({GeneralUserDutyAction}|{AdvancedUserDutyAction}): GeneralUserDutyAction 
+	  ({SpaceToken})? 
+	)
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+ 
+): label
+
+-->
+
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet permissions = (gate.AnnotationSet)bindings.get("permission"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.Annotation dutyAnn = (gate.Annotation)duties.iterator().next();
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duties9");
+	features.put("kind","Duties");	
+	//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+	String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();		
+	features.put("generalAction",action);	
+    features.put("relatedPermission",(gate.Annotation)permissions.iterator().next());	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+Rule: Duties5
+Priority: 60
+
+(
+{Permission.generalUser == "false"}
+): permission
+(
+  {Token.string == "provided"}({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.kind == "word" , Token.string != "that"}({Token.kind == punctuation})?)?({SpaceToken})?
+  {Token.string == "that"}({Token.kind == punctuation})?({SpaceToken})?
+
+): temp
+(  
+	(  
+		((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+		({GeneralUserDutyAction}|{AdvancedUserDutyAction})({SpaceToken})?  
+	): AdvancedUserDutyAction	  
+   ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+ 
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet permissions = (gate.AnnotationSet)bindings.get("permission"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.Annotation dutyAnn = (gate.Annotation)duties.iterator().next();
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duties5");
+	features.put("kind","Duties");	
+	try{
+		String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+		features.put("advancedAction",action);			
+	}catch(InvalidOffsetException ioe){
+		  throw new GateRuntimeException(ioe);
+	}		
+    features.put("relatedPermission",(gate.Annotation)permissions.iterator().next());	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+
+Rule: Duties10
+Priority: 60
+
+(
+{Permission.generalUser == "true"}
+): permission
+(
+  {Token.string == "provided"}({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.kind == "word" , Token.string != "that"}({Token.kind == punctuation})?)?({SpaceToken})?
+  {Token.string == "that"}({Token.kind == punctuation})?({SpaceToken})?
+
+): temp
+(  	
+	(  
+		(
+			(({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |
+			({Token.string != "." , !GeneralUserDutyAction, !AdvancedUserDutyAction}({SpaceToken})?)
+		)*   
+		({GeneralUserDutyAction}|{AdvancedUserDutyAction}): GeneralUserDutyAction
+		({SpaceToken})?  
+	)	
+   ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+ 
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet permissions = (gate.AnnotationSet)bindings.get("permission"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.Annotation dutyAnn = (gate.Annotation)duties.iterator().next();
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duties10");
+	features.put("kind","Duties");	
+	//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+	String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();		
+	features.put("generalAction",action);	
+    features.put("relatedPermission",(gate.Annotation)permissions.iterator().next());	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+Rule: Duties6
+Priority: 70
+
+({!Permission}): temp
+(    
+  {Token.string == "provided"}({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.kind == punctuation})?({Token.kind == "word"})?({Token.kind == punctuation})?({SpaceToken})?
+  ({Token.root == "user"}|{Token.root == "you"}|{Token.root == "contributor"}|{Token.root == "recipient"}|{Token.root == "licensee"}|{Token.root == "your"})({SpaceToken})?  
+  (	
+    (
+		(
+			(({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |
+			({Token.string != ".", !GeneralUserDutyAction}({SpaceToken})?)
+		)*   
+		({GeneralUserDutyAction}): GeneralUserDutyAction
+		({SpaceToken})? 
+	)
+	|
+    (
+		((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+		{AdvancedUserDutyAction}({SpaceToken})? 
+	):	AdvancedUserDutyAction
+  )
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+ 
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty6");
+	features.put("kind","Duty");			
+	if(generalAction != null){
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();				
+		features.put("generalAction",action);	
+	}else{
+		try{
+			String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+			features.put("advancedAction",action);			
+		}catch(InvalidOffsetException ioe){
+			  throw new GateRuntimeException(ioe);
+		}	
+	}
+	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}
+
+
+
+
+
+
+
+Rule: Duties7
+
+(
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space}))|({Token.string != "."}({SpaceToken})?))*   
+  (({Token.root == "must"}|{Token.root == "should"}){SpaceToken}{Token.string == "be"})
+  ({SpaceToken})?
+    (
+	    (
+		  (
+			(({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) | 
+			({Token.string != ".", !GeneralUserDutyAction , Token.root != "not" }({SpaceToken})?)
+		  )*
+		  ({GeneralUserDutyAction}): GeneralUserDutyAction
+		  ({SpaceToken})?
+		)
+		|
+	    (
+		  ((({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) | ({Token.string != ".", Token.root != "not" }({SpaceToken})?))*
+		  {AdvancedUserDutyAction}({SpaceToken})?
+		): AdvancedUserDutyAction		
+    )
+  ( (({Address}|{specialDots})(({Token.kind == punctuation , Token.string != "."}({SpaceToken.kind == space})?)|{Token.string == "."}|{SpaceToken.kind == space})) |({Token.string != "."}({SpaceToken})?))*   
+
+): label
+
+-->
+{
+	gate.AnnotationSet duties = (gate.AnnotationSet)bindings.get("label"); 
+    gate.AnnotationSet generalAction = (gate.AnnotationSet)bindings.get("GeneralUserDutyAction"); 
+	gate.AnnotationSet advancedAction = (gate.AnnotationSet)bindings.get("AdvancedUserDutyAction"); 	
+	gate.FeatureMap features = Factory.newFeatureMap();
+	features.put("rule","Duty7");
+	features.put("kind","Duty");			
+	if(generalAction != null){
+		//String action = doc.getContent().getContent(generalAction.firstNode().getOffset(), generalAction.lastNode().getOffset()).toString();
+		String action = ((gate.Annotation)generalAction.iterator().next()).getFeatures().get("propertyValue").toString();				
+		features.put("generalAction",action);	
+	}else{
+		try{
+			String action = doc.getContent().getContent(advancedAction.firstNode().getOffset(), advancedAction.lastNode().getOffset()).toString();	
+			features.put("advancedAction",action);			
+		}catch(InvalidOffsetException ioe){
+			  throw new GateRuntimeException(ioe);
+		}	
+	}
+	
+	outputAS.add(duties.firstNode(), duties.lastNode(), "Duty",features);
+}

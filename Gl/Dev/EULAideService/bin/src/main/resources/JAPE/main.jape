@@ -1,0 +1,22 @@
+MultiPhase:	main
+Phases: 
+
+first
+date_pre
+date
+reldate
+number
+number_clean
+address
+url_pre
+url
+email
+final
+annotateClasses
+extractPermProhActions
+extractPermissionsProhibitions
+extractDutyActions
+extractDuties
+clean
+
+

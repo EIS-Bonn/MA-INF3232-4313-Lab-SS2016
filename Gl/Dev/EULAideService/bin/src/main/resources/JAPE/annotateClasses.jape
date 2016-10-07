@@ -1,0 +1,227 @@
+Phase: annotateClasses
+Input: Lookup Token SpaceToken
+Options: control = appelt
+
+Rule: removeControlSpace
+({SpaceToken.kind == space}|{SpaceToken.kind == control})
+(
+{SpaceToken.kind == control}
+):control
+-->:control 
+{ 
+inputAS.removeAll(controlAnnots); 
+}
+
+Rule: specialDots
+Priority: 100
+
+(
+({Token.kind == number}{Token.category == SYM})|
+({Token.string == "."}{Token.string == "."}({Token.string == "."})*)|
+({Token.root == "str"}{Token.string == "."})
+
+): label
+
+-->
+:label.specialDots = {kind = "special Dots", rule = "specialDots"}
+
+
+
+Rule: specialDots2
+Priority: 50
+
+(
+{Token.kind == number}{Token.string == "."}{Token.kind == number}({Token.string == "."}{Token.kind == number})?({Token.category == SYM})?({Token.kind == number})*
+): label
+
+-->
+:label.specialDots = {kind = "special Dots", rule = "specialDots2"}
+
+
+Rule: specialDots3
+Priority: 10
+
+(
+({ Token.root != "exhibit"}({SpaceToken})*)
+):temp
+(
+({Token.kind == word , Token.length == 1}{Token.string == "."}({Token.kind == word , Token.length == 1}{Token.string == "."})*)
+): label
+
+
+-->
+:label.specialDots = {kind = "special Dots", rule = "specialDots3"}
+
+
+
+
+
+
+Rule: ConflictTerm
+(
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/ConflictTerm" , Lookup.type == class}|
+{Lookup.classURI == "http://www.w3.org/ns/odrl/2/ConflictTerm" , Lookup.type == instance}
+): Label
+
+-->
+{}
+
+
+Rule: Constraint
+(
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Constraint" , Lookup.type == class}|
+{Lookup.classURI == "http://www.w3.org/ns/odrl/2/Constraint" , Lookup.type == instance}
+
+): Label
+
+-->
+{}
+
+
+Rule: Nothing
+(
+{Lookup.URI == "http://www.w3.org/2002/07/owl#Nothing" , Lookup.type == class}|
+{Lookup.classURI == "http://www.w3.org/2002/07/owl#Nothing" , Lookup.type == instance}
+
+): Label
+
+-->
+{}
+
+
+Rule: Party
+(
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Party" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/All" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/All2ndConnections" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/AllConnections" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/AllGroups" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Group" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Individual" , Lookup.type == class}
+
+):partyBinding
+-->
+{
+/*
+        gate.AnnotationSet partyAnnotationSet = doc.getAnnotations("Parties");   //creates an empty branch Rules
+        gate.AnnotationSet partyBinding = (gate.AnnotationSet)bindings.get("partyBinding"); //get each row of LHS
+        gate.Annotation partyAnn = (gate.Annotation)partyBinding.iterator().next();
+		gate.FeatureMap features = Factory.newFeatureMap();
+		features.put("Type", "class"); 
+		features.put("Rule","Party");
+		features.put("URI",partyAnn.getFeatures().get("URI"));
+		if (!partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Party")){
+			features.put("directSuperClass", "Party");
+		}
+		if (partyAnn.getFeatures().get("propertyURI") != null){
+			features.put("propertyURI", partyAnn.getFeatures().get("propertyURI"));
+		}
+		
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Party")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "Party" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/All")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "All" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/All2ndConnections")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "All2ndConnections" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/AllConnections")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "AllConnections" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/AllGroups")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "AllGroups" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Group")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "Group" , features);			
+        }
+        if (partyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Individual")){
+            partyAnnotationSet.add(partyBinding.firstNode(), partyBinding.lastNode(), "Individual" , features);			
+        }
+
+*/
+}
+
+
+Rule: Policy
+(
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Policy" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Agreement" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Offer" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Privacy" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Request" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Set" , Lookup.type == class}|
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/Ticket" , Lookup.type == class}
+
+):policyBinding
+-->
+{
+/*
+        gate.AnnotationSet policyAnnotationSet = doc.getAnnotations("Policies");   //creates an empty branch Rules
+        gate.AnnotationSet policyBinding = (gate.AnnotationSet)bindings.get("policyBinding"); //get each row of LHS
+        gate.Annotation policyAnn = (gate.Annotation)policyBinding.iterator().next();
+		gate.FeatureMap features = Factory.newFeatureMap();
+		features.put("Type", "class"); 
+		features.put("Rule","Policy");
+		features.put("URI",policyAnn.getFeatures().get("URI"));
+		if (!policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Policy")){
+			features.put("directSuperClass", "Policy");
+		}
+		if (policyAnn.getFeatures().get("propertyURI") != null){
+			features.put("propertyURI", policyAnn.getFeatures().get("propertyURI"));
+		}
+		
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Policy")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Policy" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Agreement")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Agreement" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Offer")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Offer" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Privacy")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Privacy" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Request")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Request" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Set")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Set" , features);			
+        }
+        if (policyAnn.getFeatures().get("URI").equals("http://www.w3.org/ns/odrl/2/Ticket")){
+            policyAnnotationSet.add(policyBinding.firstNode(), policyBinding.lastNode(), "Ticket" , features);			
+        }
+
+*/
+}
+
+
+Rule: UndefinedTerm
+(
+{Lookup.URI == "http://www.w3.org/ns/odrl/2/UndefinedTerm" , Lookup.type == class}|
+{Lookup.classURI == "http://www.w3.org/ns/odrl/2/UndefinedTerm" , Lookup.type == instance}
+): Label
+
+-->
+{}
+
+Rule: Action
+(
+{Lookup.classURI == "http://www.w3.org/ns/odrl/2/Action" , Lookup.type == instance , Lookup.propertyURI == "http://www.w3.org/2000/01/rdf-schema#label"}
+): label
+
+-->
+:label.Action = {type = :label.Lookup.type, rule = "Action" , URI = :label.Lookup.URI , propertyValue = :label.Lookup.propertyValue}
+
+
+
+Rule: ConceptScheme
+(
+{Lookup.URI == "http://www.w3.org/2004/02/skos/core#ConceptScheme" , Lookup.type == class}|
+{Lookup.classURI == "http://www.w3.org/2004/02/skos/core#ConceptScheme" , Lookup.type == instance}
+): Label
+
+-->
+{}
+
