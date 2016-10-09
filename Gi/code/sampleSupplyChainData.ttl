@@ -1,0 +1,192 @@
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann:   <http://purl.org/vocab/vann/> .
+@prefix void:   <http://rdfs.org/ns/void#> .
+@prefix olo:    <http://purl.org/ontology/olo/core#> .
+@prefix vs:     <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix doap:   <http://usefulinc.com/ns/doap#> .
+@prefix schema: <http://schema.org/> .
+@prefix geo:    <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix ngeo: <http://geovocab.org/geometry#> .
+@prefix ex:     <http://example.org/> .
+@prefix :       <http://purl.org/eis/vocab/scor#> .
+
+
+ex:point1 a geo:Point;
+        geo:lat "53.140171"^^xsd:double;
+        geo:long "46.606662"^^xsd:double;
+        ex:hasName "Kuznetsk Basin";
+        ex:hasType "mine".
+
+ex:point2 a geo:Point;
+        geo:lat "51.465979"^^xsd:double;
+        geo:long "7.014373"^^xsd:double;
+        ex:hasName "RWE Supply & Trading GmbH";
+        ex:hasType "powerPlant".
+
+ex:point3 a geo:Point;
+        geo:lat "49.513603"^^xsd:double;
+        geo:long "11.036144"^^xsd:double;
+        ex:hasName "Staedtler Mars GmbH Factory";
+        ex:hasType "factory".
+
+ex:p1PathSeq a rdf:Seq;
+        rdfs:member ex:point1;
+        rdfs:member ex:point2;
+        rdfs:member ex:point3.
+
+ex:p1Path a ngeo:LineString ;
+        ngeo:posList ex:p1PathSeq.
+
+:someProcess_1 a :DeliverStockedProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "RWE AG" ;
+        ex:isSubjectOf "Electricity" ;
+        ex:processId "2ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p1Path ;
+        ex:hasStartTime "2016-03-24T00:00:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-05-02T00:00:00"^^xsd:datetime ;
+        :hasMetricAG_1 "19" ;
+        :hasMetricAG_2 "13" ;
+        :hasMetricAG_3 "11" ;
+        :hasMetricAG_4 "15" ;
+        :hasMetricAG_5 "23" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "10" ;
+        :hasMetricCO_15 "19" ;
+        :hasMetricCO_16 "14" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_12 "22" ;
+        :hasMetricRL_24 "23" ;
+        :hasMetricRL_41 "24" ;
+        :hasMetricRL_42 "25" ;
+        :hasMetricRL_55 "90" ;
+        :hasMetricRL_33 "90" ;
+        :hasMetricRL_50 "86" ;
+        :hasMetricRL_32 "90" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
+ex:point4 a geo:Point;
+        geo:lat "50.57512"^^xsd:double;
+        geo:long "6.88437"^^xsd:double;
+        ex:hasName "Farm1";
+        ex:hasType "farm".
+
+ex:point5 a geo:Point;
+        geo:lat "50.80037"^^xsd:double;
+        geo:long "7.52687"^^xsd:double;
+        ex:hasName "Mill1";
+        ex:hasType "windMill".
+
+ex:point6 a geo:Point;
+        geo:lat "50.31221"^^xsd:double;
+        geo:long "7.23212"^^xsd:double;
+        ex:hasName "Silo1";
+        ex:hasType "silo".
+
+ex:p2PathSeq a rdf:Seq;
+        rdfs:member ex:point4;
+        rdfs:member ex:point5;
+        rdfs:member ex:point6.
+
+ex:p2Path a ngeo:LineString ;
+        ngeo:posList ex:p2PathSeq.
+
+:someProcess_2 a :DeliverStockedProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Horbacher Mühle" ;
+        ex:isSubjectOf "Flour" ;
+        ex:processId "3ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p2Path ;
+        ex:hasStartTime "2016-01-20T00:00:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-02-02T00:00:00"^^xsd:datetime ;
+        :hasMetricAG_1 "24" ;
+        :hasMetricAG_2 "33" ;
+        :hasMetricAG_3 "20" ;
+        :hasMetricAG_4 "5" ;
+        :hasMetricAG_5 "22" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "22" ;
+        :hasMetricCO_15 "93" ;
+        :hasMetricCO_16 "40" ;
+        :hasMetricCO_17 "17" ;
+        :hasMetricRL_12 "33" ;
+        :hasMetricRL_24 "34" ;
+        :hasMetricRL_41 "35" ;
+        :hasMetricRL_42 "36" ;
+        :hasMetricRL_55 "37" ;
+        :hasMetricRL_33 "100" ;
+        :hasMetricRL_50 "100" ;
+        :hasMetricRL_32 "99" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
+ex:point7 a geo:Point;
+        geo:lat "50.42352"^^xsd:double;
+        geo:long "7.10237"^^xsd:double;
+        ex:hasName "Factory7";
+        ex:hasType "factory".
+
+ex:point8 a geo:Point;
+        geo:lat "50.62037"^^xsd:double;
+        geo:long "7.02687"^^xsd:double;
+        ex:hasName "Factory8";
+        ex:hasType "factory".
+
+ex:point9 a geo:Point;
+        geo:lat "50.27221"^^xsd:double;
+        geo:long "7.32212"^^xsd:double;
+        ex:hasName "Factory9";
+        ex:hasType "factory".
+
+ex:p3PathSeq a rdf:Seq;
+        rdfs:member ex:point7;
+        rdfs:member ex:point8;
+        rdfs:member ex:point9.
+
+ex:p3Path a ngeo:LineString ;
+        ngeo:posList ex:p3PathSeq.
+
+:someProcess_3 a :SourceMakeToOrderProduct ;
+        ex:hasCommitDate "2015-11-05" ;
+        ex:hasSupplier "Krataska Automotive" ;
+        ex:isSubjectOf "BMW 3" ;
+        ex:processId "1ad9380f-1eb4-4595-857b-1bcf874621bb" ;
+        ex:hasPath ex:p3Path ;
+        ex:hasStartTime "2016-04-29T00:00:00"^^xsd:datetime ;
+        ex:hasEndTime "2016-05-07T00:00:00"^^xsd:datetime ;
+        :hasMetricAG_1 "34" ;
+        :hasMetricAG_2 "66" ;
+        :hasMetricAG_3 "57" ;
+        :hasMetricAG_4 "11" ;
+        :hasMetricAG_5 "21" ;
+        :hasMetricAM_2 "17" ;
+        :hasMetricAM_3 "13" ;
+        :hasMetricCO_14 "1" ;
+        :hasMetricCO_15 "5" ;
+        :hasMetricCO_16 "13" ;
+        :hasMetricCO_17 "26" ;
+        :hasMetricRL_12 "54" ;
+        :hasMetricRL_24 "55" ;
+        :hasMetricRL_41 "56" ;
+        :hasMetricRL_42 "57" ;
+        :hasMetricRL_55 "58" ;
+        :hasMetricRL_33 "100" ;
+        :hasMetricRL_50 "100" ;
+        :hasMetricRL_32 "90" ;
+        :hasMetricRL_34 "99" ;
+        :hasMetricRS_21 "17" ;
+        :hasMetricRS_22 "14" ;
+        :hasMetricRS_24 "10" .
+
