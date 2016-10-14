@@ -1,0 +1,15 @@
+﻿locationAreadLow=1000000d
+locationAreadMid=1962500000d
+locationAreadHigh=3925000000d
+locationPopLow=1000d
+locationPopMid=1000000d
+locationPopHigh=2000000d
+countryAreadLow=1000000d
+countryAreadMid=178584000000d
+countryAreadHigh=457168000000d
+countryPopLow=10000d
+countryPopMid=20000000d
+countryPopHigh=60000000d
+countryGDPLow=1000d
+countryGDPMid=32000d
+countryGDPHigh=45000d

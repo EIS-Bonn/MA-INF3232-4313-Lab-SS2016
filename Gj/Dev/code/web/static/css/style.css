@@ -1,0 +1,38 @@
+@font-face {
+    font-family: Lato;
+    src: url(../fonts/Lato2OFL/Lato-Black.ttf);
+}
+
+body{
+    font-family: Lato !important;
+}
+
+.container{
+    padding: 0;
+
+}
+
+header, footer, .main-content{
+    margin: 15px 0;
+    border-bottom: solid 2px #f6f5f5;
+}
+
+#map {
+    width: 700px;
+    height: 400px;
+}
+
+table.maps-outliers-listing{
+    border: none;
+}
+table.maps-outliers-listing tr td{
+    padding: 3px 10px;
+}
+
+table.maps-outliers-listing tr td .observation-info{
+    display: none;
+}
+table.maps-outliers-listing tr td a{
+    text-decoration: underline;
+    color: blue;
+}

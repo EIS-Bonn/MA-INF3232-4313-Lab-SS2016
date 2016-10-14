@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Simple icons</title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                width: 700px;
+                height: 400px;
+            }
+        </style>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <style>
+            table.maps-outliers-listing{
+                border: none;
+            }
+            table.maps-outliers-listing tr td{
+                padding: 3px 10px;
+            }
+            table.maps-outliers-listing tr td a{
+               text-decoration: underline;
+               color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="map"></div>
+
+        <table class="maps-outliers-listing">
+            <tr>
+                <td><a href="">Observation(32)</a></td>
+                <td>Amount: 4234343</td>
+            </tr>
+            <tr>
+                <td>Observation(12)</td>
+                <td>Amount: 4234343</td>
+            </tr>
+            <tr>
+                <td>Observation(421)</td>
+                <td>Amount: 4234343</td>
+            </tr>
+        </table>
+        <script>
+            var outliers = '[{"lat": 50.0598057,"lng": 14.3255392,"info": "<h1>sdfsdf</h1>"},{"lat": 51.528308,"lng": -0.3817765,"info": "bbbbb"}]';
+
+            // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+            // Australia.
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 4,
+                    center: {lat: 50.0598057, lng: 14.3255392},
+                    zoomControl: false,
+                    scaleControl: false,
+                    mapTypeControl: false,
+                });
+
+                var image = "./static/imgs/icons/outlier.jpg";
+                $(jQuery.parseJSON(outliers)).each(function (key, value) {
+                    var marker = new google.maps.Marker({
+                        position: {lat: value.lat, lng: value.lng},
+                        map: map,
+                        icon: image,
+                        animation: google.maps.Animation.BOUNCE,
+                        label: '23'
+                    });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: value.info
+                    });
+                    marker.addListener("click", function () {
+                        infowindow.open(map, marker);
+                    });
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvve5XJD-HaIftFxkwVygYeSAguNOi0Gg&callback=initMap">
+        </script>
+    </body>
+</html>
