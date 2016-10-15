@@ -1,0 +1,70 @@
+<https://w3id.org/i40/aml/CAEXFile1>
+	a	<https://w3id.org/i40/instance/CAEXFile> ;
+	<https://w3id.org/i40/instance/hasFileName>	"seed-String-0.aml" ;
+	<https://w3id.org/i40/instance/hasSchemaVersion>	"2.15" ;
+	<https://w3id.org/i40/instance/hasAdditionalInfomation>	<https://w3id.org/i40/aml/AdditionalInformation1>, <https://w3id.org/i40/aml/AdditionalInformation2> ;
+	<https://w3id.org/i40/instance/hasExternalReference>	<https://w3id.org/i40/aml/ExternalReference1>, <https://w3id.org/i40/aml/ExternalReference2> ;
+	<https://w3id.org/i40/instance/hasRoleClassLib>	<https://w3id.org/i40/aml/RoleClassLib1> .
+<https://w3id.org/i40/aml/AdditionalInformation1>
+	a	<https://w3id.org/i40/instance/AdditionalInformation> ;
+	<https://w3id.org/i40/instance/hasAutomationMLVersion>	"2.0"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/AdditionalInformation2>
+	a	<https://w3id.org/i40/instance/AdditionalInformation> ;
+	<https://w3id.org/i40/instance/hasWriterName>	"AutomationML e.V." ;
+	<https://w3id.org/i40/instance/hasWriterID>	"AutomationML e.V."^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasWriterVendor>	"AutomationML e.V."^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasWriterVendorURL>	"www.AutomationML.org"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasWriterVersion>	"1.0"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasWriterRelease>	"1.0"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasLastWritingDateTime>	"""2012-02-20
+            """^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	<https://w3id.org/i40/instance/hasWriterProjectTitle>	"AutomationML Tutorial Examples"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasWriterProjectID>	"""AutomationML Tutorial Examples
+            """^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/ExternalReference1>
+	a	<https://w3id.org/i40/instance/ExternalReference> ;
+	<https://w3id.org/i40/instance/refBaseClassPath>	"Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/externalReferenceAlias>	"BaseRoleClassLib"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/ExternalReference2>
+	a	<https://w3id.org/i40/instance/ExternalReference> ;
+	<https://w3id.org/i40/instance/refBaseClassPath>	"Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/externalReferenceAlias>	"BaseInterfaceClassLib"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/RoleClassLib1>
+	a	<https://w3id.org/i40/instance/RoleClassLib> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"AutomationMLPropertySetRoleClassLib"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasVersion>	"1.0"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasRoleClass>	<https://w3id.org/i40/aml/RoleClass1>, <https://w3id.org/i40/aml/RoleClass1> .
+<https://w3id.org/i40/aml/RoleClass1>
+	a	<https://w3id.org/i40/instance/RoleClass> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"ContactData"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/refBaseClassPath>	"AutomationMLPropertySetRoleClassLib/Administrative"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttribute>	<https://w3id.org/i40/aml/Attribute1> ;
+	<https://w3id.org/i40/instance/hasRoleClass>	<https://w3id.org/i40/aml/RoleClass2>, <https://w3id.org/i40/aml/RoleClass2>, <https://w3id.org/i40/aml/RoleClass3>, <https://w3id.org/i40/aml/RoleClass3> .
+<https://w3id.org/i40/aml/Attribute1>
+	a	<https://w3id.org/i40/instance/Attribute> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"MailAddress"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttribute>	<https://w3id.org/i40/aml/Attribute2>, <https://w3id.org/i40/aml/Attribute3>, <https://w3id.org/i40/aml/Attribute4>, <https://w3id.org/i40/aml/Attribute5> ;
+	<https://w3id.org/i40/instance/hasRefSemantic>	<https://w3id.org/i40/aml/RefSemantic1> .
+<https://w3id.org/i40/aml/Attribute2>
+	a	<https://w3id.org/i40/instance/Attribute> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"StreetAndNumber"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttributeValue>	"Endinicher Alee"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/Attribute3>
+	a	<https://w3id.org/i40/instance/Attribute> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"City"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttributeValue>	"Bonn"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/Attribute4>
+	a	<https://w3id.org/i40/instance/Attribute> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"State"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttributeValue>	"Nordrhein-Westfalen"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/Attribute5>
+	a	<https://w3id.org/i40/instance/Attribute> ;
+	<https://w3id.org/i40/instance/hasAttributeName>	"Country"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/instance/hasAttributeValue>	"Germany"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/RefSemantic1>
+	a	<https://w3id.org/i40/instance/RefSemantic> ;
+	<https://w3id.org/i40/instance/hasCorrespondingAttributePath>	"NE 150 v1.0 Annex 3.3.4"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml/RoleClass2>
+	a	<https://w3id.org/i40/instance/RoleClass> .
+<https://w3id.org/i40/aml/RoleClass3>
+	a	<https://w3id.org/i40/instance/RoleClass> .

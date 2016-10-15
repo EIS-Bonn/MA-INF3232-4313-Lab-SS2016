@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mit XMLSpy v2011 rel. 3 (http://www.altova.com) von Josef Prinz (INPRO) bearbeitet -->
+<CAEXFile FileName="seed-String-0.aml" SchemaVersion="2.15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Source/CAEX_ClassModel_V2.15.xsd">
+    <AdditionalInformation AutomationMLVersion="2.0" />
+    <AdditionalInformation>
+        <WriterHeader>
+            <WriterName>AutomationML e.V.</WriterName>
+            <WriterID>AutomationML e.V.</WriterID>
+            <WriterVendor>AutomationML e.V.</WriterVendor>
+            <WriterVendorURL>www.AutomationML.org</WriterVendorURL>
+            <WriterVersion>1.0</WriterVersion>
+            <WriterRelease>1.0</WriterRelease>
+            <LastWritingDateTime>2012-02-20
+            </LastWritingDateTime>
+            <WriterProjectTitle>AutomationML Tutorial Examples</WriterProjectTitle>
+            <WriterProjectID>AutomationML Tutorial Examples
+            </WriterProjectID>
+        </WriterHeader>
+    </AdditionalInformation>
+    <ExternalReference Path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" Alias="BaseRoleClassLib" />
+    <ExternalReference Path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" Alias="BaseInterfaceClassLib" />
+<RoleClassLib Name="AutomationMLPropertySetRoleClassLib">
+        <Description>AutomationML Property Set Role Class Library</Description>
+        <Version>1.0</Version>
+
+         <RoleClass Name="ContactData" RefBaseClassPath="AutomationMLPropertySetRoleClassLib/Administrative">
+                <Attribute Name="MailAddress" AttributeDataType="xs:string">
+                    <Attribute Name="StreetAndNumber" AttributeDataType="xs:string" >
+                        <Value>endinicher Alee</Value>
+                    </Attribute>
+                    <Attribute Name="City" AttributeDataType="xs:string">
+                    <Value>Bonn</Value>
+                </Attribute>
+                    <Attribute Name="State" AttributeDataType="xs:string" >
+                        <Value>Nordrhein-Westfalen</Value>
+                    </Attribute>
+                    <Attribute Name="Country" AttributeDataType="xs:string" >
+                        <Value>Germany</Value>
+                  </Attribute>
+                  <RefSemantic CorrespondingAttributePath="NE 150 v1.0 Annex 3.3.4" />
+                </Attribute>
+                <RoleClass Name="Manufacturer" RefBaseClassPath="AutomationMLPropertySetRoleClassLib/Administrative/ContactData" />
+                <RoleClass Name="Supplier" RefBaseClassPath="AutomationMLPropertySetRoleClassLib/Administrative/ContactData" />
+            </RoleClass>
+</RoleClassLib>
+</CAEXFile>

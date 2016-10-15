@@ -1,0 +1,13 @@
+﻿
+{ "head": { "link": [], "vars": ["s"] },
+  "results": { "distinct": false, "ordered": true, "bindings": [
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/CAEXFile1" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/ExternalReference1" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/ExternalReference2" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/Attribute1" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/Attribute2" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/AdditionalInformation2" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/AdditionalInformation1" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/RoleClass1" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/RoleClass3" }},
+    { "s": { "type": "uri", "value": "https://w3id.org/i40/aml/RoleClass2" }} ] } }
