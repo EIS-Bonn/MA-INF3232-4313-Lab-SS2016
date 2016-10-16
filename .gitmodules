@@ -1,0 +1,9 @@
+[submodule "Gg/Semantify.io-jena"]
+	path = Gg/Semantify.io-jena
+	url = https://github.com/BonnWestCoast/Semantify.io-jena
+[submodule "Gg/Semantify.io"]
+	path = Gg/Semantify.io
+	url = https://github.com/BonnWestCoast/Semantify.io
+[submodule "Gg/Semantify.io-docs"]
+	path = Gg/Semantify.io-docs
+	url = https://github.com/BonnWestCoast/Semantify.io-docs
