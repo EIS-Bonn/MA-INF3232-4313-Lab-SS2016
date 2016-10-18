@@ -140,7 +140,8 @@ function createAnnotation(obj, popUpContent, filterType, filterFeature, filterCo
     if(obj.hasOwnProperty("polygons"))
     {
         // setting the icon to use
-        var iconToUse = new iconHolder({iconUrl: 'data/'+"notfound"+'.png', iconSize: [12,12]});
+        //var iconToUse = new iconHolder({iconUrl: 'data/'+"notfound"+'.png', iconSize: [12,12]});
+        var iconToUse = new iconHolder({iconUrl: 'data/'+"notfound2"+'.png', iconSize: [30,30]});
         var iconSet = false;
         var tempString = popUpContent.substring(0, 9);
 
@@ -159,7 +160,17 @@ function createAnnotation(obj, popUpContent, filterType, filterFeature, filterCo
         {
             // create marker in this case
             var point = obj.polygons[0];
-            var marker = L.marker([parseFloat(point.lat.value), parseFloat(point.long.value)], {icon: iconToUse}).bindPopup(popUpContent);
+            var marker = L.marker([parseFloat(point.lat.value), parseFloat(point.long.value)], {icon: iconToUse})
+                .bindPopup(popUpContent);
+            marker.on('click', function (e) {
+                centerLeafletMapOnMarker(this);
+            });
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
 
             if(filterType == 0)
             {
@@ -209,7 +220,17 @@ function createAnnotation(obj, popUpContent, filterType, filterFeature, filterCo
                 polygonsCount += 1;
             }
 
-            var companyMarker = L.marker(centerOfPolygon, {icon: iconToUse}).bindPopup(popUpContent);
+            var companyMarker = L.marker(centerOfPolygon, {icon: iconToUse})
+                .bindPopup(popUpContent);
+            companyMarker.on('click', function (e) {
+                centerLeafletMapOnMarker(this);
+            });
+            companyMarker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            companyMarker.on('mouseout', function (e) {
+                this.closePopup();
+            });
             if(filterType == 0)
             {
                 if(filterFeature=="" || tempString.indexOf(filterFeature) != -1) {
@@ -230,7 +251,11 @@ function createAnnotation(obj, popUpContent, filterType, filterFeature, filterCo
     }
 }
 
-
+function centerLeafletMapOnMarker(marker) {
+    var latLngs = [ marker.getLatLng() ];
+    var markerBounds = L.latLngBounds(latLngs);
+    mymap.fitBounds(markerBounds);
+}
 
 function showAllElementsOnMap() {
     mymap.addLayer(polygonsToAdd);
