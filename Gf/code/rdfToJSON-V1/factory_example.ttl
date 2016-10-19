@@ -20,21 +20,21 @@
 dbpedia:Tesla_Motors  a   vivo:Company ;
         rdfs:label        "Tesla Motors" ;
         eis:hasCEO        dbpedia:Elon_Musk ;
-        eis:hasPlant      eis:somePlant , eis:teslaPlant2 ;
+        eis:hasPlant      eis:somePlant , eis:teslaPlant2 , eis:teslaTestPlant3;
         eis:headquarters  <http://dbpedia.org/resource/Palo_Alto,_California> ;
         eis:wasBuilt      2003 .
 
 dbpedia:Amazon  a         vivo:Company ;
         rdfs:label        "Amazon.com, Inc." ;
         eis:hasCEO        dbpedia:Jeff_Bezos ;
-        eis:hasPlant      eis:amazonDEPlant ;
+        eis:hasPlant      eis:amazonDEPlant,eis:amazonTestPlant;
         eis:headquarters  "Seattle, Washington, U.S." ;
         eis:wasBuilt      1994 .
 
 dbpedia:Volkswagen  a     vivo:Company ;
         rdfs:label        "Volkswagen" ;
         eis:hasCEO        dbpedia:Matthias_Müller ;
-        eis:hasPlant      eis:VolkwagenGermanyPlant ;
+        eis:hasPlant      eis:VolkswagenGermanyPlant,eis:VolkswagenRussiaPlant ;
         eis:headquarters  "Wolfsburg, Germany" ;
         eis:wasBuilt      1937 .
 
@@ -57,18 +57,35 @@ eis:teslaPlant2  a      eis:Plant ;
         eis:manager     dbpedia:Gilbert_Passin ;
         eis:workers     6000 .
 
+eis:teslaTestPlant3 a      eis:Plant ;
+        rdfs:label      "Tesla Factory" ;
+        eis:hasFactory  eis:teslaTestFactory3 ;
+        eis:manager     dbpedia:Elon_Musk ;
+        eis:workers     1000 .
+
 eis:amazonDEPlant  a    eis:Plant ;
         rdfs:label      "Deutschland Amazon Plant" ;
         eis:hasFactory  eis:leipzigWarehouse , eis:koblenzWarehouse ;
         eis:manager     dbpedia:ralf_kleber ;
         eis:workers     10000 .
 
-eis:VolkwagenGermanyPlant  a      eis:Plant ;
+eis:amazonTestPlant a    eis:Plant ;
+        rdfs:label      "UK Amazon Plant" ;
+        eis:hasFactory  eis:AmazonUKWarehouse ;
+        eis:manager     dbpedia:ralf_kleberTest ;
+        eis:workers     1000 .
+
+eis:VolkswagenGermanyPlant  a      eis:Plant ;
         rdfs:label      "Volkwagen Deutschland" ;
         eis:hasFactory  eis:zwickauMoselVW;
         eis:manager     dbpedia:Herbert_Diess;
         eis:workers     90000.
 
+eis:VolkswagenRussiaPlant a      eis:Plant ;
+        rdfs:label      "Volkwagen Russia" ;
+        eis:hasFactory  eis:RussiaFactoryVW;
+        eis:manager     dbpedia:Herbert_Diess;
+        eis:workers     20000.
 
 
 
@@ -89,6 +106,12 @@ eis:teslaFactory2  a       lgdo:Factory ;
         eis:hasPolygon   eis:teslaPolygon2 ;
         eis:wasBuilt     2010 .
 
+eis:teslaTestFactory3 a       lgdo:Factory ;
+        rdfs:label       "Tesla Test Factory 3" ;
+        eis:hasBuilding  eis:teslaBuilding3 ;
+        eis:hasPolygon   eis:teslaPolygon3 ;
+        eis:wasBuilt     2013.
+
 eis:leipzigWarehouse  a  lgdo:Factory ;
         rdfs:label       "Logistics center Leipzig" ;
         eis:hasBuilding  eis:leipzigBuilding ;
@@ -101,13 +124,21 @@ eis:koblenzWarehouse  a  lgdo:Factory ;
         eis:hasPolygon   eis:koblenzPolygon ;
         eis:wasBuilt     2012 .
 
+eis:AmazonUKWarehouse a  lgdo:Factory ;
+        rdfs:label       "UK Warehouse" ;
+        eis:hasPolygon   eis:AmazonUKWarehousePolygon ;
+        eis:wasBuilt     2013.
+
 eis:zwickauMoselVW  a       lgdo:Factory ;
         rdfs:label       "zwickauMoselVW";
         eis:hasBuilding  eis:zwickauMoselVWBuilding;
         eis:hasPolygon   eis:zwickauMoselVWPolygon;
-        eis:wasBuilt     1991 .
+        eis:wasBuilt     1991.
 
-
+eis:RussiaFactoryVW a       lgdo:Factory ;
+        rdfs:label       "Russia Volkswagen";
+        eis:hasPolygon   eis:russiaVWPolygon;
+        eis:wasBuilt     1991.
 
 
 
@@ -126,6 +157,10 @@ eis:leipzigBuilding  a  eis:Building ;
 eis:teslaBuilding2  a   eis:Building ;
         eis:hasMachine  eis:teslaMachine2 ;
         eis:hasPolygon  eis:teslaBuildingPolygon2 .
+
+eis:teslaBuilding3 a   eis:Building ;
+        eis:hasMachine  eis:teslaMachine3 ;
+        eis:hasPolygon  eis:teslaBuildingPolygon3 .
 
 eis:zwickauMoselVWBuilding  a  eis:Building ;
         eis:hasPolygon  eis:zwickauMoselVWBuildingPolygon .
@@ -147,7 +182,11 @@ eis:teslaMachine2  a    eis:Machine ;
         eis:hasPolygon  eis:teslaMachinePolygon2 ;
         eis:manager     dbpedia:Tesla_Manager_Machine_2 .
 
-
+eis:teslaMachine3 a     eis:Machine ;
+        rdfs:label      "Tesla Machine test" ;
+        eis:floor       1;
+        eis:hasPolygon  eis:teslaMachinePolygon3 ;
+        eis:manager     dbpedia:Tesla_Manager_Machine_3 .
 
 
 
@@ -188,6 +227,7 @@ eis:someBuildingPolygon
                           geo:long  "-119.44391"
                         ]
                       ) .
+
 eis:zwickauMoselVWBuildingPolygon
       a             ngeo:Polygon ;
       ngeo:posList  ( [ geo:lat   "50.7885342" ;
@@ -220,8 +260,21 @@ eis:someMachinePolygon
                         ]
                       ) .
 
-
-
+eis:teslaMachinePolygon3
+            a             ngeo:Polygon ;
+            ngeo:posList  ( [ geo:lat   "62.1490655" ;
+                              geo:long  "-79.8390067"
+                            ]
+                            [ geo:lat   "62.1490655" ;
+                              geo:long  "-79.8389527"
+                            ]
+                            [ geo:lat   "62.1491355" ;
+                              geo:long  "-79.8390817"
+                            ]
+                            [ geo:lat   "62.1490655" ;
+                              geo:long  "-79.8390067"
+                            ]
+                          ) .
 
 
 
@@ -290,8 +343,21 @@ eis:leipzigBuildingPolygon
                         ]
                       ) .
 
-
-
+eis:AmazonUKWarehousePolygon
+          a             ngeo:Polygon ;
+          ngeo:posList  ( [ geo:lat   "53.1106251" ;
+                            geo:long  "-2.345906"
+                          ]
+                          [ geo:lat   "52.795874" ;
+                            geo:long  "-1.902490"
+                          ]
+                          [ geo:lat   "52.700204" ;
+                            geo:long  "-1.858588"
+                          ]
+                          [ geo:lat   "52.726800" ;
+                            geo:long  "-1.687368"
+                          ]
+                        ) .
 
 
 eis:teslaPolygon2  a  ngeo:Polygon ;
@@ -327,6 +393,38 @@ eis:teslaBuildingPolygon2
                         ]
                       ) .
 
+eis:teslaBuildingPolygon3
+              a             ngeo:Polygon ;
+              ngeo:posList  ( [ geo:lat   "62.0966826" ;
+                                geo:long  "-79.5835172"
+                              ]
+                              [ geo:lat   "62.1371465" ;
+                                geo:long  "-81.8878999"
+                              ]
+                              [ geo:lat   "62.1020121" ;
+                                geo:long  "-80.4496344"
+                              ]
+                              [ geo:lat   "62.1315755" ;
+                                geo:long  "-79.8465597"
+                              ]
+                            ) .
+
+eis:teslaPolygon3
+        a             ngeo:Polygon ;
+        ngeo:posList  ( [ geo:lat   "61.8769219" ;
+                          geo:long  "-80.6683604"
+                        ]
+                        [ geo:lat   "61.8523165" ;
+                          geo:long  "-81.3714854"
+                        ]
+                        [ geo:lat   "61.8523165" ;
+                          geo:long  "-81.3714854"
+                        ]
+                        [ geo:lat   "62.5222683" ;
+                          geo:long  "-84.5295862"
+                        ]
+                      ) .
+
 eis:teslaMachinePolygon2
         a             ngeo:Polygon ;
         ngeo:posList  ( [ geo:lat   "37.4925082" ;
@@ -344,8 +442,6 @@ eis:teslaMachinePolygon2
                       ) .
 
 
-
-
 eis:zwickauMoselVWPolygon a ngeo:Polygon ;
         ngeo:posList  ( [ geo:lat   "50.7885342" ;
                           geo:long  "12.4884994"
@@ -358,5 +454,20 @@ eis:zwickauMoselVWPolygon a ngeo:Polygon ;
                         ]
                         [ geo:lat   "50.7885342" ;
                           geo:long  "12.4884994"
+                        ]
+                      ) .
+
+eis:russiaVWPolygon a ngeo:Polygon ;
+        ngeo:posList  ( [ geo:lat   "58.386007" ;
+                          geo:long  "50.322184"
+                        ]
+                        [ geo:lat   "58.386561" ;
+                          geo:long  "50.306619"
+                        ]
+                        [ geo:lat   "58.394719" ;
+                          geo:long  "50.306883"
+                        ]
+                        [ geo:lat   "58.396378" ;
+                          geo:long  "50.324823"
                         ]
                       ) .

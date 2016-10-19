@@ -18,7 +18,7 @@ service('TTLParseService',function($q,sparqlQueryService){
       //console.log(companyQuery);
       jQuery.get(endPointURL,{query:companyQuery},function(results){
         var companies = [];
-        //    console.log(results);
+        //console.log(results);
         for(var i = 0;i<results.results.bindings.length;i++){
           var currentCompany = results.results.bindings[i];
           //console.log(results);
@@ -46,19 +46,33 @@ service('TTLParseService',function($q,sparqlQueryService){
                 var currentCompany = companies[i];
                 for(var j=i+1;j<companies.length;j++){
                   var otherCompany = companies[j];
-                  if(!companiesToRemove.includes(otherCompany)){
-                    //console.log(currentPlant);
+                  //console.log("i: "+i+"    j: "+j);
+                  //console.log(currentCompany.companyName.value);
+                  //console.log(otherCompany.companyName.value);
+                  if(!companiesToRemove.includes(j)){
                     if(currentCompany.companyName.value==otherCompany.companyName.value){
+                      //console.log("match");
                       for(var k=0;k<otherCompany.plants.length;k++){
                         currentCompany.plants.push(otherCompany.plants[k]);
                       }//for
                       companiesToRemove.push(j);
+                      //console.log(companiesToRemove);
                     }//if
                   }//if
                 }//for
               }//for
+
+              //console.log("total comps: "+companies.length);
+              //console.log("to remove: "+companiesToRemove.length);
               for(var i =0;i<companiesToRemove.length;i++){
-                companies.splice(companiesToRemove[i],1);
+                var index = companiesToRemove[i];
+                companies.splice(index,1);
+                for(var j =i+1; j<companiesToRemove.length;j++){
+                  var nextIndex = companiesToRemove[j];
+                  if(nextIndex>index){
+                    companiesToRemove[j] = --nextIndex;
+                  }
+                }
               }
               parsedData.companies = companies;
               //console.log(parsedData);
