@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mit XMLSpy v2011 rel. 3 (http://www.altova.com) von Josef Prinz (INPRO) bearbeitet -->
+<CAEXFile FileName="seed-Restriction-1.aml" SchemaVersion="2.15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Source/CAEX_ClassModel_V2.15.xsd">
+    <AdditionalInformation AutomationMLVersion="2.0" />
+    <AdditionalInformation>
+        <WriterHeader>
+            <WriterName>AutomationML e.V.</WriterName>
+            <WriterID>AutomationML e.V.</WriterID>
+            <WriterVendor>AutomationML e.V.</WriterVendor>
+            <WriterVendorURL>www.AutomationML.org</WriterVendorURL>
+            <WriterVersion>1.0</WriterVersion>
+            <WriterRelease>1.0</WriterRelease>
+            <LastWritingDateTime>2012-02-20
+            </LastWritingDateTime>
+            <WriterProjectTitle>AutomationML Tutorial Examples</WriterProjectTitle>
+            <WriterProjectID>AutomationML Tutorial Examples
+            </WriterProjectID>
+        </WriterHeader>
+    </AdditionalInformation>
+    <ExternalReference Path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" Alias="BaseRoleClassLib" />
+    <ExternalReference Path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" Alias="BaseInterfaceClassLib" />
+<InterfaceClassLib Name="NE150DemoProject">
+        <InterfaceClass Name="LIRCS+-A+-" ID="adb2ebf7-dc6f-479b-abfe-64a4fd69c209">
+                
+                <Attribute Name="Cardinality" AttributeDataType="xs:string">
+                    <Attribute Name="MinOccur" AttributeDataType="xs:unsignedInt" >
+                                    <Value></Value>
+                                    <RefSemantic CorrespondingAttributePath="NE 150 v1.0 Annex 3.3.4" />
+                                </Attribute>
+                    <Attribute Name="MaxOccur" AttributeDataType="xs:unsignedInt" >
+                                    <Value></Value>
+                                    <RefSemantic CorrespondingAttributePath="NE 150 v1.0 Annex 3.3.4" />
+                                </Attribute>
+            </Attribute>
+                                                
+                  </InterfaceClass>
+    </InterfaceClassLib>
+</CAEXFile>

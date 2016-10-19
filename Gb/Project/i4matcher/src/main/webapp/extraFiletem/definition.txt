@@ -1,0 +1,4 @@
+The Cyclomatic complexity is a metric developed by Thomas J. McCabe in 1976. 
+It measures the complexity of a program by counting the number of linearly independent paths through a program's source code. 
+The lower the cyclomatic complexity the better. McCabe suggested that programmers should split a software module into smaller parts 
+whenever the cyclomatic complexity of the module exceeded 10. You can read the 

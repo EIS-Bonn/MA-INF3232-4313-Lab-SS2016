@@ -1,0 +1,222 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.unibonn.i4matcher</groupId>
+  <artifactId>i4Matcher</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>i4Matcher Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  	<properties>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<junit.version>4.11</junit.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+		<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2</version>
+		</dependency>
+	    <dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+        <dependency>
+		<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+        <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.saxon/saxon -->
+		<dependency>
+			<groupId>net.sourceforge.saxon</groupId>
+			<artifactId>saxon</artifactId>
+			<version>9.1.0.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jdom/jdom -->
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>Saxon-HE</artifactId>
+			<version>9.4.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.10</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.hp.hpl.jena/jena -->
+		<!--
+		<dependency>
+			<groupId>com.hp.hpl.jena</groupId>
+			<artifactId>jena</artifactId>
+			<version>2.6.4</version>
+		</dependency>
+		-->
+		<!-- https://mvnrepository.com/artifact/com.hp.hpl.jena/arq -->
+		<!--
+		<dependency>
+			<groupId>com.hp.hpl.jena</groupId>
+			<artifactId>arq</artifactId>
+			<version>2.8.8</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>jena-arq</artifactId>
+			<version>3.1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>virtuoso.jena.driver</groupId>
+			<artifactId>virtjena</artifactId>
+			<version>3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/virt_jena3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>virtuoso.jdbc4</groupId>
+			<artifactId>virtjdbc</artifactId>
+			<version>2.6</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/virtjdbc4.jar</systemPath>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.sun.xsom/xsom -->
+		<dependency>
+			<groupId>com.sun.xsom</groupId>
+			<artifactId>xsom</artifactId>
+			<version>20140925</version>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
+	</dependencies>
+
+	  <build>
+   		 <finalName>i4matcher</finalName>
+		  <sourceDirectory>src/main/java</sourceDirectory>
+		  <resources>
+			  <resource>
+				  <directory>src/main/resources</directory>
+			  </resource>
+		  </resources>
+		  <plugins>
+			  <plugin>        
+				  <groupId>org.mortbay.jetty</groupId>        
+				  <artifactId>maven-jetty-plugin</artifactId>        
+				  <version>6.1.10</version>        
+				  <configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					  <webAppConfig>
+						  <contextPath>/i4Matcher</contextPath>
+						  <extraClasspath>${project.basedir}/lib/virtjdbc3.jar</extraClasspath>
+					  </webAppConfig>
+				  </configuration>        
+			  </plugin>
+			  <plugin>
+		      		<artifactId>maven-compiler-plugin</artifactId>
+		        	<configuration>
+		          		<source>1.6</source>
+		          		<target>1.6</target>
+		        	</configuration>
+		    	</plugin>
+			  <plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-compiler-plugin</artifactId>
+				  <configuration>
+					  <source>1.7</source>
+					  <target>1.7</target>
+				  </configuration>
+			  </plugin>
+			  <plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-dependency-plugin</artifactId>
+				  <version>2.8</version>
+				  <executions>
+					  <execution>
+						  <id>copy-dependencies</id>
+						  <phase>compile</phase>
+						  <goals>
+							  <goal>copy-dependencies</goal>
+						  </goals>
+						  <configuration>
+							  <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</outputDirectory>
+							  <includeScope>system</includeScope>
+						  </configuration>
+					  </execution>
+				  </executions>
+			  </plugin>
+		  </plugins>
+
+	  </build>
+</project>

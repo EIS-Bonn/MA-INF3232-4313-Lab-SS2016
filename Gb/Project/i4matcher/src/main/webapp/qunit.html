@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Refactored date examples</title>
+ 
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+  <script src="js/js/xmltojson.js"></script>
+ 
+  <script>
+  QUnit.test("my_functions", function( assert ) {
+	var expectedResult = "good";
+    //2-nd function downloadInt()
+			var url = window.location.href;
+			var typeInd = url.search("=");
+			var urlInd = url.search("&");
+			var type = url.substring(typeInd+1, urlInd);
+			var value = localStorage[url.substring(urlInd+5, url.length)];
+    assert.equal(xmltotree("chart1", value, ["InstanceHierarchy", "InterfaceClassLib", "SystemUnitClassLib", "RoleClassLib"], ["SchemaVersion"], 0), expectedResult);
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+ 
+</body>
+</html>

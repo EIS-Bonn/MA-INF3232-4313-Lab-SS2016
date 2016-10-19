@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SC2Map</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <main class="ui grid">
+      <div class="sixteen wide column" style="margin:16px 5px 0 18px;padding:0">
+        <div class="ui secondary menu">
+          <a class="item">
+          <div>
+            <button class="ui primary button" id="upload-button">Upload Data</button>
+            <input id="dataFile" type="file"/>
+          </div>
+          </a>
+          <!--Added a logo which is shown in the top center-->
+          <div class="right menu">
+            <div class="item">
+              <div class="ui icon input">
+              <i class="large map outline icon"></i>
+              </div>
+            </div>
+            <div class="item">
+              <p>SC2MAP Project</p>
+            </div>
+          </div>
+
+          <div class="right menu">
+            <div class="item">
+              <!--<div class="ui icon input">-->
+                <!--<input type="text" placeholder="Search...">-->
+                <!--<i class="search link icon"></i>-->
+              <!--</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="twelve wide column sc2-map-container" style="padding:0;">
+        <div id="mapid"></div>
+      </div>
+      <div class="four wide column sc2-util-container" style="padding-left: 1rem; padding-right: 2rem">
+        <form id="analyzeForm" class="ui form">
+
+          <div class="field">
+            <label for="processTypeInput">Process type</label>
+            <div id="processSelection" class="ui selection dropdown">
+              <input type="hidden" name="processTypeInput" value="DeliverStockedProduct">
+              <i class="dropdown icon"></i>
+              <div class="default text">Process type</div>
+              <div class="menu">
+                <div class="item" data-value="DeliverStockedProduct">DeliverStockedProduct</div>
+                <div class="item" data-value="SourceMakeToOrderProduct">SourceMakeToOrderProduct</div>
+                <div class="item" data-value="MakeToOrder">MakeToOrder</div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="metricInput">Metric</label>
+            <div id="metricSelection" class="ui selection dropdown">
+              <input type="hidden" name="metricInput" value="DELIVERY_PERFORMANCE">
+              <input type="hidden" name="metricInput" value="DELIVERY_IN_FULL">
+              <!--<input type="hidden" name="metricInput" value="PERFECT_CONDITION">
+              <input type="hidden" name="metricInput" value="PRODUCTION_COST">
+              <input type="hidden" name="metricInput" value="UPSIDE_SUPPLY_CHAIN_FLEXIBILITY">-->
+              <i class="dropdown icon"></i>
+              <div class="default text">Metric</div>
+              <div class="menu">
+                <div class="item" data-value="DELIVERY_PERFORMANCE">Delivery Performance</div>
+                <div class="item" data-value="DELIVERY_IN_FULL">Delivery In Full</div>
+                <!--<div class="item" data-value="PERFECT_CONDITION">Perfect Condition</div>
+                <div class="item" data-value="PRODUCTION_COST">Production Cost</div>
+                <div class="item" data-value="UPSIDE_SUPPLY_CHAIN_FLEXIBILITY">Upside Supply Chain Flexibility</div>-->
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label type="text" for="supplierInput">Supplier</label>
+            <input id="supplierInput" name="supplierInput" type="text"/>
+          </div>
+
+          <div class="field">
+            <label type="text" for="productNameInput">Product name</label>
+            <input id="productNameInput" name="productNameInput" type="text"/>
+          </div>
+
+          <div class="field">
+            <label type="text" for="startTimeInput">Start time</label>
+            <input id="startTimeInput" name="startTimeInput" type="date" />
+          </div>
+
+          <div class="field">
+            <label for="endTimeInput">End Time</label>
+            <input id="endTimeInput" name="endTimeInput" type="date" />
+          </div>
+
+          <input type="submit" class="ui button" value="Analyse"/>
+        </form>
+      </div>
+      <div>
+        Icons made by
+        <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by
+        <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  </body>
+</html>
