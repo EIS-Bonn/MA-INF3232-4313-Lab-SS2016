@@ -1,0 +1,9 @@
+{
+  "main_form": "lyrics",
+  "variations": [
+    "[[con]] lyrics by",
+    "[[adj]] lyrics by",
+    "with lyrics by",
+    "authored by"
+  ]
+}

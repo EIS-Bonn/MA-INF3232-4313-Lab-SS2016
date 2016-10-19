@@ -1,0 +1,10 @@
+{
+  "main_form": "sourcePlace",
+  "variations": [
+    "rises at",
+    "rises near",
+    "rises [[det]]",
+    "rises on",
+    "rises in"
+  ]
+}

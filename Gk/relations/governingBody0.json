@@ -1,0 +1,10 @@
+{
+  "main_form": "governingBody",
+  "variations": [
+    "is located at [[det]] campus of",
+    "is located on [[det]] campus",
+    "is located on [[det]] campus of",
+    "is located in [[det]] campus of",
+    "was located on [[det]] campus of"
+  ]
+}

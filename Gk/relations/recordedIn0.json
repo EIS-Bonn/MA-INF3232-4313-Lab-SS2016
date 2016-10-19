@@ -1,0 +1,19 @@
+{
+  "main_form": "recordedIn",
+  "variations": [
+    "was recorded [[con]]",
+    "also recorded in",
+    "was recorded [[adj]]",
+    "was recorded in",
+    "was recorded [[num]]",
+    "were recorded in",
+    "was recorded at",
+    "was recorded [[det]]",
+    "been recorded from",
+    "recorded [[pro]]",
+    "was recorded for",
+    "was recorded on",
+    "recorded at",
+    "was recorded during"
+  ]
+}

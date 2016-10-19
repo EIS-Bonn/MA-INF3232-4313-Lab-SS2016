@@ -1,0 +1,7 @@
+{
+  "main_form": "service",
+  "variations": [
+    "[[det]] owner [[con]] operator [[con]]",
+    "[[det]] owner [[con]] operator of"
+  ]
+}
