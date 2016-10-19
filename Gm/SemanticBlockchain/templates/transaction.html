@@ -1,0 +1,225 @@
+{% load staticfiles %}
+<html>
+<head>
+
+<link rel="stylesheet" href="{% static 'css/codemirror.css' %}">
+<link rel="stylesheet" href="{% static 'css/codemirror-neo.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'css/cy2neo.css' %}"> -->
+<link rel="stylesheet" href="{% static 'css/neod3.css' %}">
+<link rel="stylesheet" href="{% static 'css/datatable.css' %}">
+<link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+<link rel="stylesheet" href="{% static 'css/sweet-alert.css' %}">
+
+<style>
+svg {
+    height: 100%;
+    width: 100%;
+}
+</style>
+<title>Transaction - {{transaction_hash}}</title>
+</head>
+<body>
+
+<h3>Transaction - {{transaction.hsh}}</h3>
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#graph-neo" aria-controls="home" role="tab" data-toggle="tab">Graph</a>
+    </li>
+    <li role="presentation">
+      <a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a>
+    </li>
+
+
+    <li role="presentation">
+      <a href="#rdf" aria-controls="rdf" role="tab" data-toggle="tab">RDF</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="graph-neo">
+    	<div class="tab-pane active" id="graph-neo">&nbsp;</div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="table">
+    	<div id="datatable"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="rdf">
+    	<div id="rdf">
+            <div id="rdf-semantic" class="container"
+            vocab="http://semanticblockchain.com/"
+            prefix="
+              rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+              foaf: http://xmlns.com/foaf/0.1/
+              gr: http://purl.org/goodrelations/v1#
+              xsd: http://www.w3.org/2001/XMLSchema#
+              sb: http://semanticblockchain.com#"
+              typeof="sb:Transaction">
+
+            <h1>Transaction
+                <small>View information about a bitcoin transaction</small>
+            </h1>
+
+              <table class="table table-striped" style="padding:0px;float:left;margin:0px;width:100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                    <th  align="left">Sending Addresses</th>
+                    <th  align="left"></th>
+                    <th  align="left"> Receiving Addresses</th>
+                  </tr>
+                  <tr>
+                    <td width="500px">
+                      <a href="/address/{{senders.address}}">{{senders.address}}</a>
+                      <br>
+                    </td>
+
+                    <td class="hidden-phone" style="padding:4px;text-align:center;vertical-align:middle;" width="48px">
+                      <img src="https://blockchain.info/Resources/arrow_right_green.png">
+                    </td>
+
+                      <td>
+                        <a href="/address/{{receivers.address}}">{{receivers.address}}</a>
+                        <span class="pull-right hidden-phone"> {{inputs.value}} BTC </span>
+                        <br>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div style="width:100%;text-align:right;clear:both">
+                    <h4 >TOTAL: 0.06031866 BTC</h4>
+                </div>
+
+
+            <div class="row-fluid">
+                <div class="span6">
+                    <table class="table table-striped">
+                        <tbody><tr>
+                            <th colspan="2">Summary</th>
+                        </tr>
+
+
+                        <tr>
+                            <td>hash</td>
+                            <td property="sb:hsh">{{transaction.hsh}}</td>
+                        </tr>
+                        <tr>
+                            <td>version</td>
+                            <td property="sb:version" datatype="xsd:int">{{transaction.version}}</td>
+                        </tr>
+                        <tr>
+                            <td>locktime</td>
+                            <td property="sb:locktime" datatype="xsd:int">{{transaction.locktime}}</td>
+                        </tr>
+                        <tr>
+                            <td>confirmations</td>
+                            <td property="sb:confirmations" datatype="xsd:int">{{transaction.confirmations}}</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td property="sb:size" datatype="xsd:int">{{transaction.size}}</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Received Time</td>
+                            <td property="time">2016-10-17 18:59:39</td>
+                        </tr> -->
+                        <tr>
+                            <td>valueIn</td>
+                            <td property="sb:valueIn" datatype="xsd:float">{{transaction.valueIn}}</td>
+                        </tr>
+                        <tr>
+                            <td>valueOut</td>
+                            <td property="sb:valueOut" datatype="xsd:float">{{transaction.valueOut}}</td>
+                        </tr>
+                        <tr>
+                            <td>fees</td>
+                            <td property="sb:fees" datatype="xsd:float">{{transaction.fees}} BTC</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Estimated BTC Transacted</td>
+                            <td>
+                                <span data-c="62674" data-time="1476730779000">0.00062674 BTC</span>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+
+              <div class="span6">
+                <h1>RDF
+                    <small>View information about a bitcoin transaction as RDF Turtle</small>
+                </h1>
+
+                  <iframe id=preview sandbox="allow-same-origin" style="display:none"></iframe> -->
+
+                  <div id="permalink"></div>
+                  <div id="markup-errors" class="errors"></div>
+                  <div id="param-errors" class="errors"></div>
+                  <div id="processing-errors" class="errors"></div>
+
+                  <textarea id="turtleOutputDisplay"></textarea>
+
+                </div>
+
+              <div class="span6">
+                <h1>RDF Graph
+                    <small>View information about a bitcoin transaction as RDF Graph</small>
+                </h1>
+
+                <div id="graph"></div>
+              </div> <!--  span6 -->
+
+            </div> <!--  row-fluid -->
+          </div> <!--  container -->
+    	  </div><!--  rdf -->
+      </div><!--  tablepanel rdf -->
+
+
+
+  </div><!--  tab-content -->
+</div> <!--  tablepanel -->
+
+<!-- <script src="{% static 'js/codemirror.js'%}"></script> -->
+ <!-- <script src="{% static 'js/codemirror-cypher.js'%}"></script> -->
+<script src="{% static 'js/vendor.js'%}"></script>
+<script src="{% static 'js/sweet-alert.min.js'%}"></script>
+<script src="{% static 'js/neod3.js'%}"></script>
+<script src="{% static 'js/neod3-visualization.js'%}"></script>
+<script src="{% static 'js/neo4d3.js'%}"></script>
+<script src="{% static 'js/cy2neod3.js'%}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'js/cypher.datatable.js'%}"></script>
+
+<!-- rdf play  -->
+
+
+<script type="text/javascript" src="{% static 'js/codemirror-compressed.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/codemirror-turtle.js'%}"></script>
+<!-- <script type="text/javascript" src="{% static 'js/d3.v2.min.js'%}"></script> -->
+<script type="text/javascript" src="{% static 'js/RDFa.min.1.1.0.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/play.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/visualization.js'%}"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+		//todo dynamic configuration
+  		var config = {}
+  	    var connection = function() {
+          return {
+            url:"http://46.101.180.63:7474",
+            user:"neo4j",
+            pass:"uni-bonn"};
+        }
+
+  		  new Cy2NeoD3(config,"graph-neo","datatable", "{{transaction_hash}}", connection , true);
+	  });
+</script>
+</body>
+</html>
