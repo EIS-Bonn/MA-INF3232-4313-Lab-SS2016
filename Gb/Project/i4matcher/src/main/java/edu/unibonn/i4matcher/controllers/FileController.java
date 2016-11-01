@@ -30,8 +30,6 @@ import edu.unibonn.i4matcher.Matcher;
 @Controller
 @RequestMapping("/controller")
 public class FileController  { //extends HttpServlet
-	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
-	FileMeta fileMeta = null;
 	private static final Logger logger = Logger.getLogger("FileController");
 	/***************************************************
 	 * URL: /rest/controller/upload/{value}
@@ -39,7 +37,7 @@ public class FileController  { //extends HttpServlet
 	 * @param request : MultipartHttpServletRequest auto passed
 	 * @param response : HttpServletResponse auto passed
 	 * @param value: String type of matching
-	 * @return LinkedList<FileMeta> as json format
+	 * @return Response as json format
 	 ****************************************************/
 	@RequestMapping(value="/upload/{value}", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody Response upload(
@@ -48,6 +46,8 @@ public class FileController  { //extends HttpServlet
 			@PathVariable String value) {
 		ServletContext servletContext = request.getSession().getServletContext();
 		String path = servletContext.getRealPath("/WEB-INF/classes/");
+		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+		FileMeta fileMeta = null;
 
 		logger.info(request.getRequestHeaders().toString());
 		//1. build an iterator
