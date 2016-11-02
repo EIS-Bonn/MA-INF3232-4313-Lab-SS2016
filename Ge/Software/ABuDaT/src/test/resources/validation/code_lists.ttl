@@ -1,0 +1,123 @@
+@prefix rdf:               <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:              <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix obeu:              <http://data.openbudgets.eu/ontology/> .
+@prefix obeu-budgetphase:  <http://data.openbudgets.eu/resource/codelist/budget-phase/> .
+@prefix obeu-codelist:     <http://data.openbudgets.eu/resource/codelist/> .
+@prefix obeu-operation:    <http://data.openbudgets.eu/resource/codelist/operation-character/> .
+@prefix obeu-paymentphase: <http://data.openbudgets.eu/resource/codelist/payment-phase/> .
+
+#####################
+### Budget phases ###
+#####################
+
+obeu:BudgetPhase a rdfs:Class ;
+  rdfs:label "Budget phase"@en, "Fáze rozpočtového procesu"@cs ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-codelist:budget-phase a skos:ConceptScheme ;
+  rdfs:label "Code list that distinguishes among phases of the budget."@en,
+             "Liste des codes qui séparent les phases du budget."@fr,
+             "Číselník rozlišující fáze rozpočtového procesu"@cs ;
+  skos:hasTopConcept obeu-budgetphase:approved, obeu-budgetphase:draft, obeu-budgetphase:executed, obeu-budgetphase:revised .
+
+obeu-budgetphase:approved a obeu:BudgetPhase, skos:Concept ;
+  skos:prefLabel "Approved"@en, "Approuvé"@fr, "Schválený"@cs ;
+  skos:definition "The approved budget represents a budget at the moment since which it is binding for the parties concerned."@en,
+                  "Le budget approuvé représente le budget au momen où il devient contraignant pour les parties concernées."@fr,
+                  "Schválený rozpočet představuje rozpočet v okamžiku, od kterého je závazný pro subjekty, kterých se týká."@cs ;
+  skos:topConceptOf obeu-codelist:budget-phase ;
+  skos:inScheme obeu-codelist:budget-phase .
+
+obeu-budgetphase:draft a obeu:BudgetPhase, skos:Concept ;
+  skos:prefLabel "Draft"@en, "Préparatoire"@fr, "Návrh"@cs ;
+  skos:definition "Budget during its processing until the budget is approved."@en,
+                  "Le budget dans sa période préparatoire, avant son approbation."@fr,
+                  "Návrhem rozpočtu se rozumí rozpočet v době svého zpracování do okamžiku, kdy je rozpočet schválen."@cs ;
+  skos:topConceptOf obeu-codelist:budget-phase ;
+  skos:inScheme obeu-codelist:budget-phase .
+
+obeu-budgetphase:executed a obeu:BudgetPhase, skos:Concept ;
+  skos:prefLabel "Executed"@en, "Réalisé"@fr, "Realizovaný"@cs ;
+  skos:definition "Execution of the approved budget means an ensuring of smooth and efficient drawing of the budget."@en,
+                  "La réalisation du budget approuvé permet de le dépenser sans accroc et efficacement."@fr,
+                  "Realizace schváleného rozpočtu představuje zabezpečení plynulého a hospodárného čerpání výdajů rozpočtu."@cs ;
+  skos:topConceptOf obeu-codelist:budget-phase ;
+  skos:inScheme obeu-codelist:budget-phase .
+
+obeu-budgetphase:revised a obeu:BudgetPhase, skos:Concept ;
+  skos:prefLabel "Revised"@en, "Révisé"@fr, "Upravený"@cs ;
+  skos:definition "Revision of the approved budget is a change of the budget based on the approved budgetary measure."@en,
+                  "La révision d'un budget approuvé est une modification du budget fondée sur une mesure budgétaire."@fr,
+                  "Úprava schváleného rozpočtu představuje změnu na základě schváleného rozpočtového opatření."@cs ;
+  skos:topConceptOf obeu-codelist:budget-phase ;
+  skos:inScheme obeu-codelist:budget-phase .
+
+############################
+### Operation characters ###
+############################
+
+obeu:OperationCharacter a rdfs:Class ;
+  rdfs:label "Operation character"@en, "Type d'opérations"@fr, "Typ operace"@cs ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-codelist:operation-character a skos:ConceptScheme ;
+  rdfs:label "Code list that distinguishes among characters of fiscal operation."@en,
+             "Liste des code des différentes opérations fiscales."@fr,
+             "Číselník rozlišující typy fiskálních operací"@cs ;
+  skos:hasTopConcept obeu-operation:expenditure, obeu-operation:revenue .
+
+obeu-operation:expenditure a obeu:OperationCharacter, skos:Concept ;
+  skos:prefLabel "Expenditure"@en, "Charges"@fr, "Výdaje"@cs ;
+  skos:definition "Decrease in net worth resulting from a transaction"@en,
+                  "Une transaction résultant en une diminution de l'actif."@fr,
+                  "Pokles čistého jmění vlivem transakce"@cs ;
+  skos:topConceptOf obeu-codelist:operation-character ;
+  skos:inScheme obeu-codelist:operation-character .
+
+obeu-operation:revenue a obeu:OperationCharacter, skos:Concept ;
+  skos:prefLabel "Revenue"@en, "Ressources"@fr, "Příjmy"@cs ;
+  skos:definition "An increase in net worth resulting from a transaction"@en,
+                  "Une transaction résultant en une augmentation de l'actif."@fr,
+                  "Zvýšení čistého jmění vlivem transakce"@cs ;
+  skos:topConceptOf obeu-codelist:operation-character ;
+  skos:inScheme obeu-codelist:operation-character .
+
+######################
+### Payment phases ###
+######################
+
+obeu:PaymentPhase a rdfs:Class ;
+  rdfs:label "Payment phase"@en, "Phases de paiement"@fr, "Platební fáze"@cs ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-codelist:payment-phase a skos:ConceptScheme ;
+  rdfs:label "Code list of payment phases"@en, "Liste des phases de paiment"@fr, "Číselník platebních fází"@cs ;
+  skos:hasTopConcept obeu-paymentphase:allocated, obeu-paymentphase:certified, obeu-paymentphase:paid .
+
+obeu-paymentphase:allocated a obeu:PaymentPhase, skos:Concept ;
+  skos:prefLabel "Allocated"@en, "Alloué"@fr, "Alokováno"@cs ;
+  skos:definition "Financial amount intended for an specified objective or an Operational Programme."@en,
+                  "Somme prévue pour un objectif spécifique ou un programme opérationnel."@fr,
+                  "Finanční prostředky určené pro daný cíl či operační program."@cs ;
+  skos:topConceptOf obeu-codelist:payment-phase ;
+  skos:inScheme obeu-codelist:payment-phase .
+
+obeu-paymentphase:certified a obeu:PaymentPhase, skos:Concept ;
+  skos:prefLabel "Certified"@en, "Certifié"@fr, "Certifikováno"@cs ;
+  skos:definition "Certification of expenditure means the confirmation of the correctness of data submitted by managing authorities to the paying authority and the confirmation of the effectiveness of management and control systems at the level of managing authorities and intermediate bodies (or final beneficiaries)."@en,
+                  "La certification des dépenses est un moyen de confirmer la justesse des données fournies par les autorités opérationnelles à l'autorité de paiment et de confirmer l'efficacité des systèmes de contrôle au niveau des autorités opérationnelles et des corps intermédiaires (ou bénéficiaires finaux)."@fr,
+                  "Certifikací uskutečněných výdajů se rozumí potvrzení správnosti údajů předložených řídicími orgány platebnímu orgánu a potvrzení efektivnosti systémů řízení a kontroly na úrovni řídicích orgánů a zprostředkujících subjektů (popř. konečných příjemců)."@cs ;
+  skos:topConceptOf obeu-codelist:payment-phase ;
+  skos:inScheme obeu-codelist:payment-phase .
+
+obeu-paymentphase:paid a obeu:PaymentPhase, skos:Concept ;
+  skos:prefLabel "Paid"@en, "Payé"@fr, "Proplaceno"@cs ;
+  skos:definition "Financial amount paid to the final beneficiaries after the certification of expenditure"@en,
+                  "Montants payés au bénéficiaires finaux après la certification des dépenses."@fr,
+                  "Finanční prostředky proplacené konečnému příjemci v návaznosti na certifikaci uskutečněných výdajů"@cs ;
+  skos:topConceptOf obeu-codelist:payment-phase ;
+  skos:inScheme obeu-codelist:payment-phase .

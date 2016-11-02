@@ -1,0 +1,150 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: "jacoco"
+
+jar {
+	baseName = 'ABuDaT'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+springBoot {
+	mainClass = "de.uni.bonn.iai.eis.ABuDaTApplication"
+}
+
+//for instant reloading of html templates
+bootRun {
+	addResources = true
+}
+
+repositories {
+	mavenCentral()
+
+	flatDir {
+		dirs 'lib'
+	}
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile('org.springframework.boot:spring-boot-starter-tomcat')
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	compile group: 'org.openrdf.sesame', name: 'sesame-rio-api', version: '4.1.2'
+	compile group: 'org.openrdf.sesame', name: 'sesame-rio-rdfjson', version: '4.1.2'
+	compile group: 'org.openrdf.sesame', name: 'sesame-rio-jsonld', version: '4.1.2'
+	compile group: 'org.openrdf.sesame', name: 'sesame-repository-api', version: '4.1.2'
+	compile group: 'org.openrdf.sesame', name: 'sesame-repository-sail', version: '4.1.2'
+	compile group: 'org.openrdf.sesame', name: 'sesame-sail-memory', version: '4.1.2'
+
+	compile group: 'org.reflections', name: 'reflections', version: '0.9.10'
+	compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.1'
+	compile group: 'commons-io', name: 'commons-io', version: '2.5'
+	compile group: 'org.apache.tika', name: 'tika-core', version: '1.13'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
+
+	compile group: 'org.apache.poi', name: 'poi', version: '3.14'
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.14'
+	compile group: 'org.apache.poi', name: 'ooxml-schemas', version: '1.3'
+
+	//for nospa rdf data cube validator, don't touch version please unless nospa validator is updated
+	compile (group: 'org.apache.jena', name: 'apache-jena-libs', version: '2.12.0') {
+		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+	}
+
+
+	compile('org.webjars:bootstrap:3.3.7-1')
+	compile('org.webjars:jquery:3.1.0')
+
+	testCompile ('org.springframework.boot:spring-boot-starter-test')
+	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+	testCompile group: 'com.openpojo', name: 'openpojo', version: '0.8.4'
+	testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.4'
+
+	//	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+
+	//----------from lib folder (linkedpipes etl dependencies)----------------
+	compile group: 'com.linkedpipes', name: 'e-httpGetFile', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'e-textHolder', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 't-tabularUv', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 't-sparqlUpdate', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 't-graphMerger', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: "t-filesToRdf", version: '0.0.0'
+	compile group: 'com.linkedpipes', name: "t-singleGraphUnion", version: '0.0.0'
+	compile group: 'com.linkedpipes', name: "t-rdfToFile", version: '0.0.0'
+	compile group: 'com.linkedpipes', name: "l-filesToLocal", version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'dataunit-system', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'dataunit-sesame', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'api-commons', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'api-component-v1', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'api-component-v1-impl', version: '0.0.0'
+	compile group: 'com.linkedpipes', name: 'api-executor-v1', version: '0.0.0'
+
+	//----------from lib folder (rdf data cube nospa validator)----------------
+	compile group: 'cn.yyz.nospa', name: 'nospa-rdf-data-cube-validator', version: '0.9.9'
+
+}
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}
+
+sourceSets {
+	integrationTest {
+		java {
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+			srcDir file('src/integration-test/java')
+		}
+		resources.srcDir file('src/integration-test/resources')
+	}
+}
+
+configurations {
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test, description: 'Run integration tests.') {
+	testClassesDir = sourceSets.integrationTest.output.classesDir
+	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+task jacocoMerge(type: JacocoMerge) {
+	executionData test, integrationTest
+}
+
+jacoco {
+	reportsDir = file("$buildDir/jacoco")
+}
+
+task coverageReport(type: JacocoReport) {
+	executionData jacocoMerge.destinationFile
+	dependsOn jacocoMerge
+	sourceDirectories = files(sourceSets.main.java.srcDirs)
+	classDirectories = files(sourceSets.main.output.classesDir)
+}

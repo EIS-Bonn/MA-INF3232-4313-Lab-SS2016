@@ -1,0 +1,19 @@
+@prefix obeu:             <http://data.openbudgets.eu/ontology/> .
+@prefix rdfs:             <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:             <http://www.w3.org/2004/02/skos/core#> .
+
+obeu:FunctionalClassification a skos:Concept ;
+  skos:prefLabel "Functional classification"@en ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu:ProgrammeClassification a skos:Concept ;
+  skos:prefLabel "Programme classification"@en ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu:EconomicClassification a skos:Concept ;
+  skos:prefLabel "Economic classification"@en ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu:AdministrativeClassification a skos:Concept ;
+  skos:prefLabel "Administrative classification"@en ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .

@@ -1,0 +1,110 @@
+<https://w3id.org/i40/aml/ExternalReference1>
+        a       <https://w3id.org/i40/instance/ExternalReference> ;
+        <https://w3id.org/i40/instance/externalReferenceAlias>
+                "BaseRoleClassLib" ;
+        <https://w3id.org/i40/instance/refBaseClassPath>
+                "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml" .
+
+<https://w3id.org/i40/aml/Attribute3>
+        a       <https://w3id.org/i40/instance/Attribute> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "City" .
+
+<https://w3id.org/i40/aml/RoleClass3>
+        a       <https://w3id.org/i40/instance/RoleClass> .
+
+<https://w3id.org/i40/aml/AdditionalInformation2>
+        a       <https://w3id.org/i40/instance/AdditionalInformation> ;
+        <https://w3id.org/i40/instance/hasWriterID>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/instance/hasWriterName>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/instance/hasWriterProjectTitle>
+                "AutomationML Tutorial Examples" ;
+        <https://w3id.org/i40/instance/hasWriterRelease>
+                "1.0" ;
+        <https://w3id.org/i40/instance/hasWriterVendor>
+                "AutomationML e.V." ;
+        <https://w3id.org/i40/instance/hasWriterVendorURL>
+                "www.AutomationML.org" ;
+        <https://w3id.org/i40/instance/hasWriterVersion>
+                "1.0" .
+
+<https://w3id.org/i40/aml/Attribute1>
+        a       <https://w3id.org/i40/instance/Attribute> ;
+        <https://w3id.org/i40/instance/hasAttribute>
+                <https://w3id.org/i40/aml/Attribute2> , <https://w3id.org/i40/aml/Attribute3> , <https://w3id.org/i40/aml/Attribute4> , <https://w3id.org/i40/aml/Attribute5> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "MailAddress" ;
+        <https://w3id.org/i40/instance/hasRefSemantic>
+                <https://w3id.org/i40/aml/RefSemantic1> .
+
+<https://w3id.org/i40/aml/CAEXFile1>
+        a       <https://w3id.org/i40/instance/CAEXFile> ;
+        <https://w3id.org/i40/instance/hasAdditionalInfomation>
+                <https://w3id.org/i40/aml/AdditionalInformation1> , <https://w3id.org/i40/aml/AdditionalInformation2> ;
+        <https://w3id.org/i40/instance/hasExternalReference>
+                <https://w3id.org/i40/aml/ExternalReference1> , <https://w3id.org/i40/aml/ExternalReference2> ;
+        <https://w3id.org/i40/instance/hasRoleClassLib>
+                <https://w3id.org/i40/aml/RoleClassLib1> ;
+        <https://w3id.org/i40/instance/hasSchemaVersion>
+                "2.15" .
+
+<https://w3id.org/i40/aml/ExternalReference2>
+        a       <https://w3id.org/i40/instance/ExternalReference> ;
+        <https://w3id.org/i40/instance/externalReferenceAlias>
+                "BaseInterfaceClassLib" ;
+        <https://w3id.org/i40/instance/refBaseClassPath>
+                "Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml" .
+
+<https://w3id.org/i40/aml/RoleClassLib1>
+        a       <https://w3id.org/i40/instance/RoleClassLib> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "AutomationMLPropertySetRoleClassLib" ;
+        <https://w3id.org/i40/instance/hasRoleClass>
+                <https://w3id.org/i40/aml/RoleClass1> ;
+        <https://w3id.org/i40/instance/hasVersion>
+                "1.0" .
+
+<https://w3id.org/i40/aml/RoleClass1>
+        a       <https://w3id.org/i40/instance/RoleClass> ;
+        <https://w3id.org/i40/instance/hasAttribute>
+                <https://w3id.org/i40/aml/Attribute1> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "ContactData" ;
+        <https://w3id.org/i40/instance/hasRoleClass>
+                <https://w3id.org/i40/aml/RoleClass2> , <https://w3id.org/i40/aml/RoleClass3> ;
+        <https://w3id.org/i40/instance/refBaseClassPath>
+                "AutomationMLPropertySetRoleClassLib/Administrative" .
+
+<https://w3id.org/i40/aml/Attribute4>
+        a       <https://w3id.org/i40/instance/Attribute> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "State" ;
+        <https://w3id.org/i40/instance/hasAttributeValue>
+                "Nordrhein-Westfalen" .
+
+<https://w3id.org/i40/aml/Attribute2>
+        a       <https://w3id.org/i40/instance/Attribute> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "StreetAndNumber" .
+
+<https://w3id.org/i40/aml/RefSemantic1>
+        a       <https://w3id.org/i40/instance/RefSemantic> ;
+        <https://w3id.org/i40/instance/hasCorrespondingAttributePath>
+                "NE 150 v1.0 Annex 3.3.4" .
+
+<https://w3id.org/i40/aml/RoleClass2>
+        a       <https://w3id.org/i40/instance/RoleClass> .
+
+<https://w3id.org/i40/aml/AdditionalInformation1>
+        a       <https://w3id.org/i40/instance/AdditionalInformation> ;
+        <https://w3id.org/i40/instance/hasAutomationMLVersion>
+                "2.0" .
+
+<https://w3id.org/i40/aml/Attribute5>
+        a       <https://w3id.org/i40/instance/Attribute> ;
+        <https://w3id.org/i40/instance/hasAttributeName>
+                "Country" ;
+        <https://w3id.org/i40/instance/hasAttributeValue>
+                "Germany" .

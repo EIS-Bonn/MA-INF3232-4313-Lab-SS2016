@@ -1,0 +1,12 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .
+
+<http://example.com/property> a rdf:Property , qb:CodedProperty , qb:dimension ;
+	rdfs:label "a label" ;
+	rdfs:comment "a comment" ;
+	rdfs:subPropertyOf obeu-dimension:administrativeClassification ;
+	rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+	qb:codeList <http://example.com/codelist/abc> ;
+	rdfs:isDefinedBy <http://example.com/dsd/foobar> .

@@ -1,0 +1,150 @@
+[ {
+  "@graph" : [ {
+    "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957",
+    "@type" : [ "http://linkedpipes.com/ontology/Pipeline" ]
+  }, {
+    "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/0b4bdc1d-b9e6-4ff5-b0c2-5ca347e9fe05",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/0b4bdc1d-b9e6-4ff5-b0c2-5ca347e9fe05/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://localhost:8080/resources/components/e-httpGetFile"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#integer",
+      "@value" : "260"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#integer",
+      "@value" : "200"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "HttpGetDescription"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "HTTPgetLale"
+    } ]
+  }, {
+    "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/14e25f85-dbf5-4a48-9c25-fbdbc10aed75",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/14e25f85-dbf5-4a48-9c25-fbdbc10aed75/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://localhost:8080/resources/components/t-tabular"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#integer",
+      "@value" : "500"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#integer",
+      "@value" : "220"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "Tabular"
+    } ]
+  }, {
+    "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/connection/73a4b94a-4351-4bd0-944b-1f9d9468908b",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "FilesOutput"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/0b4bdc1d-b9e6-4ff5-b0c2-5ca347e9fe05"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputFiles"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/14e25f85-dbf5-4a48-9c25-fbdbc10aed75"
+    } ]
+  } ],
+  "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/e-httpGetFile#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileName" : [ {
+      "@value" : "fooobar.file"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileUri" : [ {
+      "@value" : "http://foo.bar/file"
+    } ]
+  } ],
+  "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/0b4bdc1d-b9e6-4ff5-b0c2-5ca347e9fe05/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://www.w3.org/ns/csvw#Table" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabular#baseUri" : [ {
+      "@value" : ""
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabular#fullMapping" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://www.w3.org/ns/csvw#dialect" : [ {
+      "@id" : "http://localhost/resources/configuration/dialect"
+    } ],
+    "http://www.w3.org/ns/csvw#tableSchema" : [ {
+      "@id" : "http://localhost/resources/configuration/schema"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/configuration/dialect",
+    "@type" : [ "http://www.w3.org/ns/csvw#Dialect" ],
+    "http://www.w3.org/ns/csvw#delimeter" : [ {
+      "@value" : ","
+    } ],
+    "http://www.w3.org/ns/csvw#encoding" : [ {
+      "@value" : "UTF-8"
+    } ],
+    "http://www.w3.org/ns/csvw#header" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "true"
+    } ],
+    "http://www.w3.org/ns/csvw#quoteChar" : [ {
+      "@value" : "\""
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/configuration/schema",
+    "@type" : [ "http://www.w3.org/ns/csvw#Schema" ],
+    "http://www.w3.org/ns/csvw#aboutUrl" : [ {
+      "@value" : ""
+    } ],
+    "http://www.w3.org/ns/csvw#column" : [ {
+      "@id" : "http://localhost/resources/temp/IKkhWk5"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp/IKkhWk5",
+    "@type" : [ "http://www.w3.org/ns/csvw#Column" ],
+    "http://www.w3.org/ns/csvw#aboutUrl" : [ {
+      "@value" : ""
+    } ],
+    "http://www.w3.org/ns/csvw#datatype" : [ {
+      "@value" : "http://www.w3.org/2001/XMLSchema#string"
+    } ],
+    "http://www.w3.org/ns/csvw#lang" : [ {
+      "@value" : "de"
+    } ],
+    "http://www.w3.org/ns/csvw#name" : [ {
+      "@value" : "Fooo"
+    } ],
+    "http://www.w3.org/ns/csvw#propertyUrl" : [ {
+      "@value" : "sdf"
+    } ],
+    "http://www.w3.org/ns/csvw#required" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://www.w3.org/ns/csvw#supressOutput" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://www.w3.org/ns/csvw#valueUrl" : [ {
+      "@value" : ""
+    } ]
+  } ],
+  "@id" : "http://localhost:8080/resources/pipelines/created-1465721125957/components/14e25f85-dbf5-4a48-9c25-fbdbc10aed75/configuration"
+} ]

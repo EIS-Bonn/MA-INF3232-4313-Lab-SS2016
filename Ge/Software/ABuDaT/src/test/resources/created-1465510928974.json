@@ -1,0 +1,44 @@
+{
+  "@graph": [
+    {
+      "@graph": [
+        {
+          "@id": "http://localhost:8080/resources/pipelines/created-1465510928974",
+          "@type": [
+            "http://linkedpipes.com/ontology/Pipeline"
+          ]
+        },
+        {
+          "@id": "http://localhost:8080/resources/pipelines/created-1465510928974/components/17163fd9-55c7-4bb8-b5d9-bc1d5b22ee19",
+          "@type": [
+            "http://linkedpipes.com/ontology/Component"
+          ],
+          "http://www.w3.org/2004/02/skos/core#prefLabel": "and a nice label",
+          "http://linkedpipes.com/ontology/template": {
+            "@id": "http://localhost:8080/resources/components/e-httpGetFile"
+          },
+          "http://linkedpipes.com/ontology/x": 440,
+          "http://linkedpipes.com/ontology/y": 400,
+          "http://purl.org/dc/terms/description": "description abc",
+          "http://linkedpipes.com/ontology/configurationGraph": {
+            "@id": "http://localhost:8080/resources/pipelines/created-1465510928974/components/17163fd9-55c7-4bb8-b5d9-bc1d5b22ee19/configuration"
+          }
+        }
+      ],
+      "@id": "http://localhost:8080/resources/pipelines/created-1465510928974"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "http://localhost/resources/configuration",
+          "@type": [
+            "http://plugins.linkedpipes.com/ontology/e-httpGetFile#Configuration"
+          ],
+          "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileUri": "http://example.org/file.extension",
+          "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileName": "filename.foobar"
+        }
+      ],
+      "@id": "http://localhost:8080/resources/pipelines/created-1465510928974/components/17163fd9-55c7-4bb8-b5d9-bc1d5b22ee19/configuration"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <div class="text-center">
+        <h2>Generate Code List</h2>
+    </div>
+    <br/>
+    <br/>
+
+    <form action="#" th:action="@{/transformation/codelist}" th:object="${codelistTransformation}" method="post"
+          role="form">
+
+        <input type="hidden" th:field="*{id}" th:value="${id}"/>
+        <input type="hidden" th:field="*{delimiterChar}" th:value="${delimiterChar}"/>
+        <input type="hidden" th:field="*{tableType}" th:value="${tableType}"/>
+        <th:block th:each="column, stat : *{columns}">
+            <input type="hidden" th:field="*{columns[__${stat.index}__]}" th:value="${column}"/>
+        </th:block>
+
+        <h3 class="text-center">General Information</h3>
+        <label for="budgetDataUrl">Url of the code list data to transform:</label>
+        <input id="budgetDataUrl" type="text" class="form-control" style="width: 100%;" readonly="readonly"
+               th:field="*{source}" th:value="${source}" aria-describedby="helpBlock"/>
+        <span id="helpBlock" class="help-block">
+            The URL the code list data will be downloaded from.
+        </span>
+
+        <label for="charset">Character set of the data</label>
+        <input id="charset" th:field="*{charset}" th:value="${charset}" class="form-control" style="width: 100%;"
+               aria-describedby="helpBlock"/>
+        <span id="helpBlock" class="help-block">
+            The character set of the data to download.
+        </span>
+
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
+            <label for="transformationName">Name of the transformation:</label>
+            <input id="transformationName" type="text" class="form-control" style="width: 100%;"
+                   th:field="*{name}" th:value="${name}" aria-describedby="helpBlock"/>
+            <span id="helpBlock" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></strong>
+                The name for the code list transformation.
+            </span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-error'">
+            <label for="description">Description:</label>
+            <input id="description" type="text" class="form-control" style="width: 100%;"
+                   th:field="*{description}" th:value="${description}" aria-describedby="helpBlock"/>
+            <span id="helpBlock" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></strong>
+                A brief Description
+            </span>
+        </div>
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('uri')} ? 'has-error'">
+            <label for="uri">Url of the code list:</label>
+            <input id="uri" type="text" class="form-control" style="width: 100%;"
+                   th:field="*{uri}" th:value="*{uri}" aria-describedby="helpBlock"/>
+            <span id="helpBlock" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('uri')}" th:errors="*{uri}"></span></strong>
+                The OpenBudgets.eu URL for the codelist. <em>Example: http://data.openbudgets.eu/resources/codelist/eu_budget_2014</em>
+            </span>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <h3 class="text-center">Column Mapping</h3>
+
+        <th:block th:each="slice, stat : *{slices}">
+
+            <div class="row well">
+                <div class="col-md-2">
+                    <label>Slicing</label><br/>
+                    <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" th:id="'slicingCheckbox'+${stat.index}"
+                           th:field="*{slices[__${stat.index}__].doSlice}"
+                           th:value="${slice.doSlice}"
+                           th:onchange="'javascript:enableStartAndEndField(' + ${stat.index} + ')'"
+                            aria-describedby="help-block"/>
+
+                    <span id="helpBlock" class="help-block">
+                        Slice the data
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('*{slices[__${stat.index}__].startRow}')} ? 'has-error'">
+                        <label th:for="'sliceStartRowInput'+${stat.index}">Start row</label>
+                        <input type="text" class="form-control" th:id="'sliceStartRowInput'+${stat.index}"
+                               th:field="*{slices[__${stat.index}__].startRow}"
+                               th:value="${slice.startRow}"
+                               th:disabled="${!slice.doSlice}"
+                               aria-describedby="helpBlock"/>
+                        <span id="helpBlock" class="help-block">
+                            <strong><span th:if="${#fields.hasErrors('*{slices[__${stat.index}__].startRow}')}"
+                                          th:errors="*{slices[__${stat.index}__].startRow}"></span></strong>
+                            The start row
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('*{slices[__${stat.index}__].startRow}')} ? 'has-error'">
+                    <label th:for="'sliceEndRowInput'+${stat.index}">End row</label>
+                    <input type="text" class="form-control" th:id="'sliceEndRowInput'+${stat.index}"
+                           th:field="*{slices[__${stat.index}__].endRow}"
+                           th:value="${slice.endRow}"
+                           th:disabled="${!slice.doSlice}"
+                           aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                        <strong><span th:if="${#fields.hasErrors('*{slices[__${stat.index}__].endRow}')}"
+                                th:errors="*{slices[__${stat.index}__].endRow}"></span></strong>
+                        The end row
+                    </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="col-md-2">
+                        <label>remove</label>
+                        <button type="submit" name="removeSlice" th:value="${stat.index}"
+                                class="btn btn-danger"><span
+                                class="glyphicon glyphicon-trash"></span></button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('*{slices[__${stat.index}__].keyColumn}')} ? 'has-error'">
+                    <label th:for="'keyColumnSel'+${stat.index}">Key column</label>
+                    <select class="form-control" style="width: 100%;"
+                            th:field="*{slices[__${stat.index}__].keyColumn}"
+                            th:id="'keyColumnSel'+${stat.index}"
+                            aria-describedby="helpBlock">
+                        <option value="">--- Choose the key column---</option>
+                        <option th:each="c : *{columns}"
+                                th:value="${c}"
+                                th:text="${c}">
+                        </option>
+                    </select>
+                    <span id="helpBlock" class="help-block">
+                        <strong><span th:if="${#fields.hasErrors('*{slices[__${stat.index}__].keyColumn}')}"
+                                      th:errors="*{slices[__${stat.index}__].keyColumn}"></span></strong>
+                        The key column
+                    </span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('*{slices[__${stat.index}__].labelColumn}')} ? 'has-error'">
+                    <label th:for="'labelColumnSel'+${stat.index}">Label column</label>
+                    <select class="form-control" style="width: 100%;"
+                            th:field="*{slices[__${stat.index}__].labelColumn}"
+                            th:id="'labelColumnSel'+${stat.index}"
+                            aria-describedby="helpBlock">
+                        <option value="">--- Choose the label column---</option>
+                        <option th:each="c : *{columns}"
+                                th:value="${c}"
+                                th:text="${c}">
+                        </option>
+                    </select>
+                    <span id="helpBlock" class="help-block">
+                        <strong><span th:if="${#fields.hasErrors('*{slices[__${stat.index}__].labelColumn}')}"
+                                      th:errors="*{slices[__${stat.index}__].labelColumn}"></span></strong>
+                        The label column
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+        <br/>
+
+        <div class="text-center">
+            <button class="btn btn-default" type="submit" name="addCode">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add another code
+            </button>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/actions :: actions"></div>
+    </form>
+
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+<script type="text/javascript">
+
+    function enableStartAndEndField(id) {
+        var slicingCheckbox = document.getElementById("slicingCheckbox" + id);
+        var sliceStartRowInput = document.getElementById("sliceStartRowInput" + id);
+        var sliceEndRowInput = document.getElementById("sliceEndRowInput" + id);
+
+        if (slicingCheckbox.checked) {
+            sliceStartRowInput.disabled = false;
+            sliceEndRowInput.disabled = false;
+        } else {
+            sliceStartRowInput.disabled = true;
+            sliceEndRowInput.disabled = true;
+        }
+    }
+
+    $(document).ready(function() {
+        // If scroll cookie is set, scroll to the position saved in the cookie.
+        if ( Cookies.get('scroll') !== null ) {
+            $(document).scrollTop( Cookies.get('scroll') );
+            Cookies.remove('scroll');
+        }
+
+        // When the form is submitted
+        $( "form" ).on( "submit", function() {
+            // Set a cookie that holds the scroll position.
+            Cookies.set('scroll', $(document).scrollTop());
+        });
+
+    });
+
+
+</script>
+</body>
+</html>

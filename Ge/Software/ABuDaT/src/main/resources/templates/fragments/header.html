@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/scripts :: scripts"></div>
+
+<body>
+<div th:fragment="header">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li role="presentation" th:class="${classActiveHome}">
+                        <a href="#" th:href="@{/}">Home</a>
+                    </li>
+                    <li role="presentation" th:class="${classActiveTransformations}">
+                        <a href="#" th:href="@{/transformations/data}">Data Transformations</a>
+                    </li>
+                    <li role="presentation" th:class="${classActiveCodeLists}">
+                        <a href="#" th:href="@{/transformations/codelist}">Codelist Transformations</a>
+                    </li>
+                    <li role="presentation" th:class="${classActiveInfo}">
+                        <a href="#" th:href="@{/information}">OpenBudgets.eu</a>
+                    </li>
+                    <li role="presentation" th:class="${classActiveAbout}">
+                        <a href="#" th:href="@{/about}">About ABuDaT</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div th:if="${error} != null">
+        <input type="text" style="display: none;" id="errorMsg" th:value="${error}"/>
+        <script type="text/javascript">
+            toastr.options.positionClass = "toast-top-full-width";
+            toastr.error(document.getElementById("errorMsg").value, "Error");
+        </script>
+    </div>
+    <div th:if="${success} != null">
+        <input type="text" style="display: none;" id="successMsg" th:value="${success}"/>
+        <script type="text/javascript">
+            toastr.options.positionClass = "toast-top-full-width";
+            toastr.success(document.getElementById("successMsg").value, "Success");
+        </script>
+    </div>
+</div>
+</body>
+
+</html>

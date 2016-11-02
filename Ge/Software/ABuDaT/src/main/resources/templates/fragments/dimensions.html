@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div th:fragment="core">
+    <h3 class="text-center">Core Dimensions of the dataset</h3>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('budgetaryUnit')} ? 'has-error'">
+        <label for="budgetaryUnit">Budgetary Unit</label>
+        <input id="budgetaryUnit" type="text" class="form-control"
+               th:field="*{budgetaryUnit}" aria-describedby="helpBlockBU"/>
+        <span id="helpBlockBU" class="help-block">
+                <strong>
+                    <span th:if="${#fields.hasErrors('budgetaryUnit')}" th:errors="*{budgetaryUnit}"></span>
+                </strong>
+                The budgetary unit dimension identifies the entity that plans the budget. <em>Example: http://dbpedia.org/resource/European_Union</em>
+            </span>
+    </div>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('fiscalPeriod')} ? 'has-error'">
+        <label for="fiscalPeriod">Fiscal Period:</label>
+        <input id="fiscalPeriod" type="text" class="form-control"
+               th:field="*{fiscalPeriod}" aria-describedby="helpBlockFP"/>
+        <span id="helpBlockFP" class="help-block">
+                <strong>
+                    <span th:if="${#fields.hasErrors('fiscalPeriod')}" th:errors="*{fiscalPeriod}"></span>
+                </strong>
+                The period of time reflected by the dataset. <em>Example: http://reference.data.gov.uk/id/year/2014</em>
+            </span>
+    </div>
+
+    <label for="opCharacter">Operation character:</label>
+    <select id="opCharacter" class="form-control" style="width: 100%;" th:field="*{operationCharacter}"
+            aria-describedby="helpBlockOC">
+        <option th:value="${null}">--- Optional ---- Operation character for the whole dataset ---</option>
+        <option th:each="o : ${T(de.uni.bonn.iai.eis.rdf.obeu.OperationCharacter).values()}" th:value="${o}"
+                th:text="${o.name}"></option>
+    </select>
+    <span id="helpBlockOC" class="help-block">
+        If the dataset contains only one type of operations, the global operation character can be choosen (optional).
+    </span>
+
+    <label for="buPhase">Budget Phase</label>
+    <select id="buPhase" class="form-control" style="width: 100%;" th:field="*{budgetPhase}"
+            aria-describedby="helpBlockBP">
+        <option th:value="${null}">--- Optional ---- Budget phase for the whole dataset ---</option>
+        <option th:each="p : ${T(de.uni.bonn.iai.eis.rdf.obeu.BudgetPhase).values()}" th:value="${p}"
+                th:text="${p.name}"></option>
+    </select>
+    <span id="helpBlockBP" class="help-block">
+        If all amounts in the data set capture the state of the budget at the same point in time, a global budget phase can be choosen (optional).
+    </span>
+</div>
+
+<div th:fragment="dimensions">
+    <h3 class="text-center">Custom Dimensions:</h3>
+    <div class="form-inline">
+        <th:block th:each="dimension, stat : *{customDimensions}">
+            <div class="row well">
+                <div class="col-md-8 form-group"
+                     th:classappend="${#fields.hasErrors('*{customDimensions[__${stat.index}__].iri}')} ? 'has-error'">
+                    <label>IRI:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customDimensions[__${stat.index}__].iri}" th:value="${dimension.iri}"
+                           aria-describedby="'helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customDimensions[__${stat.index}__].iri}')}"
+                                      th:errors="*{customDimensions[__${stat.index}__].iri}"></span>
+                            </strong>
+                                An IRI for the custom dimension.
+                        </span>
+                </div>
+                <div class="col-md-4 form-group"
+                     th:classappend="${#fields.hasErrors('*{customDimensions[__${stat.index}__].subPropertyOf}')} ? 'has-error'">
+                    <label>Sub property of:</label>
+                    <select class="form-control" style="width: 100%;"
+                            th:field="*{customDimensions[__${stat.index}__].subPropertyOf}"
+                            th:id="'custDimTypeSel'+${stat.index}" aria-describedby="helpBlock">
+                        <option value="">--- Choose a type ---</option>
+                        <optgroup label="Core Dimensions">
+                            <option th:each="c : ${@coreClassifications}"
+                                    th:value="${c.iri}" th:text="${c.label}"></option>
+                        </optgroup>
+                    </select>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customDimensions[__${stat.index}__].subPropertyOf}')}"
+                                      th:errors="*{customDimensions[__${stat.index}__].subPropertyOf}"></span>
+                            </strong>
+                            The type of the dimension.
+                        </span>
+                </div>
+                <div class="col-md-4 form-group"
+                     th:classappend="${#fields.hasErrors('*{customDimensions[__${stat.index}__].label}')} ? 'has-error'">
+                    <label>Label:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customDimensions[__${stat.index}__].label}" th:value="${dimension.label}"
+                           aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customDimensions[__${stat.index}__].label}')}"
+                                      th:errors="*{customDimensions[__${stat.index}__].label}"></span>
+                            </strong>
+                            A label.
+                        </span>
+                </div>
+
+                <div class="col-md-8">
+                    <label>Comment:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customDimensions[__${stat.index}__].comment}"
+                           th:value="${dimension.comment}" aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            A comment describing the dimension.
+                        </span>
+                </div>
+                <div class="col-md-6 form-group"
+                     th:classappend="${#fields.hasErrors('*{customDimensions[__${stat.index}__].codeList}')} ? 'has-error'">
+                    <label>Code list:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customDimensions[__${stat.index}__].codeList}"
+                           th:value="${dimension.codeList}" aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                        <strong>
+                            <span th:if="${#fields.hasErrors('*{customDimensions[__${stat.index}__].codeList}')}"
+                                  th:errors="*{customDimensions[__${stat.index}__].codeList}"></span>
+                        </strong>
+                            A link to a code list.
+                    </span>
+                </div>
+                <div class="col-md-5 form-group"
+                     th:classappend="${#fields.hasErrors('*{customDimensions[__${stat.index}__].rangeProperty}')} ? 'has-error'">
+                    <label>Range:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customDimensions[__${stat.index}__].rangeProperty}"
+                           th:value="${dimension.rangeProperty}" aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                        <strong>
+                            <span th:if="${#fields.hasErrors('*{customDimensions[__${stat.index}__].rangeProperty}')}"
+                                  th:errors="*{customDimensions[__${stat.index}__].rangeProperty}"></span>
+                        </strong>
+                       The range of the dimension.
+                    </span>
+                </div>
+                <div class="col-md-1">
+                    <div class="col-md-1">
+                        <label>remove</label>
+                        <button type="submit" name="removeCustomDimension" th:value="${stat.index}"
+                                class="btn btn-danger"><span
+                                class="glyphicon glyphicon-trash"></span></button>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </th:block>
+    </div>
+    <br/>
+    <div class="text-center">
+        <button type="submit" name="addCustomDimension" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add custom dimension
+        </button>
+    </div>
+</div>
+</body>
+</html>
