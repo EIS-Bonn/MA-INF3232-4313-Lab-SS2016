@@ -1,0 +1,13 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX obeu-classification: <http://data.openbudgets.eu/ontology/dsdTurtle/classification/>
+PREFIX obeu-attribute:   <http://data.openbudgets.eu/ontology/dsdTurtle/attribute/>
+PREFIX obeu-operation: <http://data.openbudgets.eu/resource/codelist/operation-character/>
+
+INSERT DATA {
+    <http://data.openbudgets.eu/resource/dataset/esif-2014-2020> a qb:DataSet ;
+        qb:structure  <http://example.openbudgets.eu/ontology/dsdTurtle/esif-2014-2020> ;
+        obeu-classification:budgetaryUnit <http://dbpedia.org/page/European_Union> ;
+        obeu-attribute:currency <http://data.openbudgets.eu/codelist/currency/EUR> ;
+        obeu-classification:operationCharacter obeu-operation:expenditure .
+}

@@ -1,0 +1,21 @@
+PREFIX obeudim: <http://data.openbudgets.eu/ontology/dsdTurtle/classification/>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+
+DELETE { ?Observation obeudim:administrativeClassification ?Country }
+INSERT { ?Observation obeudim:administrativeClassification ?CountryURL }
+WHERE {
+        ?Observation obeudim:administrativeClassification ?Country
+        BIND(REPLACE(?Country, " ", "_") AS ?x)
+        BIND(URI(CONCAT("http://dbpedia.org/page/",?x)) AS ?CountryURL)
+};
+
+DELETE { ?Observation obeudim:fund ?Fund }
+INSERT { ?Observation obeudim:fund ?FundURL }
+WHERE {
+        ?Observation obeudim:fund ?Fund
+        BIND(REPLACE(?Fund, " ", "_") AS ?x)
+        BIND(URI(CONCAT("http://dbpedia.org/page/",?x)) AS ?FundURL)
+};
+
+INSERT { ?Observation qb:DataSet <http://data.openbudgets.eu/resource/dataset/ESIF-2014-2020> }
+WHERE { ?Observation a qb:Observation }

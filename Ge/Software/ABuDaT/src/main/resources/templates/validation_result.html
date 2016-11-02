@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <div class="text-center">
+        <h2>Data Cube Validation</h2>
+    </div>
+    <br/>
+    <br/>
+    <th:block th:object="${validation}">
+
+        Validated dataset:
+        <strong>
+            <span th:text="${validation.transformationName}"></span>
+        </strong>
+        <br/>
+
+        Date executed:
+        <strong>
+            <span th:text="${validation.executionDate}"></span>
+        </strong>
+        <br/>
+
+        Description:
+        <strong>
+            <span th:text="${validation.dsdLabel}"></span>
+        </strong>
+        <br/>
+
+        Validation Result:
+        <strong>
+            <span th:if="${validation.validationResult.passed}"  style="color:green">Passed</span>
+            <span th:if="${not validation.validationResult.passed}"  style="color:red">Failed</span>
+        </strong>
+        <br/>
+
+        <br/>
+        <br/>
+        <br/>
+        <h4 class="text-center">Validation Report:</h4>
+        <span th:utext="*{validationReport}"></span>
+    </th:block>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

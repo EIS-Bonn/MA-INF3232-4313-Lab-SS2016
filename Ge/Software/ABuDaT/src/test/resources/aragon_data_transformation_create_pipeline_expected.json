@@ -1,0 +1,697 @@
+[ {
+  "@graph" : [ {
+    "@id" : "http://example.com/pipeline/1",
+    "@type" : [ "http://linkedpipes.com/ontology/Pipeline" ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "ABuDaT example: Aragon expenditures 2016"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/2",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-graphMerger"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "900"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "300"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "GraphMerger"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/6",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/6/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "350"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "800"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "insert dsd data"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/11",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/11/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/l-filesToLocal"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "1200"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "600"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "copy result to local file system"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "FilesToLocal"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/10",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/10/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-rdfToFile"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "1200"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "500"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "RdfToFile"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/7",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/7/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "800"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "500"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "insert qb:Dimension triples"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SpaqrlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/4",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/4/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "350"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "600"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "update missing dimensions"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/1",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/1/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-tabularUv"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "600"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "300"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "mapping to obeu data model"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "Mapping"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/5",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/5/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "350"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "700"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "insert dsd"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/9",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/9/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "800"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "800"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "add uri prefixes to values"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/8",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/8/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "800"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "600"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "insert custom dimensions"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/0",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/0/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/e-httpGetFile"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "300"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "300"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "download the data to transform"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "HttpGet"
+    } ]
+  }, {
+    "@id" : "http://example.com/component/3",
+    "@type" : [ "http://linkedpipes.com/ontology/Component" ],
+    "http://linkedpipes.com/ontology/configurationGraph" : [ {
+      "@id" : "http://example.com/component/3/configuration"
+    } ],
+    "http://linkedpipes.com/ontology/template" : [ {
+      "@id" : "http://example.com/component/t-sparqlUpdate"
+    } ],
+    "http://linkedpipes.com/ontology/x" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "350"
+    } ],
+    "http://linkedpipes.com/ontology/y" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "500"
+    } ],
+    "http://purl.org/dc/terms/description" : [ {
+      "@value" : "fix amounts decimal mark"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "@value" : "SparqlUpdate"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/2",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/2"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/3"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/6",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/6"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/7"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/0",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "FilesOutput"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/0"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputFiles"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/1"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/4",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/4"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/5"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/5",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/5"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/6"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/3",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/3"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/4"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/9",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/9"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/10"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/1",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/1"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/2"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/8",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/8"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/9"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/10",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputFile"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/10"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "FilesInput"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/11"
+    } ]
+  }, {
+    "@id" : "http://example.com/connection/7",
+    "@type" : [ "http://linkedpipes.com/ontology/Connection" ],
+    "http://linkedpipes.com/ontology/sourceBinding" : [ {
+      "@value" : "OutputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/sourceComponent" : [ {
+      "@id" : "http://example.com/component/7"
+    } ],
+    "http://linkedpipes.com/ontology/targetBinding" : [ {
+      "@value" : "InputRdf"
+    } ],
+    "http://linkedpipes.com/ontology/targetComponent" : [ {
+      "@id" : "http://example.com/component/8"
+    } ]
+  } ],
+  "@id" : "http://example.com/pipeline/1"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "INSERT DATA {\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix dbpedia: <http://dbpedia.org/resource/> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n@prefix obeu-attribute: <http://data.openbudgets.eu/ontology/dsd/attribute/> .\n@prefix obeu-measure: <http://data.openbudgets.eu/ontology/dsd/measure/> .\n@prefix obeu-operation: <http://data.openbudgets.eu/resource/codelist/operation-character/> .\n@prefix obeu-budgetphase: <http://data.openbudgets.eu/resource/codelist/budget-phase/> .\n@prefix obeu-currency: <http://data.openbudgets.eu/resource/codelist/currency> .\n\n<http://data.openbudgets.eu/resource/datasets/aragon-expenditure-2016> a qb:DataSet ;\n\tqb:structure <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> ;\n\tobeu-dimension:budgetaryUnit dbpedia:Aragon ;\n\tobeu-dimension:fiscalPeriod <http://reference.data.gov.uk/id/year/2016> ;\n\tobeu-attribute:currency <http://data.openbudgets.eu/codelist/currency/EUR> ;\n\tobeu-dimension:operationCharacter obeu-operation:Expenditure .\n}"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/6/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/l-filesToLocal#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/l-filesToLocal#path" : [ {
+      "@value" : "/tmp"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/11/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-rdfToFile#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileName" : [ {
+      "@value" : "data.ttl"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileType" : [ {
+      "@value" : "text/turtle"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/10/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "PREFIX qb: <http://purl.org/linked-data/cube#>\n\nINSERT { ?obs qb:dataSet ?ds }\nWHERE {\n  ?obs a qb:Observation .\n  ?ds a qb:DataSet .\n}"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/7/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "PREFIX qb: <http://purl.org/linked-data/cube#>\n\nINSERT { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> \"n.a.\" }\nWHERE {\n  ?subject a qb:Observation .\n  FILTER NOT EXISTS { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> _:a }\n};\nINSERT { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> \"n.a.\" }\nWHERE {\n  ?subject a qb:Observation .\n  FILTER NOT EXISTS { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> _:a }\n};\nINSERT { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> \"n.a.\" }\nWHERE {\n  ?subject a qb:Observation .\n  FILTER NOT EXISTS { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> _:a }\n};\nINSERT { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> \"n.a.\" }\nWHERE {\n  ?subject a qb:Observation .\n  FILTER NOT EXISTS { ?subject <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> _:a }\n};\n"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/4/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#advancedKey" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#autoAsString" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#baseUri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/observation/"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#column" : [ {
+      "@id" : "http://localhost/resources/temp"
+    }, {
+      "@id" : "http://localhost/resources/temp"
+    }, {
+      "@id" : "http://localhost/resources/temp"
+    }, {
+      "@id" : "http://localhost/resources/temp"
+    }, {
+      "@id" : "http://localhost/resources/temp"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#delimeter" : [ {
+      "@value" : ";"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#encoding" : [ {
+      "@value" : "ISO-8859-2"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#generateLabels" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#generateNew" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#hasHeader" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "true"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#ignoreBlankCell" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "true"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#ignoreMissingColumn" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "true"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#linesToIgnore" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#int",
+      "@value" : "0"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#quote" : [ {
+      "@value" : "\""
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#rowTriple" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#rowsClass" : [ {
+      "@value" : "http://purl.org/linked-data/cube#Observation"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#staticRowCounter" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#stripHeader" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#tableClass" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#tableSubject" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#tableType" : [ {
+      "@value" : "CSV"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#trimString" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#xlsAdvancedParser" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#ColumnInfo" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#name" : [ {
+      "@value" : "IMPORTE"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#type" : [ {
+      "@value" : "Decimal"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#uri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/measure/amount"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#ColumnInfo" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#name" : [ {
+      "@value" : "FINANCIACION"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#type" : [ {
+      "@value" : "String"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#uri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#ColumnInfo" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#name" : [ {
+      "@value" : "FUNCIONAL"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#type" : [ {
+      "@value" : "String"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#uri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#ColumnInfo" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#name" : [ {
+      "@value" : "ECONOMICA"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#type" : [ {
+      "@value" : "String"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#uri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification"
+    } ]
+  }, {
+    "@id" : "http://localhost/resources/temp",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-tabularUv#ColumnInfo" ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#name" : [ {
+      "@value" : "CENTRO GESTOR"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#type" : [ {
+      "@value" : "String"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/t-tabularUv#uri" : [ {
+      "@value" : "http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/1/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "INSERT DATA {\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix dbpedia: <http://dbpedia.org/resource/> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n@prefix obeu-attribute: <http://data.openbudgets.eu/ontology/dsd/attribute/> .\n@prefix obeu-measure: <http://data.openbudgets.eu/ontology/dsd/measure/> .\n@prefix obeu-operation: <http://data.openbudgets.eu/resource/codelist/operation-character/> .\n@prefix obeu-budgetphase: <http://data.openbudgets.eu/resource/codelist/budget-phase/> .\n@prefix obeu-currency: <http://data.openbudgets.eu/resource/codelist/currency> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> a qb:DataStructureDefinition ;\n\t<http://www.w3.org/2000/01/rdf-schema#label> \"Data structure definition for the expenditure part of the Aragonian budget (autonomous community in northeastern Spain).\" ;\n\tqb:component _:bNode .\n\n_:bNode qb:dimension obeu-dimension:budgetaryUnit ;\n\tqb:componentAttachment qb:DataSet .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:attribute obeu-attribute:currency ;\n\tqb:componentRequired true ;\n\tqb:componentAttachment qb:DataSet .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:dimension <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:dimension <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:dimension <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:dimension <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> qb:component _:bNode .\n\n_:bNode qb:measure obeu-measure:amount ;\n\tqb:componentAttachment qb:DataSet .\n}"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/5/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "DELETE { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> ?value }\nINSERT { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> ?valueWithPrefix }\nWHERE {\n        ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> ?value .\n        BIND(REPLACE(?value, \" \", \"_\") AS ?tmpValue)\n        BIND(URI(CONCAT(\"http://data.openbudgets.eu/resource/codelist/estructura_organica_aragon_2016/\",?tmpValue)) AS ?valueWithPrefix)\n};\nDELETE { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> ?value }\nINSERT { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> ?valueWithPrefix }\nWHERE {\n        ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> ?value .\n        BIND(REPLACE(?value, \" \", \"_\") AS ?tmpValue)\n        BIND(URI(CONCAT(\"http://data.openbudgets.eu/resource/codelist/estructura_funcional_aragon_2016/\",?tmpValue)) AS ?valueWithPrefix)\n};\nDELETE { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> ?value }\nINSERT { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> ?valueWithPrefix }\nWHERE {\n        ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> ?value .\n        BIND(REPLACE(?value, \" \", \"_\") AS ?tmpValue)\n        BIND(URI(CONCAT(\"http://data.openbudgets.eu/resource/codelist/estructura_economica_g_aragon_2016/\",?tmpValue)) AS ?valueWithPrefix)\n};\nDELETE { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> ?value }\nINSERT { ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> ?valueWithPrefix }\nWHERE {\n        ?name <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> ?value .\n        BIND(REPLACE(?value, \" \", \"_\") AS ?tmpValue)\n        BIND(URI(CONCAT(\"http://data.openbudgets.eu/resource/codelist/estructura_financiacion_g_aragon_2016/\",?tmpValue)) AS ?valueWithPrefix)\n};\n"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/9/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "INSERT DATA {\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/administrativeClassification> a rdf:Property , qb:CodedProperty , qb:dimension ;\n\trdfs:label \"Organization managing the planned budget\" ;\n\trdfs:comment \"The administrative classification is organized hierarchical in four levels.\" ;\n\trdfs:subPropertyOf obeu-dimension:administrativeClassification ;\n\trdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;\n\tqb:codeList <http://data.openbudgets.eu/resource/codelist/estructura_organica_aragon_2016> ;\n\trdfs:isDefinedBy <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> .\n\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/functionalClassification> a rdf:Property , qb:CodedProperty , qb:dimension ;\n\trdfs:label \"Functional Classification\" ;\n\trdfs:comment \"Classifies expenditures by general government sector and by the purpose of the expenditure. The functional classification is organized hierarchical into groups, functions, sub-functions and programs.\" ;\n\trdfs:subPropertyOf obeu-dimension:functionalClassification ;\n\trdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;\n\tqb:codeList <http://data.openbudgets.eu/resource/codelist/estructura_funcional_aragon_2016> ;\n\trdfs:isDefinedBy <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> .\n\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/economicClassification> a rdf:Property , qb:CodedProperty , qb:dimension ;\n\trdfs:label \"Economic Classification\" ;\n\trdfs:comment \"Identifies the type of expenditure incurred or source of revenues. The economic classification is organized hierarchical into chapters, articles, concepts, and sub-concepts. This dimension is used for both, expenditure and revenue.\" ;\n\trdfs:subPropertyOf obeu-dimension:economicClassification ;\n\trdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;\n\tqb:codeList <http://data.openbudgets.eu/resource/codelist/estructura_economica_g_aragon_2016> ;\n\trdfs:isDefinedBy <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> .\n\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix qb: <http://purl.org/linked-data/cube#> .\n@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .\n\n<http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016/dimension/fundingClassification> a rdf:Property , qb:CodedProperty , qb:dimension ;\n\trdfs:label \"Funding Classification\" ;\n\trdfs:comment \"Describes the origin of the funding. The funding classification is organized hierarchical into origin, fund, and program. This dimension is used for both, expenditure and revenue.\" ;\n\trdfs:subPropertyOf obeu-dimension:classification ;\n\trdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;\n\tqb:codeList <http://data.openbudgets.eu/resource/codelist/estructura_financiacion_g_aragon_2016> ;\n\trdfs:isDefinedBy <http://data.openbudgets.eu/ontology/dsd/aragon-budget-exp-2016> .\n\n}"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/8/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/e-httpGetFile#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileName" : [ {
+      "@value" : "data.csv"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileUri" : [ {
+      "@value" : "https://raw.githubusercontent.com/openbudgets/datasets/master/Aragon/2016/raw/Partidas%20Gastos%20Consolidado.csv"
+    } ],
+    "http://plugins.linkedpipes.com/ontology/e-httpGetFile#hardRedirect" : [ {
+      "@type" : "http://www.w3.org/2001/XMLSchema#boolean",
+      "@value" : "false"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/0/configuration"
+}, {
+  "@graph" : [ {
+    "@id" : "http://localhost/resources/configuration",
+    "@type" : [ "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#Configuration" ],
+    "http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#query" : [ {
+      "@value" : "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nDELETE { ?s ?p ?amount . }\nINSERT { ?s ?p ?amountFixed . }\nWHERE {\n  ?s ?p ?amount .\n  FILTER(datatype(?amount) = xsd:decimal)\n  FILTER(REGEX(str(?amount), \"^[0-9.]+,[0-9]{1,2}$\")) .\n  BIND(REPLACE(str(?amount), \"\\\\.\", \"\") AS ?tmp1)\n  BIND(REPLACE(str(?tmp1), \",\", \".\") AS ?tmp)\n  BIND(STRDT(?tmp, xsd:decimal) AS ?amountFixed)\n}"
+    } ]
+  } ],
+  "@id" : "http://example.com/component/3/configuration"
+} ]

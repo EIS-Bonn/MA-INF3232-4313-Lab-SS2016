@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <div class="text-center">
+        <h2>Transform budget data</h2>
+    </div>
+
+    <h3>Please choose the budget data to transform</h3>
+
+    <!--<p>Enter a URL or choose a file to upload.</p>-->
+    <!--<form action="#" th:action="@{/start}" th:object="${chooseInput}" method="post" enctype="multipart/form-data"-->
+    <form action="#" th:action="@{/transformation/data/start}" th:object="${chooseInput}" method="post"
+          enctype="multipart/form-data"
+          class="form-vertical" role="form">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="source">Budget data</label>
+                <input id="source" type="text" class="form-control" placeholder="URL" th:field="*{source}"
+                       th:value="${source}" aria-describedby="helpBlock"/>
+                <span id="helpBlock" class="help-block">
+                    The URL of the data to download.
+                </span>
+            </div>
+            <div class="col-md-10">
+                <label for="charset">The character set of the data:</label>
+                <input id="charset" type="text" class="form-control" th:field="*{charset}"
+                       th:value="${charset}" aria-describedby="helpBlock"/>
+                <span id="helpBlock" class="help-block">
+                    The character set of the data.
+                </span>
+            </div>
+            <div class="col-md-2">
+                <label>Header Row</label><br/>
+                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" th:field="*{hasHeader}"
+                       th:value="${hasHeader}" aria-describedby="helpBlock"/>
+                <span id="helpBlock" class="help-block">
+                        Data has header row
+                </span>
+            </div>
+        </div>
+        <!--<br/>-->
+        <!--<div class="form-group">-->
+        <!--<label class="btn btn-default" for="file-selector">Alternative: Choose a file to upload</label>-->
+        <!--<input id="file-selector" type="file" name="thefile" style="display:none;"/>-->
+        <!--</div>-->
+        <br/>
+        <button id="submit-button" onclick="waitingDialog.show('Analyzing...')" type="submit" class="btn btn-default">
+            Submit
+        </button>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

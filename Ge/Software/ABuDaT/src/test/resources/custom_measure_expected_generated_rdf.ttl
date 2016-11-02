@@ -1,0 +1,9 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+
+<http://example.com/measure> a rdf:Property , qb:MeasureProperty ;
+	rdfs:label "A label." ;
+	rdfs:comment "A comment." ;
+	rdfs:subPropertyOf <http://data.openbudgets.eu/ontology/dsd/measure/amount> ;
+	rdfs:isDefinedBy <http://example.com/dsd/foobar> .

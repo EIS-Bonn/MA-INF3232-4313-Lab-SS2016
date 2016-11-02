@@ -1,0 +1,41 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .
+@prefix obeu-attribute: <http://data.openbudgets.eu/ontology/dsd/attribute/> .
+@prefix obeu-measure: <http://data.openbudgets.eu/ontology/dsd/measure/> .
+@prefix obeu-operation: <http://data.openbudgets.eu/resource/codelist/operation-character/> .
+@prefix obeu-budgetphase: <http://data.openbudgets.eu/resource/codelist/budget-phase/> .
+@prefix obeu-currency: <http://data.openbudgets.eu/resource/codelist/currency> .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> a qb:DataStructureDefinition ;
+	qb:component _:node1au7vlbuhx1 .
+
+_:node1au7vlbuhx1 qb:dimension obeu-dimension:budgetaryUnit ;
+	qb:componentAttachment qb:DataSet .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> qb:component _:node1au7vlbuhx2 .
+
+_:node1au7vlbuhx2 qb:attribute obeu-attribute:currency ;
+	qb:componentRequired true ;
+	qb:componentAttachment qb:DataSet .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> qb:component _:node1au7vlbuhx3 .
+
+_:node1au7vlbuhx3 qb:dimension <http://example.com/dimension/a> .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> qb:component _:node1au7vlbuhx4 .
+
+_:node1au7vlbuhx4 qb:dimension <http://example.com/dimension/b> .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> qb:component _:node1au7vlbuhx5 .
+
+_:node1au7vlbuhx5 qb:measure <http://example.com/measure/a> ;
+	qb:componentAttachment qb:DataSet .
+
+<http://data.openbudgets.eu/ontology/dsd/ESIF-2014-2020> qb:component _:node1au7vlbuhx6 .
+
+_:node1au7vlbuhx6 qb:measure <http://example.com/measure/b> ;
+	qb:componentAttachment qb:DataSet .

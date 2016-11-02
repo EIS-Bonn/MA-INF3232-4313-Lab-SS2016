@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <h2>Executions</h2>
+    <br/>
+    Transformation:
+    <strong>
+        <span th:text="${transformationName}"></span>
+    </strong>
+    <br/>
+
+    Description:
+    <strong>
+        <span th:text="${transformationDescription}"></span>
+    </strong>
+    <br/>
+    <br/>
+    <table class="table table-hover">
+        <tr>
+            <th style="text-align: left">#</th>
+            <th style="text-align: left">Executed at</th>
+            <th style="text-align: left">Status</th>
+            <th style="text-align: center">Download</th>
+            <th style="text-align: center">Open</th>
+            <th style="text-align: center">Upload</th>
+            <th style="text-align: center">Delete</th>
+        </tr>
+
+        <th:block th:each="e, stat : *{executions}">
+            <tr>
+                <td style="text-align: left" th:text="${stat.index+1}"></td>
+                <td style="text-align: left" th:text="${e.dateExecuted}"></td>
+                <td style="text-align: left" th:text="${e.executionStatus}"></td>
+
+                <td style="text-align: center">
+                    <a target="_blank" th:href="@{/transformation/codelist/executions/result.ttl(uri=${e.executionUri})}"><span
+                            class="glyphicon glyphicon-save"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a target="_blank" th:href="@{/transformation/codelist/executions/show(id=${e.pipelineId}, execution=${e.executionUri})}"><span
+                            class="glyphicon glyphicon-check"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a th:href="@{/transformation/codelist/executions/upload(id=${e.pipelineId}, uri=${e.executionUri})}"><span
+                            class="glyphicon glyphicon-upload"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a th:href="@{/transformation/codelist/executions/delete(id=${e.pipelineId}, execution=${e.executionUri})}"><span
+                            class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
