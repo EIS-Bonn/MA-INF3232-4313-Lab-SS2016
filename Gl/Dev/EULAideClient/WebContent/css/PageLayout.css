@@ -1,6 +1,12 @@
 @CHARSET "ISO-8859-1";
 /* Tell the browser to render HTML 5 elements as block */
 
+* {
+    box-sizing: border-box;
+    -moz-box-sizing : border-box;
+    -webkit-box-sizing : border-box;
+}
+
 body{	
 	background-position: right top;
 	background-attachment: fixed;
@@ -10,8 +16,10 @@ body{
 }
 header {
 	position:fixed;
-	top:0px;
-	left:0px;
+	display : inline-block;
+	top:0;
+	left:0;
+	height: 40px;
 	margin-right: 100px;		
 	width: 100%;	
 	background-color:Black;
@@ -19,22 +27,21 @@ header {
 	z-index: 1;
 	border-bottom:1px double Orange;
 }
-h1{
+h4{
 	color:white;	
 	margin-left:10px;
 	font-family: Copperplate, "Copperplate Gothic Light", fantasy;	
 }
-h1 .span1{
+h4 .span1{
 	color:red;	
 }
-h1 .span2{
+h4 .span2{
 	color:white;
 	font-family: "Brush Script MT", cursive;
 }
-
 section{		
 	position:fixed;	
-	top:80px;
+	top:40px;
 	bottom:32px;
 	width: 100%;
 	overflow: auto;	
@@ -82,12 +89,22 @@ footer {
 }
 .inputArea{	
 	position:absolute;	
-	height:120px;
+	height:100px;
 	width : 98%;
 	top:5px;
 	display: block;
 	border-bottom:1px double Orange;	
 	padding:5px;	
+}
+.inputArea .inputs{
+	position : relative;	
+	height: 100px;
+}
+.inputArea .inputs form{
+	display : block;
+	position : relative;
+	width : 100%;
+	margin-bottom: 10px;
 }
 .fileInput{
 	display: inline;
@@ -149,14 +166,14 @@ footer {
 }
 .buttonProp1{
 	height: 80px;
-	width: 100px !important;
-	border-bottom: 2px solid MediumBlue;
+	width: 100px !important;	
+	box-shadow : 0px 2px 4px 0px rgba(0,0,0,0.2);
 	border-radius: 10px;
 }
 .buttonProp2{
 	height: 35px;
 	width: 100px !important;
-	border-bottom: 2px solid MediumBlue;
+	box-shadow : 0px 2px 4px 0px rgba(0,0,0,0.2);
 	border-radius: 10px;
 }
 
@@ -166,6 +183,9 @@ footer {
 	height: 80px;
 	width: 500px;
 	/*white-space: nowrap;*/		
+}
+.fileDetails .alertDiv{
+	border: 1px solid Silver;
 }
 
 .alert-warning, .alert-success, .alert-danger{
@@ -227,3 +247,33 @@ footer {
 	margin-top: 20px;
 	margin-left: 20px;
 }
+
+.help .helpVideo{
+	border: 1px solid black;
+}
+#loader1{
+	display : none;
+	position: absolute;
+	margin-top: 220px;
+	margin-left: 42%;	
+}
+#spinner1{
+	display : none;
+	position : absolute;
+	margin-top: 0;
+	margin-left: 0;
+}
+#spinner2{
+	display : none;
+	position : absolute;
+	margin-top: 20px;
+	margin-left: 65px;
+	animation-direction: reverse;
+}
+#spinner3{
+	display : none;
+	position : absolute;
+	margin-top: 60px;
+	margin-left: 60px;
+}
+

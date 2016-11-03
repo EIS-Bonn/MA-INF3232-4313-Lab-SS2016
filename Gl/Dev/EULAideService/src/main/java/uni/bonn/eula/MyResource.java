@@ -34,7 +34,6 @@ import uni.bonn.eula.model.*;
 public class MyResource {
 
     /**
-     * For testing resource availability:
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
      *
@@ -47,11 +46,30 @@ public class MyResource {
         return "Ready to Produce Summary!";
     }
     
-    /**
-     * Resource handling HTTP POST requests. The input media type must be multipart/form-data (file). 
-     * The returned object will be sent to the client as "application/xml" media type.
-     * @return application/xml
-     */    
+    @Path("getname")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getName(@QueryParam("firstname") String firstName, @QueryParam("lastname") String lastName){
+    	return "{name:" + firstName+ " " + lastName + "}";
+    }
+    
+    @Path("getthread")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public LicenseAgreement getThread() throws Exception{
+    	ThreadDao tDao = new ThreadDao();
+    	return tDao.getThreadForDoc(getClass().getResource("/docs/Gigzolo rehearsal.pdf"));
+    }
+    
+    @Path("getsample")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Summary getSample() throws Exception{
+    	ThreadDao tDao = new ThreadDao();
+    	return tDao.getSummaryForDoc(getClass().getResource("/docs/Gigzolo rehearsal.pdf"));
+    }
+    
     @POST
 	@Path("/fileUploadXML")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -60,12 +78,12 @@ public class MyResource {
 		@FormDataParam("file") InputStream uploadedInputStream,
 		@FormDataParam("file") FormDataContentDisposition fileDetail) throws Exception {
 
-    	File file = new File("C://EulaFiles");    	
+    	File file = new File("D://EulaFiles");    	
     	if(!file.exists()){
     		if(file.mkdir()){
     			System.out.println(file.toString() + " has been created!");
     		}else{
-    			System.out.println("Failed to create directory \"C://EulaFiles/\"");
+    			System.out.println("Failed to create directory \"D:://EulaFiles/\"");
     		}
     	}
     	
@@ -87,12 +105,7 @@ public class MyResource {
 				.build();
 	}
     
-      
-    /**
-     * Resource handling HTTP POST requests. The input media type must be multipart/form-data (file). 
-     * The returned object will be sent to the client as "application/json" media type.
-     * @return application/json
-     */  
+    
     @POST
 	@Path("/fileUploadJSON")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -101,13 +114,13 @@ public class MyResource {
 		@FormDataParam("file") InputStream uploadedInputStream,
 		@FormDataParam("file") FormDataContentDisposition fileDetail) throws Exception {
 
-    	File file = new File("C://EulaFiles");
+    	File file = new File("D://EulaFiles");
     	
     	if(!file.exists()){
     		if(file.mkdir()){
     			System.out.println(file.toString() + " has been created!");
     		}else{
-    			System.out.println("Failed to create directory \"C://EulaFiles/\"");
+    			System.out.println("Failed to create directory \"D:://EulaFiles/\"");
     		}
     	}
     		
@@ -127,13 +140,9 @@ public class MyResource {
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Methods", "*")
 				.build();
+
 	}
 
-    /**
-     * Resource handling HTTP POST requests. The input media type must text/plain (URL). 
-     * The returned object will be sent to the client as "application/xml" media type.
-     * @return application/xml
-     */  
     @POST
 	@Path("/urlUploadXML")  
     @Consumes(MediaType.TEXT_PLAIN)
@@ -149,13 +158,13 @@ public class MyResource {
     	String title = doc.title();
     	System.out.print("Title: "+title);
 
-    	File file = new File("C://EulaFiles");
+    	File file = new File("D://EulaFiles");
     	
     	if(!file.exists()){
     		if(file.mkdir()){
     			System.out.println(file.toString() + " has been created!");
     		}else{
-    			System.out.println("Failed to create directory \"C://EulaFiles/\"");
+    			System.out.println("Failed to create directory \"D:://EulaFiles/\"");
     		}
     	}
     	
@@ -180,11 +189,7 @@ public class MyResource {
 				.build();
 	}
     
-    /**
-     * Resource handling HTTP POST requests. The input media type must text/plain (URL). 
-     * The returned object will be sent to the client as "application/json" media type.
-     * @return application/json
-     */  
+    
     @POST
 	@Path("/urlUploadJSON")  
     @Consumes(MediaType.TEXT_PLAIN)
@@ -200,13 +205,13 @@ public class MyResource {
     	String title = doc.title();
     	System.out.print("Title: "+title);
 
-    	File file = new File("C://EulaFiles");
+    	File file = new File("D://EulaFiles");
     	
     	if(!file.exists()){
     		if(file.mkdir()){
     			System.out.println(file.toString() + " has been created!");
     		}else{
-    			System.out.println("Failed to create directory \"C://EulaFiles/\"");
+    			System.out.println("Failed to create directory \"D:://EulaFiles/\"");
     		}
     	}
     	
@@ -234,7 +239,7 @@ public class MyResource {
 	// save uploaded file to new location
 	private void writeToFile(InputStream uploadedInputStream,
 		String uploadedFileLocation) {
-		
+
 		try {
 			OutputStream out = new FileOutputStream(new File(
 					uploadedFileLocation));
@@ -264,13 +269,6 @@ public class MyResource {
 		return filename;
 	}
     
-	/**
-	 * For testing the json output format
-	 * 
-	 * @param path
-	 * @return
-	 * @throws Exception
-	 */
     @Path("getsummaryJSON/{path}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -286,13 +284,6 @@ public class MyResource {
 				.build();
     }
     
-    /**
-     * For testing the xml output format
-     * 
-     * @param path
-     * @return
-     * @throws Exception
-     */
     @Path("getsummaryXML/{path}")
     @GET
     @Produces(MediaType.APPLICATION_XML)

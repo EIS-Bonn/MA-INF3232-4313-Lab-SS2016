@@ -26,7 +26,7 @@ import java.net.URI;
  *
  */
 public class Main {
-    // Base URI the Grizzly HTTP server will listen on
+    // Base URI the Gri	zzly HTTP server will listen on
     public static final String BASE_URI = "http://localhost:8081/";
 	
 	
@@ -38,7 +38,16 @@ public class Main {
 		Gate.init();
 		
 	}
+/*
+	public static OntoRootApp getInstance() throws GateException{
+		if(instance == null){
+			instance = new OntoRootApp();
+		}
 
+		return instance;
+	}
+*/		
+	
 	
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -49,12 +58,15 @@ public class Main {
         // in uni.bonn.eula package
         final ResourceConfig rc = new ResourceConfig().packages("uni.bonn.eula");
         rc.register(MultiPartFeature.class);
+        
+        HttpServer webServer = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI),rc);
+        
+        
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI),rc);
+        return webServer;
     }
-
 
     /**
      * Main method.

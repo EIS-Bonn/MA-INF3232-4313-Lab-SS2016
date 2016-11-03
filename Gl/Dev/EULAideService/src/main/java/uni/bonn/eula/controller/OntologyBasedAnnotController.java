@@ -207,8 +207,6 @@ public class OntologyBasedAnnotController {
 		
 		ArrayList<String> list = new ArrayList<String>();		
 		AnnotationSet annots = gr.getAnnotations(annotType);
-
-		System.out.println("Annotation Set Size = " + annots.size());
 		
 		SortedAnnotationList sortedAnnots = new SortedAnnotationList();		
 		for(Annotation an: annots){
@@ -246,23 +244,56 @@ public class OntologyBasedAnnotController {
 			
 			if(a.getFeatures().get("generalAction") != null){
 				
+				String id = Integer.toString(a.getId());
+				annotation.put("id", id);
+				
 				String actionGeneral = a.getFeatures().get("generalAction").toString();				
 				annotation.put("generalAction", actionGeneral);					
 				
 				String str = gr.getContentFromAnnot(a);				
-				annotation.put("annotation", str);		
+				annotation.put("annotation", str);
+				
+				if(a.getFeatures().get("relatedPermission") != null){				
+					
+					String ra = a.getFeatures().get("relatedPermission").toString();
+					
+					String[] temp1 = ra.split("start=");
+					String[] temp2 = temp1[0].split(":");
+					String[] temp3 = temp2[1].split(";");
+					String[] temp4 = temp3[0].split("=");
+					annotation.put("relatedAnnot"+temp4[0].replaceAll("\\s+", ""), temp4[1]);
+					
+					String[] temp5 = temp3[1].split("=");
+					annotation.put("relatedAnnot"+temp5[0].replaceAll("\\s+", ""), temp5[1]);					
+				}
 				
 				jsonAnnot.putAll(annotation);				
 				list.add(jsonAnnot); 
 			}
 			
-			if(a.getFeatures().get("advancedAction") != null){					
+			if(a.getFeatures().get("advancedAction") != null){	
+				
+				String id = Integer.toString(a.getId());
+				annotation.put("id", id);
 				
 				String actionAdvance = a.getFeatures().get("advancedAction").toString();				
 				annotation.put("advancedAction", actionAdvance);				
 				
 				String str = gr.getContentFromAnnot(a);				
 				annotation.put("annotation", str);		
+				
+				if(a.getFeatures().get("relatedPermission") != null){
+					String ra = a.getFeatures().get("relatedPermission").toString();
+					
+					String[] temp1 = ra.split("start=");	
+					String[] temp2 = temp1[0].split(":");	
+					String[] temp3 = temp2[1].split(";");					
+					String[] temp4 = temp3[0].split("=");
+					annotation.put("relatedAnnot"+temp4[0].replaceAll("\\s+", ""), temp4[1]);					
+
+					String[] temp5 = temp3[1].split("=");
+					annotation.put("relatedAnnot"+temp5[0].replaceAll("\\s+", ""), temp5[1]);
+				}
 				
 				jsonAnnot.putAll(annotation);				
 				list.add(jsonAnnot); 
@@ -300,16 +331,16 @@ public class OntologyBasedAnnotController {
 			str = str.replaceAll("'d", " would");
 			str = str.replaceAll("'m", " am");
 			str = str.replaceAll("'ll", " will");
-			str = str.replaceAll("Did'nt", "Did not");
-			str = str.replaceAll("did'nt ", "did not");
+			str = str.replaceAll("Didn't", "Did not");
+			str = str.replaceAll("didn't ", "did not");
 			str = str.replaceAll("won't", "will not");
 			str = str.replaceAll("Won't", "Will not");
-			str = str.replaceAll("Had'nt", "Had not");
-			str = str.replaceAll("had'nt", "had not");
+			str = str.replaceAll("Hadn't", "Had not");
+			str = str.replaceAll("hadn't", "had not");
 			str = str.replaceAll("Can't", "Cannot");
 			str = str.replaceAll("can't", "cannot");
-			str = str.replaceAll("Should'nt", "Should not");
-			str = str.replaceAll("should'nt", "should not");
+			str = str.replaceAll("Shouldn't", "Should not");
+			str = str.replaceAll("shouldn't", "should not");
 			str = str.replaceAll("'ve", "have");
 			str = str.replaceAll("'ve", "have");
 			str = str.replaceAll("'re", "are");

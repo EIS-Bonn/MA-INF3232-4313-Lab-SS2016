@@ -1,25 +1,30 @@
 <div class="center">
-	<div class="inputArea">				
-		<form class="fileInput">			
-			<label	class="inputText">File input </label>
-			<div class="inputBox"> 
-				<input 	class="form-control"	
-						accept=".txt, .pdf"														
-						type="file"						
-						onchange="angular.element(this).scope().setFile(this)">
-			</div>			
-		</form>	
-		<form class="urlInput">
-			<label class="inputText">URL input </label>
-			<div class="inputBox">
-				<input type="text"				
-				data-ng-model="inputUrl" 
-				data-ng-change="validateUrl()"
-				size="43">				
-			</div>
-		</form>	
+	<div class="inputArea">	
+		<div class="inputs col-md-4">
+			<form class="file">
+				<div>
+					<div class="input-group" ng-class="{'has-error': fileInput.fileIn.$invalid}">
+						<span class="input-group-addon">
+							<i class="fa fa-file-text" aria-hidden="true"></i>
+							<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</span>
+						<input 	class="form-control" accept=".txt, .pdf" name="fileIn"													
+								type="file" onchange="angular.element(this).scope().setFile(this)">
+					</div>
+				</div>
+			</form>
+			<form class="url">
+				<div>
+					<div class="input-group">
+						<span class="input-group-addon"> URL </span>						
+						<input class="form-control" type="text" size="43"				
+							data-ng-model="inputUrl" data-ng-change="validateUrl()" placeholder="url input">						
+					</div>
+				</div>
+			</form>
+		</div>	
 		<div class="buttonGenerate">
-			<button class="btn btn-info buttonProp1"
+			<button class="btn btn-default buttonProp1"
 					type="button"
 					data-ng-click="generate()"
 					data-ng-disabled="!btnActive">
@@ -27,7 +32,7 @@
 			</button>
 		</div>	
 		<div class="buttonOpenAll">			
-			<button class="btn btn-info buttonProp2"	
+			<button class="btn btn-default buttonProp2"	
 					type="button"
 					data-ng-model="openAll"						
 					data-ng-click="openAll()"
@@ -36,7 +41,7 @@
 			</button>	
 		</div>
 		<div class="buttonCollapseAll">			
-			<button class="btn btn-info buttonProp2"	
+			<button class="btn btn-default buttonProp2"	
 					type="button"
 					data-ng-model="collapseAll"						
 					data-ng-click="collapseAll()"
@@ -45,14 +50,20 @@
 			</button>	
 		</div>	
 		<div class="fileDetails">
-			<div data-uib-alert data-ng-class="'alert-warning'" 	data-ng-if="panelStyle==0"><strong>{{errorMsg}}</strong></div>
-			<div data-uib-alert data-ng-class="'alert-success'" 	data-ng-if="panelStyle==1"><strong>Input: </strong><i>{{errorMsg}}</i></div>
-			<div data-uib-alert data-ng-class="'alert-danger'" 		data-ng-if="panelStyle==2">{{errorMsg}}</div>
+			<div class="alertDiv" data-uib-alert data-ng-class="'alert-warning'" 	data-ng-if="panelStyle==0"><strong>{{errorMsg}}</strong></div>
+			<div class="alertDiv" data-uib-alert data-ng-class="'alert-success'" 	data-ng-if="panelStyle==1"><strong>Input: </strong><i>{{errorMsg}}</i></div>
+			<div class="alertDiv" data-uib-alert data-ng-class="'alert-danger'" 		data-ng-if="panelStyle==2">{{errorMsg}}</div>
 		</div>		
 	</div>
 	
 	<div class="dataArea">
-		<div id="loader" class="center"></div>	
+		<div id="loader1" class="center">
+			<span>
+				<i id="spinner1" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+				<i id="spinner2" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+				<i id="spinner3" class="fa fa-cog fa-spin fa-fw"></i>
+			</span>
+		</div>	
 		<div id="dataTable" data-ng-show="responsed">			
 			<uib-tabset active="activeJustified" justified="true"> 
 				<uib-tab index="0" heading="General User" active>

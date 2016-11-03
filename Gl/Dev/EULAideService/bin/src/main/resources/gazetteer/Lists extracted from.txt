@@ -1,2 +1,0 @@
-industries: http://hbswk.hbs.edu/industries/
-file formats: http://www.online-convert.com/file-type

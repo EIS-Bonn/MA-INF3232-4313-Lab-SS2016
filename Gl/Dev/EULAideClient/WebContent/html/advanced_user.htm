@@ -1,13 +1,12 @@
-<!-- for advanced user - showing all terms but without icons -->
-
 <div class="container row">
 	<div class="columns" data-ng-show="responsed">
 		<ul class="annot">
 			<li class="header" style="background-color: rgb(0, 239, 0)">Permission</li>
 		</ul>	
 		<p class="well"
-			data-ng-repeat="a in permissionList track by $index">
-			<strong>[{{$index+1}}]</strong> {{getAnnot(a)}}
+			data-ng-repeat="a in permissions track by $index"
+			id="{{a.id}}Adv">
+			<strong>[{{$index+1}}]</strong> {{a.annotation}}
 		</p>	
 	</div>
 	
@@ -16,8 +15,15 @@
 			<li class="header" style="background-color: rgb(72, 120, 255)">Duty</li>
 		</ul>
 		<p class="well"
-			data-ng-repeat="a in dutyList track by $index">
-			<strong>[{{$index+1}}]</strong> {{getAnnot(a)}}
+			data-ng-repeat="a in duties track by $index"
+			id="{{a.id}}Adv">
+			<strong>[{{$index+1}}]</strong> {{a.annotation}}
+			<a href="#" 
+				data-ng-if="a.relatedAnnotType != undefined"
+				ng-click="toggleRelPermission(a.id, a.relatedAnnotId, 'Adv')"
+				style="float:right;display:block;text-decoration: none">
+				Related {{a.relatedAnnotType}}
+			</a>
 		</p>	
 	</div>
 	
@@ -26,8 +32,9 @@
 			<li class="header" style="background-color: rgb(255, 85, 70)">Prohibition</li>
 		</ul>
 		<p class="well"
-			data-ng-repeat="a in prohibitionList track by $index">
-			<strong>[{{$index+1}}]</strong> {{getAnnot(a)}}
+			data-ng-repeat="a in prohibitions track by $index"
+			id="{{a.id}}Adv">
+			<strong>[{{$index+1}}]</strong> {{a.annotation}}
 		</p>						
 	</div>
 </div>

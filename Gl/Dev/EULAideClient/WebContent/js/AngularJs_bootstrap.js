@@ -1,17 +1,11 @@
 var myApp = angular.module('myapp', ['ui.router','ngAnimate', 'ui.bootstrap']);
 
-myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
+myApp.controller('fileCtrl', ['$scope', '$http', '$sce', function($scope, $http, $sce){
 	
 	$scope.eulaTitle;
-	
-	$scope.permissionList = [];
-	$scope.pe = [];
-	
-	$scope.dutyList = [];
-	$scope.du = [];
-	
-	$scope.prohibitionList = [];
-	$scope.pr = [];
+	$scope.permissions = [];
+	$scope.duties = [];
+	$scope.prohibitions = [];	
 	
 	$scope.openAll = false;		
 	$scope.theFile;
@@ -26,8 +20,7 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 
 	/*
 	 * File format checking
-	 */
-	
+	 */	
 	var validFormats = ['txt', 'pdf'];	
 	$scope.setFile = function(element) {       
         	
@@ -47,8 +40,7 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 				$scope.panelStyle = 2;
 				$scope.errorMsg = "Please upload only '.txt' or '.pdf' file!";
 			} 				
-		} 
-		
+		} 		
 		$scope.$digest();       
     };  
 	
@@ -83,6 +75,7 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 		
 		$scope.responsed=false;	
 		$scope.displayChange("none", "block");
+
 		
 		if(lastInput === "File"){
 			
@@ -100,10 +93,16 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 			})    
 			.success(function(data, status, headers, config){
 	
-				summaryExtraction(data);
+				$scope.eulaTitle = data.subject;	
+				$scope.permissions = summaryExtraction(data, 'permissions');
+				$scope.duties = summaryExtraction(data, 'duties');
+				$scope.prohibitions = summaryExtraction(data, 'prohibitions');
 	
 				$scope.responsed=true;
 				$scope.displayChange("block", "none");
+				
+				// reseting all old settins
+				$scope.toggleRelPermission('','','');
 				
 				if(!hasData){
 					$scope.responsed=false;
@@ -131,7 +130,10 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 			})
 			.success(function(data, status, headers, config){
 	
-				summaryExtraction(data);		
+				$scope.eulaTitle = data.subject;	
+				$scope.permissions = summaryExtraction(data, 'permissions');
+				$scope.duties = summaryExtraction(data, 'duties');
+				$scope.prohibitions = summaryExtraction(data, 'prohibitions');
 				
 				$scope.responsed=true;
 				$scope.displayChange("block", "none");
@@ -162,102 +164,120 @@ myApp.controller('fileCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.displayChange = function(param1, param2){
 		document.getElementById("dataTable").style.display = param1;
-		document.getElementById("loader").style.display = param2;	
+		document.getElementById("loader1").style.display = param2;
+		document.getElementById("spinner1").style.display = param2;
+		document.getElementById("spinner2").style.display = param2;
+		document.getElementById("spinner3").style.display = param2;		
 	};
 
-	var summaryExtraction = function(summary){
+	var summaryExtraction = function(summary, annotType){
+		
+		$scope.annotations = [];
+		var annotationList;
 
-		$scope.eulaTitle = summary.subject;
 		hasData = true;
 		
-		$scope.permissionList = summary.permissions;
-		for(var i=0; i<$scope.permissionList.length; i++)
-			$scope.pe[i] = false;
+		if(annotType === 'permissions')
+			annotationList = summary.permissions;
+		else if(annotType === 'duties')
+			annotationList = summary.duties;
+		else if(annotType === 'prohibitions')
+			annotationList = summary.prohibitions;
 		
-		$scope.dutyList = summary.duties;
-		for(var i=0; i<$scope.dutyList.length; i++)
-			$scope.du[i] = false;
+		for(var i=0; i<annotationList.length; i++)
+		{			
+			var annot = annotationList[i];
+			var annotObj = {
+					annotation: undefined,
+					id : undefined,
+					generalAction : undefined,
+					advancedAction : undefined,
+					relatedAnnotId : undefined,
+					relatedAnnotType : undefined
+			}
+			var jsonObj = angular.fromJson(annot);			
+			
+			annotObj.annotation = jsonObj.annotation;
+			annotObj.id =  jsonObj.id;
+			if(jsonObj.hasOwnProperty("generalAction"))
+				annotObj.generalAction = jsonObj.generalAction;
+
+			if(jsonObj.hasOwnProperty("advancedAction"))
+				annotObj.advancedAction = jsonObj.advancedAction;
+
+			if(jsonObj.hasOwnProperty("relatedAnnotid"))
+				annotObj.relatedAnnotId = jsonObj.relatedAnnotid;
+			
+			if(jsonObj.hasOwnProperty("relatedAnnottype"))
+				annotObj.relatedAnnotType = jsonObj.relatedAnnottype;
+			
+			annotObj.isOpened = false;
+			$scope.annotations.push(annotObj);
+		}
 		
-		$scope.prohibitionList = summary.prohibitions;		
-		for(var i=0; i<$scope.prohibitionList.length; i++)
-			$scope.pr[i] = false;
-
-		$scope.columnsProperties = [			
-                    {"name":"Permission", 	"data":$scope.permissionList, 	"panel":"panel-success", 	"headerColor":"rgb(0, 239, 0)"},
-                    {"name":"Duty", 		"data":$scope.dutyList, 		"panel":"panel-info", 		"headerColor":"rgb(72, 120, 255)"},
-                    {"name":"Prohibition", 	"data":$scope.prohibitionList, 	"panel":"panel-danger", 	"headerColor":"rgb(255, 85, 70)"}
-                    ];
-
-		if($scope.permissionList.length === 0  && 	$scope.dutyList.length === 0 &&  $scope.prohibitionList.length === 0)
+		if($scope.annotations.length === 0 )
 			hasData = false;
+		return $scope.annotations;
 	}
-	
+		
 	$scope.openAll = function(){		
-		for(var i=0; i<$scope.pe.length; i++)
-			$scope.pe[i] = true;
+		for(var i=0; i<$scope.permissions.length; i++)
+			$scope.permissions[i].isOpened = true;
 		
-		for(var i=0; i<$scope.du.length; i++)
-			$scope.du[i] = true;
+		for(var i=0; i<$scope.duties.length; i++)
+			$scope.duties[i].isOpened = true;
 		
-		for(var i=0; i<$scope.pr.length; i++)
-			$scope.pr[i] = true;		
-	}	
+		for(var i=0; i<$scope.prohibitions.length; i++)
+			$scope.prohibitions[i].isOpened = true;		
+	}
+	
 	$scope.collapseAll = function(){
-		for(var i=0; i<$scope.pe.length; i++)
-			$scope.pe[i] = false;
+		for(var i=0; i<$scope.permissions.length; i++)
+			$scope.permissions[i].isOpened = false;
 		
-		for(var i=0; i<$scope.du.length; i++)
-			$scope.du[i] = false;
+		for(var i=0; i<$scope.duties.length; i++)
+			$scope.duties[i].isOpened = false;
 		
-		for(var i=0; i<$scope.pr.length; i++)
-			$scope.pr[i] = false;	
-	}
-	
-	$scope.changePeStatus = function(i){
-		$scope.pe[i] = !$scope.pe[i];
-	}
-	$scope.getPeStatus = function(i){
-		return $scope.pe[i];
-	}
-	
-	$scope.changeDuStatus = function(i){
-		$scope.du[i] = !$scope.du[i];
-	}
-	$scope.getDuStatus = function(i){
-		return $scope.du[i];
-	}
-	
-	$scope.changePrStatus = function(i){
-		$scope.pr[i] = !$scope.pr[i];
-	}
-	$scope.getPrStatus = function(i){
-		return $scope.pr[i];
-	}
-
-	$scope.getActionName = function(innerJson){
-		if(angular.fromJson(innerJson).hasOwnProperty("generalAction")){
-			return "generalAction";
-		}
-		else if(angular.fromJson(innerJson).hasOwnProperty("advancedAction")){
-			return "advancedAction";
-		}
-	}
-
-	$scope.getAction = function(innerJson){
-		var annot="";
-		if(angular.fromJson(innerJson).hasOwnProperty("generalAction")){
-			annot = angular.fromJson(innerJson).generalAction;
-		}
-		else if(angular.fromJson(innerJson).hasOwnProperty("advancedAction"))	{
-			annot = angular.fromJson(innerJson).advancedAction;
-		}
-		return annot.toLowerCase();
-	}
-
-	$scope.getAnnot = function(innerJson){
-		var annot = angular.fromJson(innerJson).annotation;
-		return annot;
+		for(var i=0; i<$scope.prohibitions.length; i++)
+			$scope.prohibitions[i].isOpened = false;	
 	}	
+	
+	$scope.toggleRelPermission = function(currentId, relatedPermissionId, userType){
+
+		var dom;
+		var i = null;		
+		
+		// changing border of related permission annotation
+		for ( i = 0; i < $scope.permissions.length; i++ ){			
+			dom = document.getElementById($scope.permissions[i].id+userType);
+			if ($scope.permissions[i].id === relatedPermissionId){
+				if(dom.style.borderColor === "red")
+					dom.style.border = "none";				
+				else
+					dom.style.border = "3px solid red";
+				dom.focus();
+			}
+			else if( typeof(dom) != 'undefined' && dom != null ){
+				dom.style.border = "none";
+			}
+		}		
+
+		// changing border of current duty annotation
+		for ( i = 0; i < $scope.duties.length; i++ ){
+			dom = document.getElementById($scope.duties[i].id+userType);
+			if ($scope.duties[i].id === currentId){
+				if(dom.style.borderColor === "red")
+					dom.style.border = "none";
+				else
+					dom.style.border = "3px solid red";	
+			}
+			else if( typeof(dom) != 'undefined' && dom != null ){
+				dom.style.border = "none";
+			}
+		}	
+
+	}
+	
 }]);
 
 
