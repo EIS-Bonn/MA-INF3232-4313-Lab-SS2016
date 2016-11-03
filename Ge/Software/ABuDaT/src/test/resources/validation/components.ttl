@@ -1,0 +1,271 @@
+@prefix dcterms:        <http://purl.org/dc/terms/> .
+@prefix foaf:           <http://xmlns.com/foaf/0.1/> .
+@prefix interval:       <http://reference.data.gov.uk/def/intervals/> .
+@prefix org:            <http://www.w3.org/ns/org#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix pc:             <http://purl.org/procurement/public-contracts#> .
+@prefix qb:             <http://purl.org/linked-data/cube#> .
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:         <http://schema.org/> .
+@prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix sdmx-concept:   <http://purl.org/linked-data/sdmx/2009/concept#> .
+@prefix sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix sdmx-measure:   <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix time:           <http://www.w3.org/2006/time#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix obeu:           <http://data.openbudgets.eu/ontology/> .
+@prefix obeu-attribute: <http://data.openbudgets.eu/ontology/dsd/attribute/> .
+@prefix obeu-codelist:  <http://data.openbudgets.eu/resource/codelist/> .
+@prefix obeu-dimension: <http://data.openbudgets.eu/ontology/dsd/dimension/> .
+@prefix obeu-measure:   <http://data.openbudgets.eu/ontology/dsd/measure/> .
+@prefix obeu-optional:  <http://data.openbudgets.eu/ontology/dsd/optional/> .
+
+##################
+### Attributes ###
+##################
+
+obeu-attribute:currency a qb:AttributeProperty, qb:CodedProperty, rdf:Property ;
+  rdfs:label "currency"@en, "devise"@fr, "měna"@cs ;
+  rdfs:comment "Currency of a financial amount."@en,
+               "La devise du montant financier."@fr,
+               "Měna peněžní částky."@cs ;
+  qb:concept sdmx-concept:currency ;
+  rdfs:range obeu:Currency ;
+  qb:codeList <http://publications.europa.eu/resource/authority/currency> ;
+  rdfs:subPropertyOf sdmx-attribute:currency ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-attribute:taxesIncluded a qb:AttributeProperty, qb:CodedProperty, rdf:Property ;
+  rdfs:label "taxes included"@en, "taxes comprises"@fr, "včetně daní"@cs ;
+  rdfs:comment "Indicates whether the reported amount includes taxes."@en,
+               "Indique si un montant inclut les taxes."@fr,
+               "Označuje, zda vykázaná částka zahrnuje daně."@cs ;
+  rdfs:range xsd:boolean ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+##################
+### Dimensions ###
+##################
+
+obeu-dimension:accountingRecord a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "accounting record"@en, "pièce comptable"@fr, "účetní záznam"@cs ;
+  rdfs:comment "Link to an accounting record (e.g., invoice, credit note) associated with expenditure or revenue."@en,
+               "Lien vers une pièce comptable (par exemple une facture) associée à une dépense ou une ressource."@fr,
+               "Vazba na účetní záznam (např. faktura, dobropis) související s výdajem nebo příjmem."@cs ;
+  rdfs:range foaf:Document ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:administrativeClassification a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "administrative classification (abstract)"@en,
+             "classification administrative (abstrait)"@fr,
+             "administrativní klasifikace (abstraktní)"@cs ;
+  rdfs:comment "Identifies the entity responsible for managing the public funds concerned."@en,
+               "Identifie l'entité responsable pour la gestion des fonds publics concernés."@fr,
+               "Identifikuje subjekty zodpovědné za správu příslušných veřejných prostředků."@cs ;
+  qb:concept obeu:AdministrativeClassification ;
+  rdfs:range skos:Concept ;
+  rdfs:subPropertyOf obeu-dimension:classification ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:budgetLine a qb:CodedProperty, qb:DimensionProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "budget line"@en, "ligne budgétaire"@fr, "rozpočtová položka"@cs ;
+  rdfs:comment "Budget line from which the payment draws its funds."@en,
+               "La ligne budgétaire correspondant au paiement."@fr,
+               "Položka, ze které je uskutečněna platba."@cs ;
+  rdfs:range qb:Observation ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:budgetPhase a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "budget phase"@en, "phase budgétaire"@fr, "fáze rozpočtového procesu"@cs ;
+  rdfs:comment "Major event or stage in the budget cycle."@en,
+               "Evènement majeur ou étape du cycle budgétaire."@fr,
+               "Hlavní fáze či etapa rozpočtového cyklu."@cs ;
+  rdfs:range obeu:BudgetPhase ;
+  qb:codeList obeu-codelist:budget-phase ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:budgetaryUnit a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "budgetary unit"@en, "unités budgétaires"@fr, "rozpočtová jednotka"@cs ;
+  rdfs:comment "Deprecated. Use obeu-dimension:organization."@en,
+               "Déprécié. Utilisez obeu-dimension:organization."@fr,
+               "Zastaralé. Použijte dimenzi obeu-dimension:organization."@cs ;
+  qb:concept sdmx-concept:statUnit ;
+  rdfs:range org:Organization ;
+  owl:deprecated true ;
+  rdfs:seeAlso obeu-dimension:organization ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:classification a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "classification (abstract)"@en,
+             "classification (abstrait)"@fr,
+             "klasifikace (abstraktní)"@cs ;
+  rdfs:comment "Category to which observation belongs."@en,
+               "Catégorie à laquelle l'observation appartient."@fr,
+               "Kategorie, do níž pozorování patří."@cs ;
+  rdfs:range skos:Concept ;
+  rdfs:subPropertyOf dcterms:subject ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:currency a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "currency"@en, "devise"@fr, "měna"@cs ;
+  rdfs:comment "Currency of a financial amount."@en,
+               "Devise du montant financier."@fr,
+               "Měna peněžní částky."@cs ;
+  qb:concept sdmx-concept:currency ;
+  rdfs:range obeu:Currency ;
+  qb:codeList <http://publications.europa.eu/resource/authority/currency> ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:date a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "date"@en, "date"@fr, "datum"@cs ;
+  rdfs:comment "Date when expense was paid or revenue received."@en,
+               "Date à laquelle le paiment a été effectué ou le revenu perçu."@fr,
+               "Datum zaplacení nebo přijetí platby."@cs ;
+  qb:concept sdmx-concept:refPeriod ;
+  rdfs:range time:Interval ;
+  rdfs:subPropertyOf obeu-dimension:fiscalPeriod ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:economicClassification a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "economic classification (abstract)"@en,
+             "classification économique (abstrait)"@fr,
+             "ekonomická klasifikace (abstraktní)"@cs ;
+  rdfs:comment "Identifies the type of expenditure incurred or source of revenues."@en,
+               "Identifie le type de dépense ou la source des revenus."@fr,
+               "Identifikuje typ vynaloženého výdaje nebo zdroje příjmu."@cs ;
+  qb:concept obeu:EconomicClassification ;
+  rdfs:range skos:Concept ;
+  rdfs:subPropertyOf obeu-dimension:classification ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:fiscalPeriod a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "fiscal period"@en, "période fiscale"@fr, "účetní/fiskální období"@cs ;
+  rdfs:comment "The period of time reflected in financial statements."@en,
+               "La période considérée dans les documents budgétaires."@fr,
+               "Referenční období zohledněné ve finančních výkazech."@cs ;
+  qb:concept sdmx-concept:refPeriod ;
+  rdfs:range time:Interval ;
+  rdfs:subPropertyOf sdmx-dimension:refPeriod ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:fiscalYear a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "fiscal year"@en, "exercice comptable"@fr, "fiskální rok"@cs ;
+  rdfs:comment "The year reflected in financial statements."@en,
+               "L'année des documents budgétaires considérés."@fr,
+               "Referenční rok zohledněný ve finančních výkazech."@cs ;
+  qb:concept sdmx-concept:refPeriod ;
+  rdfs:range interval:Year ;
+  rdfs:subPropertyOf obeu-dimension:fiscalPeriod ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:functionalClassification a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "functional classification (abstract)"@en,
+             "classification fonctionnelle (abstrait)"@fr,
+             "funkční klasifikace (abstraktní)"@cs ;
+  rdfs:comment "Classifies expenditure or revenue by general government sector and by its purpose."@en,
+               "Classe les dépenses par secteur ou mission couverte par la dépense."@fr,
+               "Klasifikuje výdaje nebo příjmy podle subsektoru institucionálního sektoru vládních institucí a podle účelu."@cs ;
+  qb:concept obeu:FunctionalClassification ;
+  rdfs:range skos:Concept ;
+  rdfs:subPropertyOf obeu-dimension:classification ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:operationCharacter a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "operation character"@en, "type d'opération"@fr, "typ operace"@cs ;
+  rdfs:comment "Distinguishes among expenditure and revenue."@en,
+               "Distingue les dépenses des revenus."@fr,
+               "Rozlišení mezi výdajem a příjmem."@cs ;
+  rdfs:range obeu:OperationCharacter ;
+  qb:codeList obeu-codelist:operation-character ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:organization a qb:CodedProperty, qb:DimensionProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "organization"@en, "organisation"@fr, "organizace"@cs ;
+  rdfs:comment "An economic entity that is capable, in its own right, of owning assets, incurring liabilities, and engaging in economic activities and in transactions with other entities."@en,
+               "Une entité économique capable, de plein droit, d'avoir un actif et un passif et de contracter des activités économiques avec d'autres entités."@fr,
+               "Ekonomická jednotka, která je schopna vlastním jménem vlastnit aktiva, uzavírat závazky a vstupovat do ekonomických aktivit a transakcí s jinými subjekty."@cs ;
+  qb:concept sdmx-concept:statUnit ;
+  rdfs:range org:Organization ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:partner a qb:CodedProperty, qb:DimensionProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "partner"@en, "partenaire"@fr, "partner"@cs ;
+  rdfs:comment "The entity to which the payment was made or from which the revenue was collected."@en,
+               "L'entité à qui le paiement a été fait ou de qui provient le revenu collecté."@fr,
+               "Subjekt, jemuž byla poukázána platba, nebo od něhož byla platba přijata."@cs ;
+  qb:concept sdmx-concept:statUnit ;
+  rdfs:range org:Organization ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:paymentPhase a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "payment phase"@en, "phase du paiement"@fr, "platební fáze"@cs ;
+  rdfs:comment "Indicates the phase of payment."@en,
+               "Indique la phase du paiement."@fr,
+               "Označuje fázi platby."@cs ;
+  qb:codeList obeu-codelist:payment-phase ;
+  rdfs:range obeu:PaymentPhase ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:programmeClassification a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "programme classification (abstract)"@en,
+             "programme de classification (abstrait)"@fr,
+             "programová klasifikace (abstraktní)"@cs ;
+  rdfs:comment "Grouping of expenditure or revenue by common objective."@en,
+               "Regroupe les dépenses par mission."@fr,
+               "Seskupování výdajů nebo příjmů se společným cílem."@cs ;
+  qb:concept obeu:ProgrammeClassification ;
+  rdfs:range skos:Concept ;
+  rdfs:subPropertyOf obeu-dimension:classification ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:project a qb:CodedProperty, qb:DimensionProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "project"@en, "projet"@fr, "projekt"@cs ;
+  rdfs:comment "Project associated with a payment."@en,
+               "Projet associé au paiment."@fr,
+               "Projekt související s platbou."@cs ;
+  rdfs:range foaf:Project ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-dimension:taxesIncluded a qb:CodedProperty, qb:DimensionProperty, rdf:Property ;
+  rdfs:label "taxes included"@en, "taxes comprises"@fr, "včetně daní"@cs ;
+  rdfs:comment "Indicates whether the reported amount includes taxes."@en,
+               "Indique si les taxes sont inclues dans le montant."@fr,
+               "Označuje, zda vykázaná částka zahrnuje daně."@cs ;
+  rdfs:range xsd:boolean ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+################
+### Measures ###
+################
+
+obeu-measure:amount a qb:MeasureProperty, rdf:Property ;
+  rdfs:label "amount"@en, "montant"@fr, "částka"@cs ;
+  rdfs:comment "Monetary amount."@en, "Montant financier."@fr, "Peněžní částka."@cs ;
+  qb:concept sdmx-concept:obsValue ;
+  rdfs:range xsd:decimal ;
+  rdfs:subPropertyOf sdmx-measure:obsValue ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+###########################
+### Optional properties ###
+###########################
+
+obeu-optional:contract a obeu:OptionalProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "contract"@en, "contrat"@fr, "zakázka"@cs ;
+  rdfs:comment "Public contract for which the payment is made."@en,
+               "Contrat de droit public pour lequel le paiement est effectué."@fr,
+               "Veřejná zakázka/smlouva, na kterou je platba provedena."@cs ;
+  rdfs:range pc:Contract ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .
+
+obeu-optional:location a obeu:OptionalProperty, rdf:Property, owl:ObjectProperty ;
+  rdfs:label "location"@en, "locatlisation"@fr, "lokalita"@cs ;
+  rdfs:comment "Physical location affected by a payment."@en,
+               "Localisation physique liée au paiement."@fr,
+               "Fyzická lokalita ovlivněná platbou."@cs ;
+  qb:concept sdmx-concept:refArea ;
+  rdfs:range schema:Place ;
+  rdfs:isDefinedBy <http://data.openbudgets.eu/ontology> .

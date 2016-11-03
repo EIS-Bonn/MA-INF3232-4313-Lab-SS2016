@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div th:fragment="mappings">
+    <h2 class="text-center">Column mapping</h2>
+    <br/>
+    <div class="form-inline">
+
+        <th:block th:each="mapping, stat : *{mappings}">
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('*{mappings[__${stat.index}__].name}')} ? 'has-error'">
+                            <label>Column Name</label>
+                            <input type="text" class="form-control" style="width: 100%;"
+                                   th:field="*{mappings[__${stat.index}__].name}" th:value="${mapping.name}"
+                                   aria-describedby="help"/>
+                            <span id="help" class="help-block">
+                        <strong><span th:if="${#fields.hasErrors('*{mappings[__${stat.index}__].name}')}"
+                                      th:errors="*{mappings[__${stat.index}__].name}"></span></strong>
+                       Input column
+                    </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('*{mappings[__${stat.index}__].uri}')} ? 'has-error'">
+                            <label>Property IRI</label>
+                            <input th:id="'propertyUri'+${stat.index}" type="text" class="form-control"
+                                   style="width: 100%;"
+                                   th:disabled="*{mappings[__${stat.index}__].componentProperty != ''}"
+                                   th:field="*{mappings[__${stat.index}__].uri}" th:value="${mapping.uri}"
+                                   aria-describedby="help"/>
+                            <span id="help" class="help-block">
+                        <strong><span th:if="${#fields.hasErrors('*{mappings[__${stat.index}__].uri}')}"
+                                      th:errors="*{mappings[__${stat.index}__].uri}"></span></strong>
+                       The property IRI, either enter an iri, or choose from the component property dropdown menu.
+                        </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Component property</label>
+                        <select class="form-control" style="width: 100%;" th:id="'compPropertySelector'+${stat.index}"
+                                th:field="*{mappings[__${stat.index}__].componentProperty}"
+                                th:onchange="'javascript:updatePropertyUriOnComponentPropertySelected(' + ${stat.index} + ')'"
+                                aria-describedby="help">
+
+                            <option value="">--- Choose a property ---</option>
+                            <optgroup label="Core Measures">
+                                <option th:each="m : ${@coreMeasures}"
+                                        th:value="${m.iri}" th:text="${m.label}"></option>
+                            </optgroup>
+                            <optgroup label="Custom Dimensions" th:if="*{!customDimensions.isEmpty()}">
+                                <option th:each="c : *{customDimensions}" th:value="${c.iri}" th:text="${c.label}"
+                                        th:if="${c.label != null and c.label != ''}"></option>
+                            </optgroup>
+                            <optgroup label="Custom Measures" th:if="*{!customMeasures.isEmpty()}">
+                                <option th:each="m : *{customMeasures}" th:value="${m.iri}" th:text="${m.label}"
+                                        th:if="${m.label != null and m.label != ''}"></option>
+                            </optgroup>
+                        </select>
+                        <span id="help" class="help-block">
+                       The component property
+                    </span>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Amount?</label><br/>
+                        <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No"
+                               th:id="'isAmountCheckBox'+${stat.index}"
+                               th:field="*{mappings[__${stat.index}__].isAmount}"
+                               th:value="${mapping.isAmount}"
+                               th:onchange="'javascript:updateFieldsForAmountOnly(' + ${stat.index} + ')'"
+                               aria-describedby="helpBlock"/>
+                        <span id="helpBlock" class="help-block">
+                            Is an amount property
+                        </span>
+                    </div>
+                    <div class="col-md-1">
+                        <label>Remove</label>
+                        <button type="submit" name="removeMapping" th:value="${stat.index}"
+                                class="btn btn-danger"><span
+                                class="glyphicon glyphicon-trash"></span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" th:id="'valuePrefixDiv'+${stat.index}"
+                         th:style="${mapping.isAmount == true ? 'display:none;' : 'display:block'}">
+                        <label>Value prefix / codelist IRI</label>
+                        <input type="text" th:id="'valuePrefix'+${stat.index}" class="form-control"
+                               style="width: 100%;" th:field="*{mappings[__${stat.index}__].valuePrefix}"
+                               aria-describedby="helpBlock"/>
+                        <span id="helpBlock" class="help-block">
+                            The given iri will be prefixed to the values in this column. <em>Example: Use this if the values in this column are entities in a code list.</em>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </th:block>
+    </div>
+    <br/>
+    <div class="text-center">
+        <button type="submit" name="addMapping" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a column mapping
+        </button>
+    </div>
+</div>
+
+</body>
+</html>

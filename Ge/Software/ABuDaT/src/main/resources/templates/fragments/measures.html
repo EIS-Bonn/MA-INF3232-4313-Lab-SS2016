@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div th:fragment="measures">
+    <h3 class="text-center">Custom Measures:</h3>
+    <div class="form-inline">
+        <th:block th:each="measure, stat : *{customMeasures}">
+            <div class="row well">
+                <div class="col-md-8 form-group"
+                     th:classappend="${#fields.hasErrors('*{customMeasures[__${stat.index}__].iri}')} ? 'has-error'">
+                    <label>URL of the custom measure</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customMeasures[__${stat.index}__].iri}" th:value="${measure.iri}"
+                           aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customMeasures[__${stat.index}__].iri}')}"
+                                      th:errors="*{customMeasures[__${stat.index}__].iri}"></span>
+                            </strong>
+                                An IRI for the custom measure.
+                        </span>
+                </div>
+                <div class="col-md-4 form-group"
+                     th:classappend="${#fields.hasErrors('*{customMeasures[__${stat.index}__].subPropertyOf}')} ? 'has-error'">
+                    <label>Type</label>
+                    <select class="form-control" style="width: 100%;"
+                            th:field="*{customMeasures[__${stat.index}__].subPropertyOf}"
+                            th:id="'custDimTypeSel'+${stat.index}"
+                            aria-describedby="helpBlock">
+                        <option value="">--- Choose a type ---</option>
+                        <optgroup label="Core Measures">
+                            <option th:each="c : ${@coreMeasures}"
+                                    th:value="${c.iri}" th:text="${c.label}"></option>
+                        </optgroup>
+                    </select>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customMeasures[__${stat.index}__].subPropertyOf}')}"
+                                      th:errors="*{customMeasures[__${stat.index}__].subPropertyOf}"></span>
+                            </strong>
+                                The type of the custom measure.
+                        </span>
+                </div>
+                <div class="col-md-4 form-group"
+                     th:classappend="${#fields.hasErrors('*{customMeasures[__${stat.index}__].label}')} ? 'has-error'">
+                    <label>Label:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customMeasures[__${stat.index}__].label}"
+                           th:value="${measure.label}" aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            <strong>
+                                <span th:if="${#fields.hasErrors('*{customMeasures[__${stat.index}__].label}')}"
+                                      th:errors="*{customMeasures[__${stat.index}__].label}"></span>
+                            </strong>
+                                An label.
+                        </span>
+                </div>
+                <div class="col-md-7">
+                    <label>Comment:</label>
+                    <input type="text" class="form-control" style="width: 100%;"
+                           th:field="*{customMeasures[__${stat.index}__].comment}"
+                           th:value="${measure.comment}" aria-describedby="helpBlock"/>
+                    <span id="helpBlock" class="help-block">
+                            A comment.
+                        </span>
+                </div>
+                <div class="col-md-1">
+                    <div class="col-md-1">
+                        <label>remove</label>
+                        <button type="submit" name="removeCustomMeasure" th:value="${stat.index}"
+                                class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </th:block>
+    </div>
+    <br/>
+    <div class="text-center">
+        <button type="submit" name="addCustomMeasure" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add custom measure
+        </button>
+    </div>
+</div>
+
+</body>
+</html>
+

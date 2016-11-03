@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div class="container theme-showcase" role="main" th:fragment="choose_file">
+    <h1>Choose budget data to transform</h1>
+
+    <p>Enter a URL or choose a file to upload.</p>
+    <div class="form-group">
+        <!--<label for="source">Budget data file:</label>-->
+        <input id="source" type="text" class="form-control" placeholder="URL" th:field="*{source}"/>
+    </div>
+    <div class="form-group">
+        <label class="btn btn-default" for="my-file-selector">
+            <input id="my-file-selector" name="file" type="file" style="display:none;"/>
+            Choose a file to upload
+        </label>
+    </div>
+</div>
+
+</body>
+</html>

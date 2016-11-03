@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+
+<body>
+
+<div th:fragment="core">
+    <h3 class="text-center">Core Attributes of the dataset</h3>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('currency')} ? 'has-error'">
+        <label for="currency">Currency of the budgeted amount:</label>
+        <input id="currency" type="text" class="form-control"
+               th:field="*{currency}" aria-describedby="helpBlockCurr"/>
+        <span id="helpBlockCurr" class="help-block">
+            <strong><span th:if="${#fields.hasErrors('currency')}" th:errors="*{currency}"></span></strong>
+           The currency of the budgeted amounts. <em>Example: http://data.openbudgets.eu/codelist/currency/EUR</em>
+        </span>
+    </div>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('taxesIncluded')} ? 'has-error'">
+        <label>Taxes included</label>
+        <select id="taxesIncluded" class="form-control" style="width: 100%;"
+               th:field="*{taxesIncluded}" aria-describedby="helpBlockTaxes" th:disabled="*{operationCharacter == T(de.uni.bonn.iai.eis.rdf.obeu.OperationCharacter).REVENUE}">
+            <option value="-1">--- Taxes included property for the whole dataset (optional) ---</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        <span id="helpBlockTaxes" class="help-block">
+            <strong><span th:if="${#fields.hasErrors('taxesIncluded')}" th:errors="*{taxesIncluded}"></span></strong>
+          Indicates whether the reported monetary amount includes taxes. Taxes typically apply only to expenditure budget lines and are not included in revenue budget lines.
+        </span>
+    </div>
+</div>
+
+</body>
+</html>

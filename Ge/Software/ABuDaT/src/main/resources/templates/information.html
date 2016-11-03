@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <h1 class="text-center">
+        About OpenBudgets:
+    </h1>
+    <br/>
+    <strong>
+    OpenBudgets is an EU funded project, aiming at supporting journalists, civil society organisations, NGOs,
+    citizens and public administrations, by providing an overview of public spending, as well as tools and
+    appropriate data and stories to advocate and fight for fiscal transparency.<br/><br/>
+
+    One core objective of OpenBudgets.eu project is a semantic data model. This model will be used to integrate all relevant
+    budget and transaction data, giving a pre-defined structure to the input data. This will enable the integration of data from
+    different public sectors at different levels. This integration can then be exploited by comparing different datasets.
+    </strong> [source: openbudgets.eu]
+    <h3 class="text-center">For more information, visit: <a href="http://www.openbudgets.eu/">http://www.openbudgets.eu</a></h3>
+
+    <div class="starter-template">
+        <span id="document-title">
+            <a href="http://openbudgets.eu/assets/deliverables/D1.2.pdf">
+                Deliverable 1.2: Design of data structure definition for public budget data
+            </a>
+        </span>
+        <br/>
+        <object data="http://openbudgets.eu/assets/deliverables/D1.2.pdf" type="application/pdf"
+                width="1150" height="800">
+        </object>
+
+        <br/>
+        <br/>
+        <span id="document-title">
+            <a href="http://openbudgets.eu/assets/deliverables/D1.3.pdf">
+                Deliverable 1.3: Design of data structure definition for public spending data
+            </a>
+        </span>
+        <br/>
+        <object data="http://openbudgets.eu/assets/deliverables/D1.3.pdf" type="application/pdf"
+                width="1150" height="800">
+        </object>
+
+        <br/>
+        <br/>
+        <span id="document-title">
+            <a href="http://openbudgets.eu/assets/deliverables/D1.5.pdf">
+                Deliverable 1.5: Final release of data definitions for public finance data
+            </a>
+        </span>
+        <br/>
+        <object data="http://openbudgets.eu/assets/deliverables/D1.5.pdf" type="application/pdf"
+                width="1150" height="800">
+        </object>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

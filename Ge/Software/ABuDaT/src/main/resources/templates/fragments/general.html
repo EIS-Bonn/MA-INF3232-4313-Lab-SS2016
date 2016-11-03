@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div th:fragment="general">
+    <h3 class="text-center">General Information</h3>
+    <label for="budgetDataUrl">Url of the budget data to transform:</label>
+    <input id="budgetDataUrl" type="text" class="form-control" style="width: 100%;"
+           th:field="*{source}" th:value="${source}" aria-describedby="helpBlockDU"/>
+    <span id="helpBlockDU" class="help-block">
+            The URL the budget data will be downloaded from.
+        </span>
+
+    <label for="charset">Character set of the data</label>
+    <input id="charset" th:field="*{charset}" th:value="${charset}" class="form-control" style="width: 100%;"
+           aria-describedby="helpBlock"/>
+    <span id="helpBlock" class="help-block">
+            The character set of the data to download.
+        </span>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
+        <label for="transformationName">Name of the transformation:</label>
+        <input id="transformationName" type="text" class="form-control" style="width: 100%;"
+               th:field="*{name}" th:value="${name}" aria-describedby="helpBlockTN"/>
+        <span id="helpBlockTN" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></strong>
+                The name for the transformation.
+            </span>
+    </div>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('datasetUrl')} ? 'has-error'">
+        <label for="datasetUrl">Url of the dataset:</label>
+        <input id="datasetUrl" type="text" class="form-control" style="width: 100%;"
+               th:field="*{datasetUrl}" th:value="*{datasetUrl}" aria-describedby="helpBlockDSU"/>
+        <span id="helpBlockTN" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('datasetUrl')}" th:errors="*{datasetUrl}"></span></strong>
+                The OpenBudgets.eu URL for the dataset. <em>Example: http://data.openbudgets.eu/resources/dataset/eu_budget_2014</em>
+            </span>
+    </div>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('dsdUrl')} ? 'has-error'">
+        <!--<label class="control-label" for="dsdUrl">Url of the data structure definition:</label>-->
+        <label for="dsdUrl">Url of the data structure definition:</label>
+        <input id="dsdUrl" type="text" class="form-control"
+               th:field="*{dsdUrl}" aria-describedby="helpBlockDSDUrl"/>
+        <span id="helpBlockDSDUrl" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('dsdUrl')}" th:errors="*{dsdUrl}"></span></strong>
+                The OpenBudgets.eu URL for the data structure definition. <em>Example: http://data.openbudgets.eu/ontology/dsd/eu_budget_2014</em>
+            </span>
+    </div>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('dsdLabel')} ? 'has-error'">
+        <label for="dsdLabel">Description:</label>
+        <input id="dsdLabel" type="text" class="form-control"
+               th:field="*{dsdLabel}" aria-describedby="helpBlockDescr"/>
+        <span id="helpBlockDSDUrl" class="help-block">
+                <strong><span th:if="${#fields.hasErrors('dsdLabel')}" th:errors="*{dsdLabel}"></span></strong>
+                A brief description of the dataset.
+            </span>
+    </div>
+</div>
+
+</body>
+</html>

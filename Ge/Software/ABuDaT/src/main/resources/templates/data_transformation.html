@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:include="fragments/header :: header"></div>
+
+<div class="container" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <div class="text-center">
+        <h2>Transform budget data</h2>
+    </div>
+    <br/>
+    <hr/>
+    <br/>
+
+    <form action="#" th:action="@{/transformation/data}" th:object="${dataTransformation}" method="post" role="form">
+
+        <input type="hidden" th:field="*{id}" th:value="${id}"/>
+        <input type="hidden" th:field="*{delimiterChar}" th:value="${delimiterChar}"/>
+        <input type="hidden" th:field="*{tableType}" th:value="${tableType}"/>
+        <input type="hidden" th:field="*{hasHeader}" th:value="${hasHeader}"/>
+
+        <div th:replace="fragments/general :: general"></div>
+        <br/>
+        <div class="text-center" >
+            <button type="submit" name="save" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Save
+            </button>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/dimensions :: core"></div>
+        <br/>
+        <div class="text-center" >
+            <button type="submit" name="save" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Save
+            </button>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/attributes :: core"></div>
+        <br/>
+        <div class="text-center" >
+            <button type="submit" name="save" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Save
+            </button>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/dimensions :: dimensions"></div>
+        <br/>
+        <div class="text-center" >
+            <button type="submit" name="save" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Save
+            </button>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/measures :: measures"></div>
+        <br/>
+        <div class="text-center" >
+            <button type="submit" name="save" class="btn btn-default">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Save
+            </button>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <div th:replace="fragments/mappings :: mappings"></div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <p class="text-center">
+            <em>
+                Expert option:
+                <button type="button" class="btn btn-link" onclick="showSparqlUpdates()">Add SPARQL queries to
+                    manipulate the data.
+                </button>
+            </em>
+        </p>
+        <div id="sparqlUpdates" th:style="*{sparqlUpdates.isEmpty() == true ? 'display:none;' : 'display:block'}">
+            <div th:replace="fragments/sparql :: sparql"></div>
+        </div>
+
+        <br/>
+        <br/>
+
+        <div th:replace="fragments/actions :: actions"></div>
+    </form>
+
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('mouseenter', '.divbutton', function () {
+            $(this).find(":button").show();
+        }).on('mouseleave', '.divbutton', function () {
+            $(this).find(":button").hide();
+        });
+    });
+
+    function updateValuePrefixOnTypeSelected(id) {
+        var selection = document.getElementById("typeSelector" + id);
+        var valuePrefixField = document.getElementById("valuePrefix" + id);
+
+        if (selection.value != "String") {
+            valuePrefixField.disabled = true;
+            valuePrefixField.visibility = "hidden";
+        } else {
+            valuePrefixField.disabled = false;
+        }
+    }
+
+    function updatePropertyUriOnComponentPropertySelected(id) {
+        var selection = document.getElementById("compPropertySelector" + id);
+        var propertyUriField = document.getElementById("propertyUri" + id);
+
+        if (selection.value != "") {
+            propertyUriField.disabled = true;
+            propertyUriField.visibility = "hidden";
+
+            if (selection.value == "AMOUNT") {
+            }
+
+        } else {
+            propertyUriField.disabled = false;
+        }
+
+        document.getElementById('updateForm').click();
+    }
+
+    function updateFieldsForAmountOnly(id) {
+        var checkbox = document.getElementById("isAmountCheckBox" + id);
+        var valuePrefixDiv = document.getElementById("valuePrefixDiv" + id);
+
+        if (checkbox.checked) {
+            valuePrefixDiv.style.display = 'none';
+        } else {
+            valuePrefixDiv.style.display = 'block';
+        }
+    }
+
+    function showSparqlUpdates() {
+        document.getElementById("sparqlUpdates").style.display = "block";
+    }
+
+    $(document).ready(function() {
+        // If scroll cookie is set, scroll to the position saved in the cookie.
+        if ( Cookies.get('scroll') !== null ) {
+            $(document).scrollTop( Cookies.get('scroll') );
+            Cookies.remove('scroll');
+        }
+
+        // When the form is submitted
+        $( "form" ).on( "submit", function() {
+            // Set a cookie that holds the scroll position.
+            Cookies.set('scroll', $(document).scrollTop());
+        });
+
+    });
+
+</script>
+</body>
+</html>

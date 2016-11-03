@@ -1,0 +1,1 @@
+DELETE WHERE {?x <http://linked.opendata.cz/ontology/odcs/tabular/row> ?y}

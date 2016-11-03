@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: largeWithText"></div>
+
+    <div class="starter-template">
+        <p>
+            <a th:href="@{/transformation/data/start}"
+               class="newbutton newbutton1">Transform Spending Data</a>
+
+            <a th:href="@{/transformation/codelist/start}"
+               class="newbutton newbutton1">Transform Code Lists</a><br/><br/>
+
+            <a th:href="@{/about}"
+               class="newbutton newbutton1">Information about ABuDaT</a>
+
+            <a th:href="@{/information}"
+               class="newbutton newbutton1">Information about OpenBudgets.eu</a>
+        </p>
+
+        <br/>
+        <br/>
+        <h4><strong>Curious? See what ABuDaT can do for you by running an example</strong></h4><br/>
+        <strong>Data Transformation Examples:</strong><br/>
+        <a href="#" th:href="@{/transformation/data/example3}">Aragon expenditures of 2012</a><br/>
+        <a href="#" th:href="@{/transformation/data/example2}">ESIF expenditures of 2014-2020</a><br/>
+        <br/>
+        <strong>Codelist Transformation Examples:</strong><br/>
+        <a href="#" th:href="@{/transformation/codelist/example1}">Aragon organizational classification codelist of
+            2016</a><br/>
+        <a href="#" th:href="@{/transformation/codelist/example2}">Aragon functional classification codelist of 2016</a>
+
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

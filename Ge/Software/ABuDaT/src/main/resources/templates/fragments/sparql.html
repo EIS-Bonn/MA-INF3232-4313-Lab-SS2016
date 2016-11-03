@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+
+<div th:fragment="sparql">
+    <h3 class="text-center">Sparql Update Queries</h3>
+    <th:block th:each="sqlUpdate, stat : *{sparqlUpdates}">
+        <div class="divbutton">
+                <textarea class="form-control" rows="3" th:field="*{sparqlUpdates[__${stat.index}__].query}"
+                          th:value="*{sparqlUpdates[__${stat.index}__].query}"
+                          placeholder="Enter your query here."></textarea>
+
+            <button type="submit" name="removeQuery" th:value="${stat.index}" class="btn btn-default"
+                    style="display: none;">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+        </div>
+        <br/>
+    </th:block>
+    <div class="text-center">
+        <button type="submit" name="addQuery" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add query
+        </button>
+    </div>
+</div>
+
+</body>
+</html>

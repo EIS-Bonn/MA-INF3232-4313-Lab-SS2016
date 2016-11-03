@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <div class="starter-template">
+
+        <!--th:alt="@{About Map}"-->
+
+        <div style="text-align: left;">
+            <h2>About the project</h2>
+            <br/>
+            The goal of the project is to provide an easy to use interface for the extraction and also for
+            transformation of the important fields from these datasets. The target format for ABuDaT is the
+            OpenBudgets.eu RDF data model [OBeu1].
+            <br/>
+            <br/>
+            ABuDaT is a software system that enables users to transform real world administrative budget data into the
+            openbudgets.eu RDF data model. Transforming the raw data published by the authorities from various formats
+            such as tabular (.csv) or hierarchical (.xml) and in various languages involves multiple steps which are
+            described in this document.
+            <br/>
+            ABuDaT uses the open-source ETL cycle tool <a href="http://linkedpipes.com/">LinkedPipes</a> as a backend
+            trough it’s REST API. LinkedPipes realizes a transformation process that consists of interconnected
+            components.
+        </div>
+        <div style="text-align: center;">
+            <img th:src="@{/images/about-map.png}" width="1132" height="248" border="0" usemap="#map"/>
+
+            <map name="map">
+                <!-- #$-:Image map file created by GIMP Image Map plug-in -->
+                <!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+                <!-- #$-:Please do not edit lines starting with "#$" -->
+                <!-- #$VERSION:2.3 -->
+                <!-- #$AUTHOR:sam -->
+                <area shape="rect" coords="914,65,1071,149" alt="link to about page for enterprise information systems working group university of bonn" href="http://eis.iai.uni-bonn.de/About.html" />
+                <area shape="rect" coords="856,10,1124,55" alt="link to about page - openbudgets" href="http://openbudgets.eu/about/" />
+                <area shape="rect" coords="875,164,1105,225"
+                      alt="link to university of bonn information technology department homepage"
+                      href="https://www.informatik.uni-bonn.de/de" />
+                <area shape="rect" coords="561,80,800,125" alt="link to project repository on bitbucket"
+                      href="https://bitbucket.org/cowclaw/semweblab2016" />
+                <area shape="circle" coords="487,104,41" alt="link to project repository on github"
+                      href="https://github.com/EIS-Bonn/MA-INF3232-4313-Lab-SS2016/tree/master/Ge" />
+                <area shape="rect" coords="452,16,607,49" alt="link to gradle homepage" href="http://gradle.org/" />
+                <area shape="rect" coords="557,163,656,205" alt="link to junit homepage" href="http://junit.org/" />
+                <area shape="rect" coords="679,163,790,214" alt="link to jacoco homepage" href="http://www.eclemma.org/jacoco/" />
+                <area shape="rect" coords="446,158,521,226" alt="link to selenium hompage " href="http://www.seleniumhq.org/" />
+                <area shape="rect" coords="214,97,417,137" alt="link to hibernate homepage" href="http://hibernate.org/" />
+                <area shape="rect" coords="17,13,185,54" alt="link to spring homepage" href="https://www.spring.io/" />
+                <area shape="rect" coords="6,92,195,134" alt="link to thymeleaf homepage" href="http://www.thymeleaf.org/" />
+                <area shape="rect" coords="15,178,190,224" alt="link to jquery homepage" href="http://jquery.org/" />
+                <area shape="rect" coords="269,161,402,234" alt="link to mysql homepage" href="http://mysql.com/" />
+            </map>
+
+
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

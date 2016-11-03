@@ -1,0 +1,33 @@
+# ----- Generic namespaces ------
+@prefix qb:               <http://purl.org/linked-data/cube#> .
+@prefix rdfs:             <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:              <http://www.w3.org/2001/XMLSchema#> .
+@prefix dbpedia:          <http://dbpedia.org/page/> .
+
+# ----- OpenBudgets.eu namespaces -----
+@prefix obeu:           <http://data.openbudgets.eu/ontology/> .
+@prefix obeu-attribute: <http://data.openbudgets.eu/ontology/dsdTurtle/attribute/> .
+@prefix obeu-classification: <http://data.openbudgets.eu/ontology/dsdTurtle/classification/> .
+@prefix obeu-measure: 	<http://data.openbudgets.eu/ontology/dsdTurtle/measure/> .
+
+# DSD namespaces
+@prefix esif-classification: <http://data.openbudgets.eu/ontology/dsdTurtle/ESIF/classification/> .
+@prefix esif-measure: <http://data.openbudgets.eu/ontology/dsdTurtle/ESIF-2014-2020/measure/> .
+@prefix esif-observation: <http://data.openbudgets.eu/resource/dataset/ESIF-2014-2020/observation/> .
+
+# ----- DSD -----
+<http://example.openbudgets.eu/ontology/dsdTurtle/esif-2014-2020> a qb:DataStructureDefinition ;
+        rdfs:label "Data structure definition for the budget of the european structural and investments fund."@en ;
+        qb:component [
+                qb:classification obeu-classification:budgetaryUnit ;
+                qb:componentAttachment qb:DataSet
+        ], [
+                qb:classification obeu-classification:fiscalPeriod ;
+                qb:componentAttachment qb:DataSet
+        ], [
+                qb:measure obeu-measure:amount
+        ], [
+                qb:attribute obeu-attribute:currency ;
+                qb:componentRequired "true"^^xsd:boolean ;
+                qb:componentAttachment qb:DataSet
+        ].

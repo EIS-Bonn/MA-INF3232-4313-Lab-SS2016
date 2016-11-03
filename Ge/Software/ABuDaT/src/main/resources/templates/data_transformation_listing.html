@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:replace="fragments/common :: stylesheets"></div>
+<div th:replace="fragments/common :: scripts"></div>
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container theme-showcase" role="main">
+
+    <div th:replace="fragments/logo :: smallWithText"></div>
+
+    <h2>Data Transformations</h2>
+    <br/>
+    <div class="well" th:style="${dataTransformations.isEmpty() ? 'display:block;' : 'display:none'}">
+        <div class="text-center">
+            <br/>
+            <h4>No transformations yet, <a href="#" th:href="@{/transformation/data/start}">Create a data transformation...</a></h4>
+            <br/>
+            <strong>Or try one of the examples:</strong><br/>
+            <a href="#" th:href="@{/transformation/data/example1}">Aragon expenditures of 2016</a><br/>
+            <a href="#" th:href="@{/transformation/data/example3}">Aragon expenditures of 2012</a><br/>
+            <a href="#" th:href="@{/transformation/data/example2}">ESIF expenditures of 2014-2020</a><br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <table class="table table-hover" th:style="${dataTransformations.isEmpty() ? 'display:none;' : 'display:block'}">
+        <tr>
+            <th style="text-align: left">#</th>
+            <th style="text-align: left">Name</th>
+            <th style="text-align: left">Description</th>
+            <th style="text-align: center">Edit</th>
+            <th style="text-align: center">Exceute</th>
+            <th style="text-align: center">Executions</th>
+            <th style="text-align: center">Delete</th>
+        </tr>
+
+        <th:block th:each="t, stat : *{dataTransformations}">
+            <tr>
+                <td style="text-align: left" th:text="${stat.index+1}"></td>
+                <td style="text-align: left" th:text="${t.name}"></td>
+                <td style="text-align: left" th:text="${t.dsdLabel}"></td>
+
+                <td style="text-align: center">
+                    <a th:href="@{/transformation/data(id=${t.id})}"><span
+                            class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a th:href="@{/transformation/data/execute(id=${t.id})}"><span
+                            class="glyphicon glyphicon-send"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a th:href="@{/transformation/data/executions(id=${t.id})}"><span
+                            class="glyphicon glyphicon-tasks"></span>
+                    </a>
+                </td>
+
+                <td style="text-align: center">
+                    <a data-toggle="modal" th:attr="data-target='#deleteModal'+${t.id}"><span
+                            class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+
+                <div class="modal fade" th:id="'deleteModal'+${t.id}" role="dialog" aria-labelledby="edit"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                                <h4 class="modal-title custom_align" id="Heading">Delete Transformation.</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="alert alert-danger">
+                                    <span class="glyphicon glyphicon-warning-sign"></span>
+                                    Are you sure you want to delete this Transformation?
+                                </div>
+                                <strong><span th:text="${t.name}"></span></strong>
+                                <p th:text="${t.dsdLabel}"></p>
+
+                            </div>
+
+                            <div class="modal-footer ">
+                                <form th:action="@{/transformation/data/delete}" method="get">
+                                    <button type="submit" name="id" th:value="${t.id}" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-ok-sign"></span> Yes
+                                    </button>
+                                </form>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                                        class="glyphicon glyphicon-remove"></span> No
+                                </button>
+                            </div>
+                        </div>
+
+                    </div><!-- /.modal-content -->
+                </div> <!-- /.modal-dialog -->
+            </tr>
+        </th:block>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
