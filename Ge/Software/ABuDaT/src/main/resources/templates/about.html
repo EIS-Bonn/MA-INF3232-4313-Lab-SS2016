@@ -15,26 +15,19 @@
 
     <div class="starter-template">
 
-        <!--th:alt="@{About Map}"-->
-
-        <div style="text-align: left;">
+        <div style="text-align: center;">
             <h2>About the project</h2>
-            <br/>
-            The goal of the project is to provide an easy to use interface for the extraction and also for
-            transformation of the important fields from these datasets. The target format for ABuDaT is the
-            OpenBudgets.eu RDF data model [OBeu1].
             <br/>
             <br/>
             ABuDaT is a software system that enables users to transform real world administrative budget data into the
-            openbudgets.eu RDF data model. Transforming the raw data published by the authorities from various formats
-            such as tabular (.csv) or hierarchical (.xml) and in various languages involves multiple steps which are
-            described in this document.
+            <a href="www.openbudgets.eu">OpenBudgets.eu</a> RDF data model. Please consult the documentation for details.<br/><br/>
+            <strong> <a href="https://github.com/EIS-Bonn/MA-INF3232-4313-Lab-SS2016/raw/master/Ge/Documents/Technical_System_Documentation.pdf">Technical System Documentation </a> </strong><br/>
+            <strong> <a href="https://github.com/EIS-Bonn/MA-INF3232-4313-Lab-SS2016/raw/master/Ge/Documents/UserManual.pdf">User Manual</a> </strong><br/>
             <br/>
-            ABuDaT uses the open-source ETL cycle tool <a href="http://linkedpipes.com/">LinkedPipes</a> as a backend
-            trough it’s REST API. LinkedPipes realizes a transformation process that consists of interconnected
-            components.
+            <br/>
         </div>
         <div style="text-align: center;">
+            <strong>ABuDaT is powered by:</strong>
             <img th:src="@{/images/about-map.png}" width="1132" height="248" border="0" usemap="#map"/>
 
             <map name="map">
